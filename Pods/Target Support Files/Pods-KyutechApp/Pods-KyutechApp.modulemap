@@ -1,0 +1,6 @@
+framework module Pods_KyutechApp {
+  umbrella header "Pods-KyutechApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
