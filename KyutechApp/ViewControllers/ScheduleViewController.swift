@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MaterialComponents.MDCTypography
 
 class ScheduleViewController: UIViewController {
     
@@ -59,13 +60,6 @@ class ScheduleViewController: UIViewController {
     }
     
     func setupPullDownMenu() {
-//        let storyboard = self.storyboard!
-//        quarterSelectController = storyboard.instantiateViewController(withIdentifier: "PullDownMenu") as! PullDownMenuViewController
-////        self.addChildViewController(quarterSelectController)
-//        quarterSelectController.delegate = self
-//        print("pullDownMenu: \(self.quarterSelectController)")
-//        print("childVC: \(type(of: self.childViewControllers[0]))")
-        
         if childViewControllers.count == 1 {
             if let pulldownMenu = childViewControllers[0] as? PullDownMenuViewController {
                 quarterSelectController = pulldownMenu
@@ -79,6 +73,7 @@ class ScheduleViewController: UIViewController {
         let titleLabel = UILabel()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(animatePullDownMenu(tapped:)))
         titleLabel.text = "1st Quarter ▼"
+        titleLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         titleLabel.sizeToFit()
         titleLabel.textColor = .white
         titleLabel.addGestureRecognizer(tapGesture)
@@ -106,6 +101,7 @@ class ScheduleViewController: UIViewController {
             pullDownMenuControllConstraint.constant = 0
             titleLabel.text = titleLabel.text! + "▲"
         }
+        
         titleLabel.sizeToFit()
         UIView.animate(withDuration: 0.2, animations: {
             self.view.layoutIfNeeded()

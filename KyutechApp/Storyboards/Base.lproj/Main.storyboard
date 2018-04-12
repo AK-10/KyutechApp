@@ -198,7 +198,7 @@
                                 <color key="backgroundColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                                 <color key="barTintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                                 <items>
-                                    <navigationItem title="1st Quarter" id="QLH-cF-7Fq"/>
+                                    <navigationItem title="1st Quarter ▼" id="QLH-cF-7Fq"/>
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5c-tY-jE7">
@@ -338,24 +338,28 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6QC-0L-xDV">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="1st Quarter">
                                             <color key="titleColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paX-kO-baH">
                                         <rect key="frame" x="0.0" y="40" width="375" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="2nd Quarter">
                                             <color key="titleColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q8G-4w-Wez">
                                         <rect key="frame" x="0.0" y="80" width="375" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="3rd Quarter">
                                             <color key="titleColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79i-by-USm">
                                         <rect key="frame" x="0.0" y="120" width="375" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="4th Quarter">
                                             <color key="titleColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </state>

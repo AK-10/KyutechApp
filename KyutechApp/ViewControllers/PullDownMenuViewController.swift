@@ -53,8 +53,8 @@ class PullDownMenuViewController: UIViewController {
         let layer = self.view.layer
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 5)
-        layer.shadowRadius = 3
-        layer.shadowOpacity = 0.3
+        layer.shadowRadius = 4
+        layer.shadowOpacity = 0.2
     }
     
 
