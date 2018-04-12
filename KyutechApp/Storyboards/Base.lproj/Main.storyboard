@@ -374,6 +374,7 @@
                             <constraint firstItem="cVt-du-W0n" firstAttribute="leading" secondItem="iZB-4g-IYs" secondAttribute="leading" id="D60-ZN-H0B"/>
                             <constraint firstAttribute="bottom" secondItem="cVt-du-W0n" secondAttribute="bottom" id="NcB-M3-yCE"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="C4E-Dr-hMd"/>
                     </view>
                     <connections>
                         <outlet property="fistButton" destination="6QC-0L-xDV" id="H7e-Rf-gUH"/>
