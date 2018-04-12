@@ -11,33 +11,106 @@ import UIKit
 class ScheduleViewController: UIViewController {
     
     @IBOutlet weak var scheduleCollection: UICollectionView!
-
+    weak var quarterSelectController: PullDownMenuViewController!
+    @IBOutlet weak var pullDownMenuControllConstraint: NSLayoutConstraint!
     @IBOutlet weak var navbar: MaterialNavigationBar!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollection()
+        setupNavigationBar()
+        setupPullDownMenu()
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         scheduleCollection.reloadData()
+        
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navbar.removeShadow()
+    }
+
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     func setupCollection() {
-        
         scheduleCollection.delegate = self
         scheduleCollection.dataSource = self
         
         let nib = UINib(nibName: "CourseCardCell", bundle: nil)
         scheduleCollection.register(nib, forCellWithReuseIdentifier: "CourseCard")
+    }
+    
+    func setupPullDownMenu() {
+//        let storyboard = self.storyboard!
+//        quarterSelectController = storyboard.instantiateViewController(withIdentifier: "PullDownMenu") as! PullDownMenuViewController
+////        self.addChildViewController(quarterSelectController)
+//        quarterSelectController.delegate = self
+//        print("pullDownMenu: \(self.quarterSelectController)")
+//        print("childVC: \(type(of: self.childViewControllers[0]))")
+        
+        if childViewControllers.count == 1 {
+            if let pulldownMenu = childViewControllers[0] as? PullDownMenuViewController {
+                quarterSelectController = pulldownMenu
+                quarterSelectController.delegate = self
+            }
+        }
+    }
+    
+    func setupNavigationBar() {
+        let navigationItem = UINavigationItem()
+        let titleLabel = UILabel()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(animatePullDownMenu(tapped:)))
+        titleLabel.text = "1st Quarter ▼"
+        titleLabel.sizeToFit()
+        titleLabel.textColor = .white
+        titleLabel.addGestureRecognizer(tapGesture)
+        titleLabel.isUserInteractionEnabled = true
+        
+//        let editButton = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector())
+//        navigationItem.rightBarButtonItem = editButton
+        navigationItem.titleView = titleLabel
+
+        navbar.setItems([navigationItem], animated: true)
+    }
+    
+
+    @objc func animatePullDownMenu(tapped by: Any) {
+        let titleLabel = navbar.topItem?.titleView as! UILabel
+        titleLabel.text?.removeLast()
+        if pullDownMenuControllConstraint.constant == 0 {
+            if let button = by as? UIButton {
+                titleLabel.text = (button.titleLabel?.text)! + " ▼"
+            } else {
+                titleLabel.text = titleLabel.text! + "▼"
+            }
+            pullDownMenuControllConstraint.constant = -160
+        } else {
+            pullDownMenuControllConstraint.constant = 0
+            titleLabel.text = titleLabel.text! + "▲"
+        }
+        titleLabel.sizeToFit()
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.layoutIfNeeded()
+        })
+        
     }
 
 }
@@ -78,5 +151,13 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
         return 8
     }
     
-    
+}
+
+extension ScheduleViewController: PullDownMenuViewDelegate {
+    func setupButtons(_ pullDownMenuView: PullDownMenuViewController) {
+        pullDownMenuView.fistButton.addTarget(self, action: #selector(animatePullDownMenu(tapped:)), for: .touchUpInside)
+        pullDownMenuView.secondButton.addTarget(self, action: #selector(animatePullDownMenu(tapped:)), for: .touchUpInside)
+        pullDownMenuView.thirdButton.addTarget(self, action: #selector(animatePullDownMenu(tapped:)), for: .touchUpInside)
+        pullDownMenuView.fourthButton.addTarget(self, action: #selector(animatePullDownMenu(tapped:)), for: .touchUpInside)
+    }
 }

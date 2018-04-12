@@ -7,35 +7,40 @@
 //
 
 import UIKit
-import MaterialComponents
 
 class MaterialNavigationBar: UINavigationBar {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        addShadow()
     }
     
     required init?(coder aDecoder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
         super.init(coder: aDecoder)
-        setup()
+        addShadow()
     }
     
-    override class var layerClass: AnyClass {
-        return MDCShadowLayer.self
-    }
 
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        setup()
+        addShadow()
     }
     
-    func setup() {
-        let barLayer = self.layer as! MDCShadowLayer
-        barLayer.elevation = .appBar
-        barLayer.masksToBounds = false
-        isTranslucent = false
+    func addShadow() {
+        let layer = self.layer
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 5)
+        layer.shadowRadius = 3
+        layer.shadowOpacity = 0.3
+    }
+    
+    func removeShadow() {
+        let layer = self.layer
+        layer.shadowColor = UIColor.white.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowRadius = 0
+        layer.shadowOpacity = 0
     }
 
 }

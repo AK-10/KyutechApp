@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MaterialComponents
 
 class NewsViewController: UIViewController {
 
@@ -16,7 +15,6 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNewsTable()
-        setupNavBar()
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,11 +25,9 @@ class NewsViewController: UIViewController {
     func setupNewsTable() {
         newsHeadCollection.delegate = self
         newsHeadCollection.dataSource = self
+        newsHeadCollection.scrollsToTop = true
         let nib = UINib(nibName: "NewsCell", bundle: nil)
         newsHeadCollection.register(nib, forCellWithReuseIdentifier: "NewsHeadCell")
-    }
-    
-    func setupNavBar() {
     }
 
 }
@@ -39,7 +35,7 @@ class NewsViewController: UIViewController {
 
 extension NewsViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 16
+        return 100
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -57,4 +53,21 @@ extension NewsViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == newsHeadCollection {
+            let navigationbar = self.navigationController?.navigationBar as? MaterialNavigationBar
+            navigationbar?.addShadow()
+        }
+    }
+    
+    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+        if scrollView == newsHeadCollection {
+            let navigationbar = self.navigationController?.navigationBar as? MaterialNavigationBar
+            navigationbar?.removeShadow()
+        }
+    }
+    
 }
+
+
