@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MaterialComponents.MDCTypography
+import MaterialComponents
 
 class ScheduleViewController: UIViewController {
     
@@ -79,13 +79,22 @@ class ScheduleViewController: UIViewController {
         titleLabel.addGestureRecognizer(tapGesture)
         titleLabel.isUserInteractionEnabled = true
         
-//        let editButton = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector())
-//        navigationItem.rightBarButtonItem = editButton
+        let editButton = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(tappedRightBarButton(_:)))
+        navigationItem.rightBarButtonItem = editButton
         navigationItem.titleView = titleLabel
 
         navbar.setItems([navigationItem], animated: true)
+//        print(navbar.topItem?.rightBarButtonItem?.title)
     }
     
+    @objc func tappedRightBarButton(_ sender: Any) {
+        guard let rightBarButton = navbar.topItem?.rightBarButtonItem else { return }
+        if isEditting() {
+            rightBarButton.title = "Edit"
+        } else {
+            rightBarButton.title = "Done"
+        }
+    }
 
     @objc func animatePullDownMenu(tapped by: Any) {
         let titleLabel = navbar.topItem?.titleView as! UILabel
@@ -106,11 +115,18 @@ class ScheduleViewController: UIViewController {
         UIView.animate(withDuration: 0.2, animations: {
             self.view.layoutIfNeeded()
         })
-        
     }
 
+    func isEditting() -> Bool {
+        guard let rightBarButton = navbar.topItem?.rightBarButtonItem else { return false }
+        guard let buttonTitle = rightBarButton.title else { return false }
+        if buttonTitle == "Edit" {
+            return false
+        } else {
+            return true
+        }
+    }
 }
-
 
 extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -128,6 +144,20 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if isEditting() {
+            
+            let storyboard = UIStoryboard(name: "ScheduleOption", bundle: nil)
+            let editCourseViewController = storyboard.instantiateInitialViewController() as! EditCourseViewController
+            editCourseViewController.modalTransitionStyle = .crossDissolve
+            
+            present(editCourseViewController, animated: true, completion: nil)
+            
+        } else {
+            // カードに授業があれば詳細画面へ遷移
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 4, left: 4, bottom: 8, right: 8)
     }
@@ -143,6 +173,7 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
