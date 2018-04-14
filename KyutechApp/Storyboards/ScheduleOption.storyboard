@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YvL-P8-ZR3">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Edit Course View Controller-->
+        <scene sceneID="XeI-n2-KH1">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="YvL-P8-ZR3" customClass="EditCourseViewController" customModule="KyutechApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bs9-q3-Ukd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="月曜 1限" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btH-dH-1r9">
+                                <rect key="frame" x="150" y="84" width="75" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PPQ-BQ-2Sy">
+                                <rect key="frame" x="32" y="140" width="311" height="463"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7AI-zC-Hhs">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="PPQ-BQ-2Sy" firstAttribute="top" secondItem="btH-dH-1r9" secondAttribute="bottom" constant="32" id="2iO-tX-jef"/>
+                            <constraint firstItem="zPC-Zh-jTn" firstAttribute="trailing" secondItem="PPQ-BQ-2Sy" secondAttribute="trailing" constant="32" id="2yR-ET-veX"/>
+                            <constraint firstItem="PPQ-BQ-2Sy" firstAttribute="leading" secondItem="zPC-Zh-jTn" secondAttribute="leading" constant="32" id="EwJ-3H-7o2"/>
+                            <constraint firstItem="btH-dH-1r9" firstAttribute="top" secondItem="zPC-Zh-jTn" secondAttribute="top" constant="64" id="YNs-gO-Ull"/>
+                            <constraint firstItem="zPC-Zh-jTn" firstAttribute="bottom" secondItem="PPQ-BQ-2Sy" secondAttribute="bottom" constant="64" id="a9q-Fl-ozP"/>
+                            <constraint firstItem="btH-dH-1r9" firstAttribute="centerX" secondItem="bs9-q3-Ukd" secondAttribute="centerX" id="mVn-o0-xoA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zPC-Zh-jTn"/>
+                    </view>
+                    <connections>
+                        <outlet property="courseCollection" destination="PPQ-BQ-2Sy" id="reT-lE-yEt"/>
+                        <outlet property="dateLabel" destination="btH-dH-1r9" id="xF3-AO-Kex"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sbj-kT-0W5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-509" y="-665"/>
+        </scene>
+    </scenes>
+</document>

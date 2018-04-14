@@ -31,7 +31,7 @@ class MaterialNavigationBar: UINavigationBar {
         let layer = self.layer
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 5)
-        layer.shadowRadius = 4
+        layer.shadowRadius = 3
         layer.shadowOpacity = 0.2
     }
     
