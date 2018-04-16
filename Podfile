@@ -7,6 +7,8 @@ target 'KyutechApp' do
 
   # Pods for KyutechApp
   pod 'MaterialComponents'
+  pod 'MaterialComponents/TextFields'
+  pod 'MaterialComponents/TextFields+Extensions'
   target 'KyutechAppTests' do
     inherit! :search_paths
     # Pods for testing
