@@ -13,6 +13,7 @@ class SyllabusViewController: UIViewController {
 
     @IBOutlet weak var syllabusTable: UITableView!
     @IBOutlet weak var navbar: MaterialNavigationBar!
+    @IBOutlet weak var memoView: SyllabusMemoView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,19 @@ class SyllabusViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        memoView.memoTextView.changeColor()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -40,8 +54,22 @@ class SyllabusViewController: UIViewController {
         navigationItem.leftBarButtonItem = leftButtonItem
     }
     
+    func setupMemoView() {
+        memoView.memoTextView.delegate = self
+    }
+    
     @objc func tappedLeftButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
 
+}
+
+
+extension SyllabusViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        let memoTextView = textView as! MaterialTextView
+        memoTextView.changeColor()
+        return true
+    }
+    
 }

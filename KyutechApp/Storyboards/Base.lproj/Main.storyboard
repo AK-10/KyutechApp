@@ -426,7 +426,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="C3y-vq-kDP">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="5ca-qz-YVE">
+                                <view key="tableFooterView" contentMode="scaleToFill" id="5ca-qz-YVE" customClass="SyllabusMemoView" customModule="KyutechApp" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="262"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -461,6 +461,7 @@
                         <viewLayoutGuide key="safeArea" id="SNR-7v-2Ez"/>
                     </view>
                     <connections>
+                        <outlet property="memoView" destination="5ca-qz-YVE" id="RQb-GI-Jpo"/>
                         <outlet property="navbar" destination="UjZ-Bc-yKZ" id="C1Y-ah-bIZ"/>
                         <outlet property="syllabusTable" destination="C3y-vq-kDP" id="tWH-d5-e6L"/>
                     </connections>

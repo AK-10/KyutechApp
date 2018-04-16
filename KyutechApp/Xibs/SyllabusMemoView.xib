@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SyllabusMemoView" customModule="KyutechApp" customModuleProvider="target">
+            <connections>
+                <outlet property="memoTextView" destination="j7F-tj-mbD" id="dIT-2e-brB"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="oSq-Ka-aou">
+            <rect key="frame" x="0.0" y="0.0" width="471" height="292"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Memo:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0SA-AH-w5K">
+                    <rect key="frame" x="32" y="90" width="44.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出席" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrj-j3-6lo">
+                    <rect key="frame" x="32" y="24" width="29" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欠席" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofL-gS-h8j">
+                    <rect key="frame" x="32" y="57" width="29" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="2/13 俺の誕生日" translatesAutoresizingMaskIntoConstraints="NO" id="j7F-tj-mbD" customClass="MaterialTextView" customModule="KyutechApp" customModuleProvider="target">
+                    <rect key="frame" x="32" y="115" width="407" height="145"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="0SA-AH-w5K" firstAttribute="leading" secondItem="1tx-iQ-PyJ" secondAttribute="leading" constant="32" id="8OZ-Wc-LM3"/>
+                <constraint firstItem="ofL-gS-h8j" firstAttribute="top" secondItem="Lrj-j3-6lo" secondAttribute="bottom" constant="16" id="9B6-9y-Kaw"/>
+                <constraint firstItem="Lrj-j3-6lo" firstAttribute="top" secondItem="1tx-iQ-PyJ" secondAttribute="top" constant="24" id="Agk-GN-Cgc"/>
+                <constraint firstItem="1tx-iQ-PyJ" firstAttribute="bottom" secondItem="j7F-tj-mbD" secondAttribute="bottom" constant="32" id="Cog-Q7-CkU"/>
+                <constraint firstItem="ofL-gS-h8j" firstAttribute="leading" secondItem="1tx-iQ-PyJ" secondAttribute="leading" constant="32" id="Yt9-wo-cjo"/>
+                <constraint firstItem="0SA-AH-w5K" firstAttribute="top" secondItem="ofL-gS-h8j" secondAttribute="bottom" constant="16" id="cTY-jZ-MII"/>
+                <constraint firstItem="1tx-iQ-PyJ" firstAttribute="trailing" secondItem="j7F-tj-mbD" secondAttribute="trailing" constant="32" id="lHx-tH-ZTd"/>
+                <constraint firstItem="Lrj-j3-6lo" firstAttribute="leading" secondItem="1tx-iQ-PyJ" secondAttribute="leading" constant="32" id="psl-0E-2eJ"/>
+                <constraint firstItem="j7F-tj-mbD" firstAttribute="top" secondItem="0SA-AH-w5K" secondAttribute="bottom" constant="8" id="qvB-Te-A5D"/>
+                <constraint firstItem="j7F-tj-mbD" firstAttribute="leading" secondItem="1tx-iQ-PyJ" secondAttribute="leading" constant="32" id="yOU-ri-Rp4"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="1tx-iQ-PyJ"/>
+            <point key="canvasLocation" x="10.5" y="-224"/>
+        </view>
+    </objects>
+</document>

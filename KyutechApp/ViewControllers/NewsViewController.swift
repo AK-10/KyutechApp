@@ -54,19 +54,7 @@ extension NewsViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         return 1
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView == newsHeadCollection {
-            let navigationbar = self.navigationController?.navigationBar as? MaterialNavigationBar
-            navigationbar?.addShadow()
-        }
-    }
-    
-    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
-        if scrollView == newsHeadCollection {
-            let navigationbar = self.navigationController?.navigationBar as? MaterialNavigationBar
-            navigationbar?.removeShadow()
-        }
-    }
+
     
 }
 

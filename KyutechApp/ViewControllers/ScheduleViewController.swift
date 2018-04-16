@@ -84,7 +84,6 @@ class ScheduleViewController: UIViewController {
         navigationItem.titleView = titleLabel
 
         navbar.setItems([navigationItem], animated: true)
-//        print(navbar.topItem?.rightBarButtonItem?.title)
     }
     
     @objc func tappedRightBarButton(_ sender: Any) {
@@ -115,6 +114,7 @@ class ScheduleViewController: UIViewController {
         UIView.animate(withDuration: 0.2, animations: {
             self.view.layoutIfNeeded()
         })
+        
     }
 
     func isEditting() -> Bool {

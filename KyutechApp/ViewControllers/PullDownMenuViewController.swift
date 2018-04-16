@@ -23,6 +23,7 @@ class PullDownMenuViewController: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addShadow()
         // Do any additional setup after loading the view.
     }
     
@@ -33,7 +34,6 @@ class PullDownMenuViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        setupShadow()
 //        print(delegate)
     }
     
@@ -47,14 +47,6 @@ class PullDownMenuViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func setupShadow() {
-        let layer = self.view.layer
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 0, height: 5)
-        layer.shadowRadius = 3
-        layer.shadowOpacity = 0.2
     }
     
 
