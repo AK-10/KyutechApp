@@ -148,13 +148,20 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
         if isEditting() {
             
             let storyboard = UIStoryboard(name: "ScheduleOption", bundle: nil)
-            let editCourseViewController = storyboard.instantiateInitialViewController() as! EditCourseViewController
-            editCourseViewController.modalTransitionStyle = .crossDissolve
+            let editCourseVC = storyboard.instantiateInitialViewController() as! EditCourseViewController
+            editCourseVC.modalTransitionStyle = .crossDissolve
             
-            present(editCourseViewController, animated: true, completion: nil)
+            present(editCourseVC, animated: true, completion: nil)
             
         } else {
             // カードに授業があれば詳細画面へ遷移
+            let cell = collectionView.cellForItem(at: indexPath) as! CourseCardCell
+            if cell.classNameLabel.text != "" {
+                let storyboard = self.storyboard!
+                let syllabusVC = storyboard.instantiateViewController(withIdentifier: "Syllabus")
+                present(syllabusVC, animated: true, completion: nil)
+                
+            }
         }
     }
     

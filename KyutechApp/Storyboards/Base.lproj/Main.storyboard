@@ -413,22 +413,61 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KHC-ye-6hj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2756" y="-793"/>
+            <point key="canvasLocation" x="2761" y="-638"/>
         </scene>
-        <!--View Controller-->
+        <!--Syllabus View Controller-->
         <scene sceneID="yPL-OE-Rre">
             <objects>
-                <viewController storyboardIdentifier="Syllabus" id="PlY-w7-ecT" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Syllabus" id="PlY-w7-ecT" customClass="SyllabusViewController" customModule="KyutechApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hwh-0d-9Zn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="C3y-vq-kDP">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="5ca-qz-YVE">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="262"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UjZ-Bc-yKZ" customClass="MaterialNavigationBar" customModule="KyutechApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <color key="tintColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                <color key="barTintColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
+                                </textAttributes>
+                                <textAttributes key="largeTitleTextAttributes">
+                                    <color key="textColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Course" id="AbV-53-Dre"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="C3y-vq-kDP" firstAttribute="leading" secondItem="SNR-7v-2Ez" secondAttribute="leading" id="Lml-ts-i2h"/>
+                            <constraint firstItem="UjZ-Bc-yKZ" firstAttribute="leading" secondItem="SNR-7v-2Ez" secondAttribute="leading" id="S4O-YC-MgB"/>
+                            <constraint firstItem="UjZ-Bc-yKZ" firstAttribute="trailing" secondItem="SNR-7v-2Ez" secondAttribute="trailing" id="bs1-VJ-qC7"/>
+                            <constraint firstItem="C3y-vq-kDP" firstAttribute="top" secondItem="UjZ-Bc-yKZ" secondAttribute="bottom" id="dWU-eE-CY5"/>
+                            <constraint firstItem="SNR-7v-2Ez" firstAttribute="bottom" secondItem="C3y-vq-kDP" secondAttribute="bottom" id="dgx-wW-4d3"/>
+                            <constraint firstItem="UjZ-Bc-yKZ" firstAttribute="top" secondItem="SNR-7v-2Ez" secondAttribute="top" id="m3W-RC-Pbl"/>
+                            <constraint firstItem="SNR-7v-2Ez" firstAttribute="trailing" secondItem="C3y-vq-kDP" secondAttribute="trailing" id="x2j-Io-ov8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="SNR-7v-2Ez"/>
                     </view>
+                    <connections>
+                        <outlet property="navbar" destination="UjZ-Bc-yKZ" id="C1Y-ah-bIZ"/>
+                        <outlet property="syllabusTable" destination="C3y-vq-kDP" id="tWH-d5-e6L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lVK-dh-lkb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3623" y="-409"/>
+            <point key="canvasLocation" x="3636" y="-409.7451274362819"/>
         </scene>
     </scenes>
 </document>

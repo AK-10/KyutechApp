@@ -17,6 +17,7 @@
 		115BB6B7207E280E00A8572F /* PullDownMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115BB6B6207E280E00A8572F /* PullDownMenuViewController.swift */; };
 		115BB6B92081D52C00A8572F /* ScheduleOption.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 115BB6B82081D52C00A8572F /* ScheduleOption.storyboard */; };
 		115BB6BD2081D99D00A8572F /* EditCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115BB6BC2081D99D00A8572F /* EditCourseViewController.swift */; };
+		1188420420835653009D7F04 /* SyllabusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1188420320835653009D7F04 /* SyllabusViewController.swift */; };
 		119FF55820737141006EDC6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119FF55720737141006EDC6C /* AppDelegate.swift */; };
 		119FF55D20737141006EDC6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 119FF55B20737141006EDC6C /* Main.storyboard */; };
 		119FF55F20737143006EDC6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 119FF55E20737143006EDC6C /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		115BB6B6207E280E00A8572F /* PullDownMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullDownMenuViewController.swift; sourceTree = "<group>"; };
 		115BB6B82081D52C00A8572F /* ScheduleOption.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScheduleOption.storyboard; sourceTree = "<group>"; };
 		115BB6BC2081D99D00A8572F /* EditCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCourseViewController.swift; sourceTree = "<group>"; };
+		1188420320835653009D7F04 /* SyllabusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusViewController.swift; sourceTree = "<group>"; };
 		119FF55420737141006EDC6C /* KyutechApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KyutechApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		119FF55720737141006EDC6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		119FF55C20737141006EDC6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				110BEC8A207C603000F8B276 /* ScheduleViewController.swift */,
+				1188420320835653009D7F04 /* SyllabusViewController.swift */,
 				115BB6BC2081D99D00A8572F /* EditCourseViewController.swift */,
 				115BB6B6207E280E00A8572F /* PullDownMenuViewController.swift */,
 				110BEC94207CC1F200F8B276 /* NewsViewController.swift */,
@@ -452,6 +455,7 @@
 				110BEC8B207C603000F8B276 /* ScheduleViewController.swift in Sources */,
 				110BEC98207CDA7900F8B276 /* MaterialNavigationBar.swift in Sources */,
 				1102A51C207B6460007D6406 /* CourseCardCell.swift in Sources */,
+				1188420420835653009D7F04 /* SyllabusViewController.swift in Sources */,
 				110BEC95207CC1F200F8B276 /* NewsViewController.swift in Sources */,
 				119FF55820737141006EDC6C /* AppDelegate.swift in Sources */,
 				115BB6BD2081D99D00A8572F /* EditCourseViewController.swift in Sources */,
