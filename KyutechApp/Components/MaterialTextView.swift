@@ -2,50 +2,71 @@
 //  MaterialTextView.swift
 //  KyutechApp
 //
-//  Created by Atsushi KONISHI on 2018/04/16.
+//  Created by Atsushi KONISHI on 2018/04/25.
 //  Copyright © 2018年 小西篤志. All rights reserved.
 //
 
 import UIKit
 
-class MaterialTextView: UITextView {
-    
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-//        addBorder()
-        addBottomBorder()
-    }
-    
-    func addBorder() {
-        let layer = self.layer
-        let borderColor : UIColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
-        layer.borderWidth = 1
-        layer.borderColor = borderColor.cgColor
-        layer.cornerRadius = 5
-    }
-    
-    func addBottomBorder() {
-        let border = UIView()
-        border.tag = 1024
-        border.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        border.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.height - 3, width: self.frame.width, height: 3)
-        border.backgroundColor = .lightGray
-        self.superview!.insertSubview(border, aboveSubview: self)
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        changeColor()
-    }
-    
-    func changeColor() {
-        guard let borderView = getsubViews() else { return }
-        borderView.backgroundColor = .gray
-    }
-    
-    private func getsubViews() -> UIView? {
-        return superview?.subviews.filter{$0.tag == 1024}[0]
-    }
-    
+class MaterialTextView: UIView {
 
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var underline: UIView!
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    func commonInit() {
+        super.awakeFromNib()
+        let view = Bundle.main.loadNibNamed("MaterialTextView", owner: self, options: nil)?.first as! UIView
+        view.frame = self.bounds
+        addSubview(view)
+        
+//        view.translatesAutoresizingMaskIntoConstraints = false
+        self.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        self.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+        self.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+        self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+//
+//        let bindings = ["view": view]
+//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|",options:NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
+//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options:NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
+    }
+    
+    func beginEditting() {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.underline.backgroundColor = .cyan
+        })
+    }
+    
+    func endEditting() {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.underline.backgroundColor = .lightGray
+        })
+    }
+    
+    
+    func setup() {
+        let keyboardToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+        keyboardToolBar.sizeToFit()
+        
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        
+        let doneButton = UIBarButtonItem(title: "完了", style: .done, target: self, action: #selector(tappedDone(_:)))
+        keyboardToolBar.items = [spacer, doneButton]
+        textView.inputAccessoryView = keyboardToolBar
+        
+    }
+    
+    @objc func tappedDone(_ sender: Any) {
+        textView.endEditing(true)
+        endEditting()
+    }
 }

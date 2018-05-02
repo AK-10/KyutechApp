@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MaterialTextView" customModule="KyutechApp" customModuleProvider="target">
+            <connections>
+                <outlet property="textView" destination="dkX-FO-kBR" id="VXc-n8-pBh"/>
+                <outlet property="underline" destination="yWl-iy-I1Z" id="PGk-HC-P5U"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="4I5-vp-PCM">
+            <rect key="frame" x="0.0" y="0.0" width="620" height="372"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dkX-FO-kBR">
+                    <rect key="frame" x="0.0" y="0.0" width="620" height="372"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                </textView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yWl-iy-I1Z">
+                    <rect key="frame" x="0.0" y="370" width="620" height="2"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="Y3A-T3-ZFN"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="dkX-FO-kBR" firstAttribute="trailing" secondItem="Nkh-6c-Iz4" secondAttribute="trailing" id="2ok-H9-HKF"/>
+                <constraint firstItem="yWl-iy-I1Z" firstAttribute="bottom" secondItem="Nkh-6c-Iz4" secondAttribute="bottom" id="KTw-Av-soK"/>
+                <constraint firstItem="dkX-FO-kBR" firstAttribute="leading" secondItem="Nkh-6c-Iz4" secondAttribute="leading" id="N37-nF-gvH"/>
+                <constraint firstItem="dkX-FO-kBR" firstAttribute="bottom" secondItem="Nkh-6c-Iz4" secondAttribute="bottom" id="WGV-HO-oFs"/>
+                <constraint firstItem="yWl-iy-I1Z" firstAttribute="trailing" secondItem="Nkh-6c-Iz4" secondAttribute="trailing" id="ZOo-zw-Pg4"/>
+                <constraint firstItem="yWl-iy-I1Z" firstAttribute="leading" secondItem="Nkh-6c-Iz4" secondAttribute="leading" id="jZT-8J-aPq"/>
+                <constraint firstItem="dkX-FO-kBR" firstAttribute="top" secondItem="Nkh-6c-Iz4" secondAttribute="top" id="mAq-01-ujb"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Nkh-6c-Iz4"/>
+            <point key="canvasLocation" x="295" y="-197"/>
+        </view>
+    </objects>
+</document>

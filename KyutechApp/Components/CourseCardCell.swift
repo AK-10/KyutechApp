@@ -13,19 +13,24 @@ class CourseCardCell: MDCCardCollectionCell {
     @IBOutlet weak var classNameLabel: UILabel!
     @IBOutlet weak var roomNumberLabel: UILabel!
     
-    override class var layerClass: AnyClass {
-        return MDCShadowLayer.self
-    }
+//    override class var layerClass: AnyClass {
+//        return MDCShadowLayer.self
+        // エラーを吐く 理由は謎
+        // Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[MDCShadowLayer setShapedBackgroundColor:]: unrecognized selector sent to instance 0x60400028a0a0'
+//    }
 
     
     func setup(course: String, roomNum: Int?) {
         self.cornerRadius = 2
         let cellLayer = self.layer as! MDCShadowLayer
-        cellLayer.elevation = ShadowElevation(1)
+        self.setShadowElevation(ShadowElevation(rawValue: 2), for: .normal)
+        self.setShadowElevation(ShadowElevation(rawValue: 2), for: .highlighted)
+        self.setShadowElevation(ShadowElevation(rawValue: 2), for: .selected)
         cellLayer.masksToBounds = false
+
         
         DispatchQueue.main.async {
-            self.roomNumberLabel.layer.cornerRadius = self.roomNumberLabel.bounds.height / 2
+            self.roomNumberLabel.layer.cornerRadius = self.roomNumberLabel.bounds.height / 3
             self.roomNumberLabel.clipsToBounds = true
         }
 

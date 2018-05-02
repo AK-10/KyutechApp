@@ -13,11 +13,12 @@ class SyllabusViewController: UIViewController {
 
     @IBOutlet weak var syllabusTable: UITableView!
     @IBOutlet weak var navbar: MaterialNavigationBar!
-    @IBOutlet weak var memoView: SyllabusMemoView!
+    @IBOutlet weak var memoView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        setupMemoView()
         // Do any additional setup after loading the view.
     }
 
@@ -32,11 +33,29 @@ class SyllabusViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        memoView.memoTextView.changeColor()
+
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        resignFirstResponder()
+    }
+    
+    func setupTable() {
+        syllabusTable.delegate = self
+        syllabusTable.dataSource = self
+        let nib = UINib(nibName: "SyllabusCell", bundle: nil)
+        syllabusTable.register(nib, forCellReuseIdentifier: "Syllabus")
+//        syllabusTable.tableHeaderView = memoView
     }
     
     func setupNavigationBar() {
@@ -53,9 +72,12 @@ class SyllabusViewController: UIViewController {
         leftButtonItem.tintColor = .gray
         navigationItem.leftBarButtonItem = leftButtonItem
     }
-    
+
     func setupMemoView() {
-        memoView.memoTextView.delegate = self
+        let borderColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
+        memoView.layer.borderColor = borderColor.cgColor
+        memoView.layer.cornerRadius = 5.0
+        memoView.layer.borderWidth = 1.0
     }
     
     @objc func tappedLeftButton(_ sender: Any) {
@@ -64,12 +86,26 @@ class SyllabusViewController: UIViewController {
 
 }
 
-
 extension SyllabusViewController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        let memoTextView = textView as! MaterialTextView
-        memoTextView.changeColor()
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         return true
+    }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        return true
+    }
+    
+}
+
+extension SyllabusViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Syllabus") as! SyllabusTableViewCell
+        return cell
     }
     
 }
