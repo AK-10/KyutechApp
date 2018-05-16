@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
 		<key>MDFInternationalization.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -34,10 +39,25 @@
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
+		<key>MaterialComponents-MaterialIcons_ic_color_lens.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>17</integer>
+		</dict>
+		<key>MaterialComponents-MaterialIcons_ic_help_outline.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
+		</dict>
 		<key>MaterialComponents-MaterialIcons_ic_info.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>5</integer>
+		</dict>
+		<key>MaterialComponents-MaterialIcons_ic_more_horiz.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>19</integer>
 		</dict>
 		<key>MaterialComponents-MaterialIcons_ic_radio_button_unchecked.xcscheme</key>
 		<dict>
@@ -48,6 +68,11 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>7</integer>
+		</dict>
+		<key>MaterialComponents-MaterialIcons_ic_settings.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>20</integer>
 		</dict>
 		<key>MaterialComponents.xcscheme</key>
 		<dict>

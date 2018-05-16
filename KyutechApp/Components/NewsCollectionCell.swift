@@ -14,11 +14,23 @@ class NewsCollectionCell: MDCCardCollectionCell {
     @IBOutlet weak var newsTypeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    func setup() {
+    func setup(roundLabelText: String, color: UIColor, title: String, date: String) {
+        newsTypeLabel.adjustsFontSizeToFitWidth = true
+        newsTypeLabel.minimumScaleFactor = 0.8
+        dateLabel.adjustsFontSizeToFitWidth = true
+        dateLabel.minimumScaleFactor = 0.6
+        
+        self.roundLabel.text = roundLabelText
+        self.roundLabel.backgroundColor = color
+        self.newsTypeLabel.text = title
+        self.dateLabel.text = date
         self.cornerRadius = 0
         self.clipsToBounds = true
         
-        roundLabel.layer.cornerRadius = roundLabel.bounds.height / 2.1
+        DispatchQueue.main.async {
+            self.roundLabel.layer.cornerRadius = self.roundLabel.bounds.height / 2
+        }
+  
         roundLabel.clipsToBounds = true
     }
     

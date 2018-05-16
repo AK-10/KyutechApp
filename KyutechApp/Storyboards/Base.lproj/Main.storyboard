@@ -85,11 +85,80 @@
                     <navigationItem key="navigationItem" title="News" largeTitleDisplayMode="always" id="S6Y-GO-DCE"/>
                     <connections>
                         <outlet property="newsHeadCollection" destination="bpc-Ho-RVg" id="61Q-VW-DAZ"/>
+                        <segue destination="hug-Pc-pvd" kind="show" id="IME-Yk-qox"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2927" y="-1283"/>
+        </scene>
+        <!--Categorized News View Controller-->
+        <scene sceneID="Aaq-Dt-ygZ">
+            <objects>
+                <viewController storyboardIdentifier="CategorizedNews" id="hug-Pc-pvd" customClass="CategorizedNewsViewController" customModule="KyutechApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8AP-IA-ROa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FX8-cj-IW0">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KIF-js-mib">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                        <constraints>
+                            <constraint firstItem="k0j-gu-NXO" firstAttribute="trailing" secondItem="FX8-cj-IW0" secondAttribute="trailing" id="USE-Qm-giv"/>
+                            <constraint firstItem="FX8-cj-IW0" firstAttribute="top" secondItem="k0j-gu-NXO" secondAttribute="top" id="fn5-DF-rRi"/>
+                            <constraint firstItem="k0j-gu-NXO" firstAttribute="bottom" secondItem="FX8-cj-IW0" secondAttribute="bottom" id="npJ-3b-HR5"/>
+                            <constraint firstItem="FX8-cj-IW0" firstAttribute="leading" secondItem="k0j-gu-NXO" secondAttribute="leading" id="riT-60-XPr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="k0j-gu-NXO"/>
+                    </view>
+                    <connections>
+                        <outlet property="newsHeaderCollection" destination="FX8-cj-IW0" id="lbs-af-9h9"/>
+                        <segue destination="heK-m7-0Rf" kind="show" id="rLY-PZ-ubr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OdX-dc-8R5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3782" y="-1283"/>
+        </scene>
+        <!--News Detail View Controller-->
+        <scene sceneID="LeT-UF-VPn">
+            <objects>
+                <viewController storyboardIdentifier="NewsDetail" id="heK-m7-0Rf" customClass="NewsDetailViewController" customModule="KyutechApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DQU-6K-MIn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6FA-ZZ-hhM">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                        <constraints>
+                            <constraint firstItem="6FA-ZZ-hhM" firstAttribute="top" secondItem="9Y6-yv-M6x" secondAttribute="top" id="Lh6-kN-nrx"/>
+                            <constraint firstItem="9Y6-yv-M6x" firstAttribute="trailing" secondItem="6FA-ZZ-hhM" secondAttribute="trailing" id="O3b-Vt-7bd"/>
+                            <constraint firstItem="9Y6-yv-M6x" firstAttribute="bottom" secondItem="6FA-ZZ-hhM" secondAttribute="bottom" id="vGG-Ot-mZh"/>
+                            <constraint firstItem="6FA-ZZ-hhM" firstAttribute="leading" secondItem="9Y6-yv-M6x" secondAttribute="leading" id="vWp-Lj-0A6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9Y6-yv-M6x"/>
+                    </view>
+                    <connections>
+                        <outlet property="newsItemTable" destination="6FA-ZZ-hhM" id="mu9-gl-NmN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l4v-qz-75h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4556" y="-1283"/>
         </scene>
         <!--schedule-->
         <scene sceneID="KLl-nr-Yhx">

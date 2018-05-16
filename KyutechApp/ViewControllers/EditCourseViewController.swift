@@ -53,7 +53,7 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CourseCell", for: indexPath) as! NewsCollectionCell
-        cell.setup()
+        cell.setup(roundLabelText: "", color: .blue, title: "Automata", date: "2018/2/13")
         return cell
     }
     
