@@ -25,7 +25,7 @@ class SettingViewController: UIViewController {
     
     func setupCollection() {
         
-        let nib = UINib(nibName: "SettingCardCell", bundle: nil)
+        let nib = UINib(nibName: "SimpleCardCell", bundle: nil)
         settingCollection.register(nib, forCellWithReuseIdentifier: "SettingCell")
         settingCollection.delegate = self
         settingCollection.dataSource = self
@@ -40,9 +40,9 @@ extension SettingViewController: UICollectionViewDelegateFlowLayout, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SettingCell", for: indexPath) as! SettingCardCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SettingCell", for: indexPath) as! SimpleCardCell
         
-        cell.setup(title: "テスト")
+        cell.setup(title: "テスト", date: "")
         
         return cell
     }

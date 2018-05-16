@@ -22,6 +22,7 @@ class PullDownMenuViewController: UIViewController {
     weak var delegate: PullDownMenuViewDelegate? = nil
  
     override func viewDidLoad() {
+
         super.viewDidLoad()
         self.view.addShadow()
         // Do any additional setup after loading the view.

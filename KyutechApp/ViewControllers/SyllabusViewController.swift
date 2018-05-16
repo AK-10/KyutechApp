@@ -75,10 +75,27 @@ class SyllabusViewController: UIViewController {
 
     func setupMemoView() {
         let borderColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
+        
+        let keyboardToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+        keyboardToolBar.sizeToFit()
+        
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        
+        let doneButton = UIBarButtonItem(title: "完了", style: .done, target: self, action: #selector(tappedDone(_:)))
+        keyboardToolBar.items = [spacer, doneButton]
+        memoView.inputAccessoryView = keyboardToolBar
+        
         memoView.layer.borderColor = borderColor.cgColor
         memoView.layer.cornerRadius = 5.0
         memoView.layer.borderWidth = 1.0
     }
+    
+    @objc func tappedDone(_ sender: Any) {
+        if memoView.isFirstResponder {
+            memoView.resignFirstResponder()
+        }
+    }
+
     
     @objc func tappedLeftButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)

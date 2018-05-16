@@ -9,25 +9,36 @@
 /* Begin PBXBuildFile section */
 		1102A519207B63E2007D6406 /* CourseCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1102A518207B63E2007D6406 /* CourseCardCell.xib */; };
 		1102A51C207B6460007D6406 /* CourseCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1102A51B207B6460007D6406 /* CourseCardCell.swift */; };
+		110BBB96209CD9A600935A23 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110BBB95209CD9A600935A23 /* Router.swift */; };
+		110BBB99209CE18800935A23 /* NewsHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110BBB98209CE18800935A23 /* NewsHeading.swift */; };
+		110BBB9B209CE43600935A23 /* NewsHeadingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110BBB9A209CE43600935A23 /* NewsHeadingModel.swift */; };
+		110BBB9D209CF49000935A23 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110BBB9C209CF49000935A23 /* Common.swift */; };
+		110BBB9F209E3F1000935A23 /* CategorizedNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110BBB9E209E3F1000935A23 /* CategorizedNewsViewController.swift */; };
+		110BBBA1209E466600935A23 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110BBBA0209E466600935A23 /* News.swift */; };
+		110BBBA3209E4B7000935A23 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110BBBA2209E4B7000935A23 /* NewsModel.swift */; };
+		110BBBA5209E698300935A23 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110BBBA4209E698300935A23 /* NewsDetailViewController.swift */; };
 		110BEC8B207C603000F8B276 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110BEC8A207C603000F8B276 /* ScheduleViewController.swift */; };
 		110BEC8D207C90CD00F8B276 /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 110BEC8C207C90CD00F8B276 /* NewsCell.xib */; };
 		110BEC93207C9CA500F8B276 /* NewsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110BEC92207C9CA500F8B276 /* NewsCollectionCell.swift */; };
 		110BEC95207CC1F200F8B276 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110BEC94207CC1F200F8B276 /* NewsViewController.swift */; };
 		110BEC98207CDA7900F8B276 /* MaterialNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110BEC97207CDA7900F8B276 /* MaterialNavigationBar.swift */; };
+		112283C120AB28E900C298A5 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112283C020AB28E900C298A5 /* UserModel.swift */; };
 		1155CB4B20904ABD004BBAFA /* MaterialTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1155CB4A20904ABD004BBAFA /* MaterialTextView.swift */; };
 		1155CB4D209059A5004BBAFA /* MaterialTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1155CB4C209059A5004BBAFA /* MaterialTextView.xib */; };
 		1155CB4F209077D2004BBAFA /* SyllabusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1155CB4E209077D2004BBAFA /* SyllabusCell.xib */; };
 		1155CB5120907804004BBAFA /* SyllabusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1155CB5020907804004BBAFA /* SyllabusTableViewCell.swift */; };
 		1155CB532090AF89004BBAFA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1155CB522090AF89004BBAFA /* RegisterViewController.swift */; };
 		1155CB552090B574004BBAFA /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1155CB542090B574004BBAFA /* MaterialView.swift */; };
-		1155CB57209998A0004BBAFA /* SettingCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1155CB56209998A0004BBAFA /* SettingCardCell.xib */; };
-		1155CB592099991B004BBAFA /* SettingCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1155CB582099991B004BBAFA /* SettingCardCell.swift */; };
+		1155CB57209998A0004BBAFA /* SimpleCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1155CB56209998A0004BBAFA /* SimpleCardCell.xib */; };
+		1155CB592099991B004BBAFA /* SimpleCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1155CB582099991B004BBAFA /* SimpleCardCell.swift */; };
 		1155CB5B209999BA004BBAFA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1155CB5A209999BA004BBAFA /* SettingViewController.swift */; };
 		115BB6B7207E280E00A8572F /* PullDownMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115BB6B6207E280E00A8572F /* PullDownMenuViewController.swift */; };
 		115BB6B92081D52C00A8572F /* ScheduleOption.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 115BB6B82081D52C00A8572F /* ScheduleOption.storyboard */; };
 		115BB6BD2081D99D00A8572F /* EditCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115BB6BC2081D99D00A8572F /* EditCourseViewController.swift */; };
 		1188420420835653009D7F04 /* SyllabusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1188420320835653009D7F04 /* SyllabusViewController.swift */; };
 		1188420B20847DFA009D7F04 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1188420A20847DFA009D7F04 /* UIViewExtension.swift */; };
+		1196A44320A4B56A00D7C971 /* NewsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1196A44220A4B56A00D7C971 /* NewsDetailCell.xib */; };
+		1196A44520A4B5E600D7C971 /* NewsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1196A44420A4B5E600D7C971 /* NewsDetailCell.swift */; };
 		119FF55820737141006EDC6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119FF55720737141006EDC6C /* AppDelegate.swift */; };
 		119FF55D20737141006EDC6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 119FF55B20737141006EDC6C /* Main.storyboard */; };
 		119FF55F20737143006EDC6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 119FF55E20737143006EDC6C /* Assets.xcassets */; };
@@ -60,25 +71,36 @@
 		0E0EE15F0780BFE0565B5DE6 /* Pods-KyutechAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyutechAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KyutechAppTests/Pods-KyutechAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1102A518207B63E2007D6406 /* CourseCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseCardCell.xib; sourceTree = "<group>"; };
 		1102A51B207B6460007D6406 /* CourseCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCardCell.swift; sourceTree = "<group>"; };
+		110BBB95209CD9A600935A23 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		110BBB98209CE18800935A23 /* NewsHeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHeading.swift; sourceTree = "<group>"; };
+		110BBB9A209CE43600935A23 /* NewsHeadingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHeadingModel.swift; sourceTree = "<group>"; };
+		110BBB9C209CF49000935A23 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		110BBB9E209E3F1000935A23 /* CategorizedNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorizedNewsViewController.swift; sourceTree = "<group>"; };
+		110BBBA0209E466600935A23 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		110BBBA2209E4B7000935A23 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
+		110BBBA4209E698300935A23 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		110BEC8A207C603000F8B276 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		110BEC8C207C90CD00F8B276 /* NewsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
 		110BEC92207C9CA500F8B276 /* NewsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionCell.swift; sourceTree = "<group>"; };
 		110BEC94207CC1F200F8B276 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		110BEC97207CDA7900F8B276 /* MaterialNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialNavigationBar.swift; sourceTree = "<group>"; };
+		112283C020AB28E900C298A5 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		1155CB4A20904ABD004BBAFA /* MaterialTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialTextView.swift; sourceTree = "<group>"; };
 		1155CB4C209059A5004BBAFA /* MaterialTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaterialTextView.xib; sourceTree = "<group>"; };
 		1155CB4E209077D2004BBAFA /* SyllabusCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SyllabusCell.xib; sourceTree = "<group>"; };
 		1155CB5020907804004BBAFA /* SyllabusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusTableViewCell.swift; sourceTree = "<group>"; };
 		1155CB522090AF89004BBAFA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		1155CB542090B574004BBAFA /* MaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
-		1155CB56209998A0004BBAFA /* SettingCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCardCell.xib; sourceTree = "<group>"; };
-		1155CB582099991B004BBAFA /* SettingCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCardCell.swift; sourceTree = "<group>"; };
+		1155CB56209998A0004BBAFA /* SimpleCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleCardCell.xib; sourceTree = "<group>"; };
+		1155CB582099991B004BBAFA /* SimpleCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCardCell.swift; sourceTree = "<group>"; };
 		1155CB5A209999BA004BBAFA /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		115BB6B6207E280E00A8572F /* PullDownMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullDownMenuViewController.swift; sourceTree = "<group>"; };
 		115BB6B82081D52C00A8572F /* ScheduleOption.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScheduleOption.storyboard; sourceTree = "<group>"; };
 		115BB6BC2081D99D00A8572F /* EditCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCourseViewController.swift; sourceTree = "<group>"; };
 		1188420320835653009D7F04 /* SyllabusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusViewController.swift; sourceTree = "<group>"; };
 		1188420A20847DFA009D7F04 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		1196A44220A4B56A00D7C971 /* NewsDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsDetailCell.xib; sourceTree = "<group>"; };
+		1196A44420A4B5E600D7C971 /* NewsDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailCell.swift; sourceTree = "<group>"; };
 		119FF55420737141006EDC6C /* KyutechApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KyutechApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		119FF55720737141006EDC6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		119FF55C20737141006EDC6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -136,11 +158,33 @@
 				110BEC97207CDA7900F8B276 /* MaterialNavigationBar.swift */,
 				1155CB4A20904ABD004BBAFA /* MaterialTextView.swift */,
 				1155CB542090B574004BBAFA /* MaterialView.swift */,
+				1196A44420A4B5E600D7C971 /* NewsDetailCell.swift */,
 				110BEC92207C9CA500F8B276 /* NewsCollectionCell.swift */,
 				1155CB5020907804004BBAFA /* SyllabusTableViewCell.swift */,
-				1155CB582099991B004BBAFA /* SettingCardCell.swift */,
+				1155CB582099991B004BBAFA /* SimpleCardCell.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		110BBB94209CD98F00935A23 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				110BBB95209CD9A600935A23 /* Router.swift */,
+				110BBB9C209CF49000935A23 /* Common.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		110BBB97209CE15500935A23 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				110BBB98209CE18800935A23 /* NewsHeading.swift */,
+				112283C020AB28E900C298A5 /* UserModel.swift */,
+				110BBBA0209E466600935A23 /* News.swift */,
+				110BBBA2209E4B7000935A23 /* NewsModel.swift */,
+				110BBB9A209CE43600935A23 /* NewsHeadingModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		111F4D1C207B5FD8007E7270 /* Xibs */ = {
@@ -149,8 +193,9 @@
 				1102A518207B63E2007D6406 /* CourseCardCell.xib */,
 				1155CB4C209059A5004BBAFA /* MaterialTextView.xib */,
 				110BEC8C207C90CD00F8B276 /* NewsCell.xib */,
+				1196A44220A4B56A00D7C971 /* NewsDetailCell.xib */,
 				1155CB4E209077D2004BBAFA /* SyllabusCell.xib */,
-				1155CB56209998A0004BBAFA /* SettingCardCell.xib */,
+				1155CB56209998A0004BBAFA /* SimpleCardCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -162,6 +207,8 @@
 				1188420320835653009D7F04 /* SyllabusViewController.swift */,
 				1155CB5A209999BA004BBAFA /* SettingViewController.swift */,
 				115BB6BC2081D99D00A8572F /* EditCourseViewController.swift */,
+				110BBB9E209E3F1000935A23 /* CategorizedNewsViewController.swift */,
+				110BBBA4209E698300935A23 /* NewsDetailViewController.swift */,
 				1155CB522090AF89004BBAFA /* RegisterViewController.swift */,
 				115BB6B6207E280E00A8572F /* PullDownMenuViewController.swift */,
 				110BEC94207CC1F200F8B276 /* NewsViewController.swift */,
@@ -213,6 +260,8 @@
 			isa = PBXGroup;
 			children = (
 				119FF55720737141006EDC6C /* AppDelegate.swift */,
+				110BBB97209CE15500935A23 /* Models */,
+				110BBB94209CD98F00935A23 /* Utils */,
 				1188420920847DE6009D7F04 /* Extensions */,
 				1102A51A207B6422007D6406 /* Components */,
 				111F4D1E207B5FFD007E7270 /* Storyboards */,
@@ -374,7 +423,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1102A519207B63E2007D6406 /* CourseCardCell.xib in Resources */,
-				1155CB57209998A0004BBAFA /* SettingCardCell.xib in Resources */,
+				1196A44320A4B56A00D7C971 /* NewsDetailCell.xib in Resources */,
+				1155CB57209998A0004BBAFA /* SimpleCardCell.xib in Resources */,
 				119FF56220737143006EDC6C /* LaunchScreen.storyboard in Resources */,
 				115BB6B92081D52C00A8572F /* ScheduleOption.storyboard in Resources */,
 				110BEC8D207C90CD00F8B276 /* NewsCell.xib in Resources */,
@@ -493,20 +543,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1155CB592099991B004BBAFA /* SettingCardCell.swift in Sources */,
+				110BBBA5209E698300935A23 /* NewsDetailViewController.swift in Sources */,
+				110BBB9B209CE43600935A23 /* NewsHeadingModel.swift in Sources */,
+				110BBBA3209E4B7000935A23 /* NewsModel.swift in Sources */,
+				1196A44520A4B5E600D7C971 /* NewsDetailCell.swift in Sources */,
+				1155CB592099991B004BBAFA /* SimpleCardCell.swift in Sources */,
 				1155CB4B20904ABD004BBAFA /* MaterialTextView.swift in Sources */,
 				110BEC93207C9CA500F8B276 /* NewsCollectionCell.swift in Sources */,
+				110BBB99209CE18800935A23 /* NewsHeading.swift in Sources */,
 				1155CB5B209999BA004BBAFA /* SettingViewController.swift in Sources */,
+				110BBBA1209E466600935A23 /* News.swift in Sources */,
 				115BB6B7207E280E00A8572F /* PullDownMenuViewController.swift in Sources */,
 				110BEC8B207C603000F8B276 /* ScheduleViewController.swift in Sources */,
+				110BBB9D209CF49000935A23 /* Common.swift in Sources */,
 				110BEC98207CDA7900F8B276 /* MaterialNavigationBar.swift in Sources */,
 				1155CB552090B574004BBAFA /* MaterialView.swift in Sources */,
 				1155CB5120907804004BBAFA /* SyllabusTableViewCell.swift in Sources */,
 				1102A51C207B6460007D6406 /* CourseCardCell.swift in Sources */,
+				110BBB96209CD9A600935A23 /* Router.swift in Sources */,
+				112283C120AB28E900C298A5 /* UserModel.swift in Sources */,
 				1188420420835653009D7F04 /* SyllabusViewController.swift in Sources */,
 				110BEC95207CC1F200F8B276 /* NewsViewController.swift in Sources */,
 				119FF55820737141006EDC6C /* AppDelegate.swift in Sources */,
 				1155CB532090AF89004BBAFA /* RegisterViewController.swift in Sources */,
+				110BBB9F209E3F1000935A23 /* CategorizedNewsViewController.swift in Sources */,
 				1188420B20847DFA009D7F04 /* UIViewExtension.swift in Sources */,
 				115BB6BD2081D99D00A8572F /* EditCourseViewController.swift in Sources */,
 			);
@@ -686,7 +746,10 @@
 				DEVELOPMENT_TEAM = 3MTZVUAQ6V;
 				INFOPLIST_FILE = KyutechApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.domain.KyutechApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -703,7 +766,10 @@
 				DEVELOPMENT_TEAM = 3MTZVUAQ6V;
 				INFOPLIST_FILE = KyutechApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.domain.KyutechApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -720,7 +786,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3MTZVUAQ6V;
 				INFOPLIST_FILE = KyutechAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.domain.KyutechAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -738,7 +808,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3MTZVUAQ6V;
 				INFOPLIST_FILE = KyutechAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.domain.KyutechAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -755,7 +829,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3MTZVUAQ6V;
 				INFOPLIST_FILE = KyutechAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.domain.KyutechAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -772,7 +850,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3MTZVUAQ6V;
 				INFOPLIST_FILE = KyutechAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.domain.KyutechAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
