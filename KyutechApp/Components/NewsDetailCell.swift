@@ -23,7 +23,6 @@ class NewsDetailCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
     func setup(withDict dict : [String:String]) {
         print(dict)
         detailLabel.numberOfLines = 0
