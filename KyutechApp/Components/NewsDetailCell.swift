@@ -25,6 +25,7 @@ class NewsDetailCell: UITableViewCell {
     }
     
     func setup(withDict dict : [String:String]) {
+        print(dict)
         detailLabel.numberOfLines = 0
         detailLabel.textAlignment = .justified
         if dict.count == 2 {
@@ -32,29 +33,21 @@ class NewsDetailCell: UITableViewCell {
             self.isUserInteractionEnabled = false
         } else if dict.count == 3 {
             self.detailLabel.text = dict["link_name"]
-            self.detailLabel.textColor = .blue
-            self.isUserInteractionEnabled = true
+            if !(dict["url"]?.contains("@"))! {
+                self.detailLabel.textColor = .blue
+                self.isUserInteractionEnabled = true
+            }
         }
     }
     
     func didTapped(dict: [String:String]) {
-//        print(dict.count)
         var url: URL?
         if dict.count == 3 {
-            let URLhead = "https://db.jimu.kyutech.ac.jp/cgi-bin/cbdb/"
-            var contentURL = dict["url"]!
-            print(contentURL)
-            if contentURL.contains("@") {
+            guard let urlString = dict["url"] else { return }
+            if urlString.contains("@") {
                 return
             }
-            let indexOfFirstSlash = contentURL.index(of: "/")!
-            let indexOfFirstQuestion =
-                contentURL.index(of: "?")!
-            let range = indexOfFirstSlash ..< indexOfFirstQuestion
-            contentURL.removeSubrange(range)
-
-            let urlString = URLhead + contentURL
-            url = URL(string: urlString)
+            url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
         }
         guard let URL = url else { return }
         if UIApplication.shared.canOpenURL(URL) {
