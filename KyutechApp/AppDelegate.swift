@@ -13,13 +13,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().barTintColor = UIColor.orange
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
         
+        
+        let primaryKey = UserDefaults.standard.string(forKey: .primaryKey)
+        let storyboard: UIStoryboard = (primaryKey != nil) ? UIStoryboard(name: "Main", bundle: nil) : UIStoryboard(name: "Register", bundle: nil)
+        let initialVC: UIViewController = storyboard.instantiateInitialViewController()!
+        
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = initialVC
+        self.window?.makeKeyAndVisible()
         return true
     }
 

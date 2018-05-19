@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import Alamofire
 
 class UserModel {
-    
-    class func createUser() {
-        
+    class func createUser(params: Parameters, onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
+        Alamofire.request(Router.createUser(params: params)).responseJSON(completionHandler: { res in
+            
+        })
     }
     
     class func updateUser() {
