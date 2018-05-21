@@ -20,8 +20,12 @@ class NewsDetailCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        detailLabel.textColor = .black
     }
     func setup(withDict dict : [String:String]) {
         print(dict)

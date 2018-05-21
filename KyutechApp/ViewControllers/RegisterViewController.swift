@@ -10,6 +10,8 @@ import UIKit
 import MaterialComponents
 
 class RegisterViewController: UIViewController {
+    
+    typealias Parameters = [String:Any]
 
     @IBOutlet weak var schoolYearTextField: MDCTextField!
     @IBOutlet weak var departmentTextField: MDCTextField!
@@ -17,11 +19,17 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var backgroundView: MaterialView!
     @IBOutlet weak var alartLabel: UILabel!
     
-//    let years = ["1", "2", "3", "4"]
+    var selectedYear: Int? = nil
+    var selectedDepartment: Int? = nil
+    
     let years: [Int] = [SchoolYearKey.one.rawValue, SchoolYearKey.two.rawValue, SchoolYearKey.three.rawValue, SchoolYearKey.four.rawValue]
     
 //    ウンコード
     let departments = [Department.classI_I, Department.classI_II, Department.classII_III, Department.classIII_IV, Department.classIII_V, Department.ai, Department.aiIncorp, Department.cse, Department.cseIncorp, Department.mse, Department.mseIncorp, Department.bio, Department.bioIncorp, Department.sys, Department.sysIncorp]
+    
+    deinit {
+        print("\(self) was deinited")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +75,8 @@ class RegisterViewController: UIViewController {
         schoolYearTextField.inputAccessoryView = toolBar
         departmentTextField.inputView = departPickerView
         departmentTextField.inputAccessoryView = toolBar
+        
+        schoolYearTextField.clearButton.addTarget(self, action: #selector(tappedClearButton(_:)), for: .touchUpInside)
     }
     
     func setupAlartLabel() {
@@ -80,12 +90,27 @@ class RegisterViewController: UIViewController {
     }
     
     @objc func tappedRegisterButton(_ sender: Any) {
-        guard let schoolYear = schoolYearTextField.text, let department = departmentTextField.text else { return }
-        if schoolYear == "" && department == "" {
-            alartLabel.alpha = 1
+        if let schoolYear = selectedYear, let department = selectedDepartment {
+            UserModel.createUser(year: schoolYear, depart: department, onSuccess: {[weak self] () in
+                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyBoard.instantiateInitialViewController()
+                self?.modalTransitionStyle = .crossDissolve
+                self?.present(vc!, animated: true, completion: nil)
+                }, onError: {[weak self] () in
+                    print("cannot register")
+            })
         } else {
-            
+            print("invalid input")
+            alartLabel.alpha = 1
         }
+    }
+    
+    @objc func tappedClearButton(_ sender: UIButton) {
+        if sender.superview == schoolYearTextField {
+            selectedYear = nil
+        } else if sender.superview == departmentTextField {
+            selectedDepartment = nil
+        } else { return }
     }
     
     func setupBackgroundView() {
@@ -134,7 +159,6 @@ extension RegisterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         } else {
             return 0
         }
-//        return dataList[component].count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -149,8 +173,10 @@ extension RegisterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 1200 {
+            selectedYear = years[row]
             schoolYearTextField.text = (years[row] + 1).description
         } else if pickerView.tag == 1300 {
+            selectedDepartment = departments[row].value()
             departmentTextField.text = departments[row].ja()
         } else {
         }
