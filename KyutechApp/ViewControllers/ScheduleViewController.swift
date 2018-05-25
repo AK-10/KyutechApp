@@ -166,7 +166,6 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
                 let storyboard = self.storyboard!
                 let syllabusVC = storyboard.instantiateViewController(withIdentifier: "Syllabus")
                 present(syllabusVC, animated: true, completion: nil)
-                
             }
         }
     }
