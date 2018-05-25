@@ -7,19 +7,50 @@
 //
 
 import UIKit
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().barTintColor = UIColor.orange
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
         
+        let manager = Alamofire.SessionManager.default
+        
+        manager.delegate.sessionDidReceiveChallenge = { session, challenge in
+            var disposition: URLSession.AuthChallengeDisposition = .performDefaultHandling
+            var credential: URLCredential?
+            
+            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                disposition = URLSession.AuthChallengeDisposition.useCredential
+                credential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
+            } else {
+                if challenge.previousFailureCount > 0 {
+                    disposition = .cancelAuthenticationChallenge
+                } else {
+                    credential = manager.session.configuration.urlCredentialStorage?.defaultCredential(for: challenge.protectionSpace)
+                    if credential != nil {
+                        disposition = .useCredential
+                    }
+                }
+            }
+            return (disposition, credential)
+        }
+        
+        let primaryKey = UserDefaults.standard.string(forKey: .primaryKey)
+        let storyboard: UIStoryboard = (primaryKey != nil) ? UIStoryboard(name: "Main", bundle: nil) : UIStoryboard(name: "Register", bundle: nil)
+        let initialVC: UIViewController = storyboard.instantiateInitialViewController()!
+        
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = initialVC
+        self.window?.makeKeyAndVisible()
         return true
     }
 

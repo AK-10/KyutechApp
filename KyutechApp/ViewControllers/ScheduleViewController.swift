@@ -16,19 +16,16 @@ class ScheduleViewController: UIViewController {
     @IBOutlet weak var pullDownMenuControllConstraint: NSLayoutConstraint!
     @IBOutlet weak var navbar: MaterialNavigationBar!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollection()
         setupNavigationBar()
         setupPullDownMenu()
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         scheduleCollection.reloadData()
-        
     }
     
     override func viewWillLayoutSubviews() {
@@ -114,7 +111,6 @@ class ScheduleViewController: UIViewController {
         UIView.animate(withDuration: 0.2, animations: {
             self.view.layoutIfNeeded()
         })
-        
     }
 
     func isEditting() -> Bool {
@@ -129,6 +125,14 @@ class ScheduleViewController: UIViewController {
 }
 
 extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    
+    private func dayAndPeriod(index: Int) -> (String, Int) {
+        let day = index % 5
+        let period = Int(index/5)
+        return (Week.toRawFrom(hash: day), period)
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 25
     }
@@ -150,7 +154,9 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
             let storyboard = UIStoryboard(name: "ScheduleOption", bundle: nil)
             let editCourseVC = storyboard.instantiateInitialViewController() as! EditCourseViewController
             editCourseVC.modalTransitionStyle = .crossDissolve
-            
+            let pair = dayAndPeriod(index: indexPath.row)
+            editCourseVC.selectedDay = pair.0
+            editCourseVC.selectedPeriod = pair.1
             present(editCourseVC, animated: true, completion: nil)
             
         } else {

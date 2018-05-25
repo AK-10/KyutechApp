@@ -6,8 +6,6 @@
     <dependencies>
         <deployment version="4352" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -575,94 +573,5 @@
             </objects>
             <point key="canvasLocation" x="3636" y="-409.7451274362819"/>
         </scene>
-        <!--Register View Controller-->
-        <scene sceneID="1nf-cj-azV">
-            <objects>
-                <viewController id="AG0-V6-X07" customClass="RegisterViewController" customModule="KyutechApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vGH-Ph-eWk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fel-aY-gqG">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="267"/>
-                                <color key="backgroundColor" name="systemPurpleColor" catalog="System" colorSpace="catalog"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XfR-gd-di5" customClass="MaterialView" customModule="KyutechApp" customModuleProvider="target">
-                                <rect key="frame" x="37.5" y="147" width="300" height="373.5"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="学年" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kuj-Xj-hGZ" customClass="MDCTextField">
-                                        <rect key="frame" x="30" y="155.5" width="240" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="学科" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cam-eJ-KGJ" customClass="MDCTextField">
-                                        <rect key="frame" x="30" y="217.5" width="240" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="waw-3d-W9q" customClass="MDCButton">
-                                        <rect key="frame" x="90.5" y="279.5" width="120" height="32"/>
-                                        <color key="backgroundColor" name="systemPurpleColor" catalog="System" colorSpace="catalog"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="DvK-jL-hrC"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <state key="normal" title="登録">
-                                            <color key="titleColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
-                                        </state>
-                                    </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="qhG-n2-vGQ">
-                                        <rect key="frame" x="120.5" y="56" width="60" height="59.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="qhG-n2-vGQ" secondAttribute="height" multiplier="1:1" id="Ea8-Po-ck9"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="qhG-n2-vGQ" firstAttribute="centerX" secondItem="XfR-gd-di5" secondAttribute="centerX" id="2Tb-AM-o4n"/>
-                                    <constraint firstItem="Cam-eJ-KGJ" firstAttribute="top" secondItem="kuj-Xj-hGZ" secondAttribute="bottom" constant="32" id="475-Iz-SaJ"/>
-                                    <constraint firstItem="qhG-n2-vGQ" firstAttribute="top" secondItem="XfR-gd-di5" secondAttribute="top" constant="56" id="4dK-LV-MQr"/>
-                                    <constraint firstItem="waw-3d-W9q" firstAttribute="centerX" secondItem="XfR-gd-di5" secondAttribute="centerX" id="6Ko-6S-Wt1"/>
-                                    <constraint firstItem="kuj-Xj-hGZ" firstAttribute="top" secondItem="qhG-n2-vGQ" secondAttribute="bottom" constant="40" id="EBp-jx-Xfg"/>
-                                    <constraint firstItem="qhG-n2-vGQ" firstAttribute="height" secondItem="XfR-gd-di5" secondAttribute="height" multiplier="0.16" id="Faw-SU-eMO"/>
-                                    <constraint firstItem="Cam-eJ-KGJ" firstAttribute="centerX" secondItem="XfR-gd-di5" secondAttribute="centerX" id="K51-lm-8NR"/>
-                                    <constraint firstItem="Cam-eJ-KGJ" firstAttribute="width" secondItem="XfR-gd-di5" secondAttribute="width" multiplier="0.8" id="VZ4-oi-MZz"/>
-                                    <constraint firstItem="kuj-Xj-hGZ" firstAttribute="width" secondItem="XfR-gd-di5" secondAttribute="width" multiplier="0.8" id="aUC-F2-DDT"/>
-                                    <constraint firstItem="kuj-Xj-hGZ" firstAttribute="centerX" secondItem="XfR-gd-di5" secondAttribute="centerX" id="dEL-KR-zZr"/>
-                                    <constraint firstItem="waw-3d-W9q" firstAttribute="top" secondItem="Cam-eJ-KGJ" secondAttribute="bottom" constant="32" id="oR9-86-lrH"/>
-                                    <constraint firstItem="waw-3d-W9q" firstAttribute="width" secondItem="XfR-gd-di5" secondAttribute="width" multiplier="0.4" id="qBu-6b-Eeu"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.97700582174426631" green="0.97448125889738191" blue="0.97953038459115072" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstItem="Fel-aY-gqG" firstAttribute="trailing" secondItem="RgW-Qf-mbY" secondAttribute="trailing" id="2gR-X1-W5h"/>
-                            <constraint firstItem="XfR-gd-di5" firstAttribute="width" secondItem="vGH-Ph-eWk" secondAttribute="width" multiplier="0.8" id="DWA-kM-Kjd"/>
-                            <constraint firstItem="XfR-gd-di5" firstAttribute="centerY" secondItem="vGH-Ph-eWk" secondAttribute="centerY" id="OWm-fG-xch"/>
-                            <constraint firstItem="XfR-gd-di5" firstAttribute="centerX" secondItem="vGH-Ph-eWk" secondAttribute="centerX" id="Wbx-Bn-zy4"/>
-                            <constraint firstItem="Fel-aY-gqG" firstAttribute="top" secondItem="vGH-Ph-eWk" secondAttribute="top" id="XIf-1W-fUM"/>
-                            <constraint firstItem="Fel-aY-gqG" firstAttribute="leading" secondItem="RgW-Qf-mbY" secondAttribute="leading" id="dza-25-PGu"/>
-                            <constraint firstItem="XfR-gd-di5" firstAttribute="height" secondItem="vGH-Ph-eWk" secondAttribute="height" multiplier="0.56" id="esf-LW-dfB"/>
-                            <constraint firstItem="Fel-aY-gqG" firstAttribute="height" secondItem="vGH-Ph-eWk" secondAttribute="height" multiplier="0.4" id="mwU-Lk-1od"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="RgW-Qf-mbY"/>
-                    </view>
-                    <connections>
-                        <outlet property="backgroundView" destination="XfR-gd-di5" id="tyU-Lc-XfW"/>
-                        <outlet property="departmentTextField" destination="Cam-eJ-KGJ" id="63f-zT-PfS"/>
-                        <outlet property="registerButton" destination="waw-3d-W9q" id="0Yg-pW-5kv"/>
-                        <outlet property="schoolYearTextField" destination="kuj-Xj-hGZ" id="KBO-T9-zmv"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LNT-qg-xH7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="440.80000000000001" y="-575.26236881559225"/>
-        </scene>
     </scenes>
-    <resources>
-        <image name="icon" width="512" height="512"/>
-    </resources>
 </document>

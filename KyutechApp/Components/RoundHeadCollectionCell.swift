@@ -9,7 +9,7 @@
 import UIKit
 import MaterialComponents
 
-class NewsCollectionCell: MDCCardCollectionCell {
+class RoundHeadCollectionCell: MDCCardCollectionCell {
     @IBOutlet weak var roundLabel: UILabel!
     @IBOutlet weak var newsTypeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -32,6 +32,12 @@ class NewsCollectionCell: MDCCardCollectionCell {
         }
   
         roundLabel.clipsToBounds = true
+    }
+    
+    func courseMode() {
+        dateLabel.frame.size = CGSize(width: 0, height: 0)
+        
+        newsTypeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 32).isActive = true
     }
     
 }

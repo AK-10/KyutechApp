@@ -20,43 +20,34 @@ class NewsDetailCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
-    func setup(withDict dict : [String:String]) {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        detailLabel.textColor = .black
+    }
+    
+    func setup(content: String, url: String) {
         detailLabel.numberOfLines = 0
         detailLabel.textAlignment = .justified
-        if dict.count == 2 {
-            self.detailLabel.text = dict["content"]
-            self.isUserInteractionEnabled = false
-        } else if dict.count == 3 {
-            self.detailLabel.text = dict["link_name"]
-            self.detailLabel.textColor = .blue
+        detailLabel.text = content
+        if url != "" && !(url.contains("mailto:")) {
             self.isUserInteractionEnabled = true
+            detailLabel.textColor = .blue
+        } else {
+            self.isUserInteractionEnabled = false
         }
     }
     
-    func didTapped(dict: [String:String]) {
-//        print(dict.count)
-        var url: URL?
-        if dict.count == 3 {
-            let URLhead = "https://db.jimu.kyutech.ac.jp/cgi-bin/cbdb/"
-            var contentURL = dict["url"]!
-            print(contentURL)
-            if contentURL.contains("@") {
-                return
-            }
-            let indexOfFirstSlash = contentURL.index(of: "/")!
-            let indexOfFirstQuestion =
-                contentURL.index(of: "?")!
-            let range = indexOfFirstSlash ..< indexOfFirstQuestion
-            contentURL.removeSubrange(range)
-
-            let urlString = URLhead + contentURL
-            url = URL(string: urlString)
+    
+    func didTapped(urlString: String) {
+        var url: URL? = nil
+        if urlString != "" {
+            url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
         }
         guard let URL = url else { return }
+        print("xxx")
         if UIApplication.shared.canOpenURL(URL) {
             UIApplication.shared.open(URL, options: [:], completionHandler: {(isOpenSuccess) in
                 if isOpenSuccess {

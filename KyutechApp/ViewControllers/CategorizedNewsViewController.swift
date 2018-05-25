@@ -11,15 +11,13 @@ import UIKit
 class CategorizedNewsViewController: UIViewController {
     
     var newsArray: [News] = []
-    var newsHeading: NewsHeading? = nil
+    var categoryCode: Int? = nil
     
     @IBOutlet weak var newsHeaderCollection: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollection()
-        setupNavbar()
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,9 +26,9 @@ class CategorizedNewsViewController: UIViewController {
     }
     
     func setupCollection() {
-        NewsModel.readNews(newsID: newsHeading?.newsHeadingCode ?? 357, onSuccess: { [weak self] (readedNewsArray) in
+        guard let categoryCode = categoryCode else { return }
+        NewsModel.readNews(newsID: categoryCode, onSuccess: { [weak self] (readedNewsArray) in
             self?.newsArray = readedNewsArray
-            self?.newsArray.reverse()
             self?.newsHeaderCollection.reloadData()
         }, onError: { () in})
         let nib = UINib(nibName: "SimpleCardCell", bundle: nil)
@@ -39,11 +37,6 @@ class CategorizedNewsViewController: UIViewController {
         newsHeaderCollection.dataSource = self
         newsHeaderCollection.reloadData()
     }
-    
-    func setupNavbar() {
-        self.navigationItem.title = newsHeading?.name
-    }
-
 }
 
 extension CategorizedNewsViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource{
@@ -54,22 +47,8 @@ extension CategorizedNewsViewController: UICollectionViewDelegateFlowLayout, UIC
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewsHeadCell", for: indexPath) as! SimpleCardCell
         let news = newsArray[indexPath.row]
-        var title: String = ""
-        var date: String = ""
-        for content in news.infos {
-            let infoTitle = content["title"]
-            if infoTitle == "タイトル" || infoTitle == "休講科目" || infoTitle == "補講科目" || infoTitle == "件名"{
-                title = content["content"]!
-                break
-            }
-        }
-        for content in news.infos {
-            if content["title"] == "日付" || content["title"] == "期日" {
-                date = content["content"]!
-                break
-            }
-        }
-        cell.setup(title: title, date: date)
+        let texts = news.getTexts()
+        cell.setup(title: texts.0, date: texts.1)
         return cell
     }
     
@@ -89,4 +68,5 @@ extension CategorizedNewsViewController: UICollectionViewDelegateFlowLayout, UIC
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
+    
 }
