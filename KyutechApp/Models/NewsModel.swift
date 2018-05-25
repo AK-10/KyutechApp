@@ -11,7 +11,7 @@ import Alamofire
 
 class NewsModel {
     
-    var nextURL: String? = ""
+    static var nextURL: String? = nil
     
     class func readNews(newsID: Int, onSuccess: @escaping ([News]) -> Void, onError: @escaping () -> Void) {
         Alamofire.request(Router.readNews(id: newsID)).responseJSON(completionHandler: { res in
@@ -22,13 +22,13 @@ class NewsModel {
                 let status: Int = res.response?.statusCode ?? -1
                 if status >= 200 && status < 300 {
                     guard let resData = res.value else { print("data is nil"); return }
-                    var newsArray: [News] = []
                     let dataDict = resData as! Parameters
-                    let newsJSON = dataDict["results"] as! [Parameters]
-                    for item in newsJSON {
-                        let infos = item["infos"] as! [[String:String]]
-                        let attachmentInfos = item["attachment_infos"] as? [[String:String]]
-                        newsArray.append(News(infos: infos, attachmentInfos: attachmentInfos))
+                    nextURL = dataDict["next"] as? String
+                    let results = dataDict["results"] as! [Parameters]
+                    let newsArray: [News] = results.map {
+                        (item) in
+                        let itemData = try! JSONSerialization.data(withJSONObject: item, options: [])
+                        return try! JSONDecoder().decode(News.self, from: itemData)
                     }
                     onSuccess(newsArray)
                 } else {

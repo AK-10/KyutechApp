@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  UIViewExtension.swift
 //  KyutechApp
 //
 //  Created by Atsushi KONISHI on 2018/04/16.
@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-
 
 extension UIView {
     
@@ -27,6 +26,5 @@ extension UIView {
         layer.shadowRadius = 0
         layer.shadowOpacity = 0
     }
-    
 
 }

@@ -27,32 +27,27 @@ class NewsDetailCell: UITableViewCell {
         super.prepareForReuse()
         detailLabel.textColor = .black
     }
-    func setup(withDict dict : [String:String]) {
-        print(dict)
+    
+    func setup(content: String, url: String) {
         detailLabel.numberOfLines = 0
         detailLabel.textAlignment = .justified
-        if dict.count == 2 {
-            self.detailLabel.text = dict["content"]
+        detailLabel.text = content
+        if url != "" && !(url.contains("mailto:")) {
+            self.isUserInteractionEnabled = true
+            detailLabel.textColor = .blue
+        } else {
             self.isUserInteractionEnabled = false
-        } else if dict.count == 3 {
-            self.detailLabel.text = dict["link_name"]
-            if !(dict["url"]?.contains("@"))! {
-                self.detailLabel.textColor = .blue
-                self.isUserInteractionEnabled = true
-            }
         }
     }
     
-    func didTapped(dict: [String:String]) {
-        var url: URL?
-        if dict.count == 3 {
-            guard let urlString = dict["url"] else { return }
-            if urlString.contains("@") {
-                return
-            }
+    
+    func didTapped(urlString: String) {
+        var url: URL? = nil
+        if urlString != "" {
             url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
         }
         guard let URL = url else { return }
+        print("xxx")
         if UIApplication.shared.canOpenURL(URL) {
             UIApplication.shared.open(URL, options: [:], completionHandler: {(isOpenSuccess) in
                 if isOpenSuccess {

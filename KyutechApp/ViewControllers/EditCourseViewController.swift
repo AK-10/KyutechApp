@@ -13,10 +13,16 @@ class EditCourseViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var courseCollection: UICollectionView!
     
+    var selectedDay: String? = nil
+    var selectedPeriod: Int? = nil
+    
+    var syllabuses: [Syllabus] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupDataSource()
         setupCollection()
-
+        
         // Do any additional setup after loading the view.
     }
 
@@ -35,8 +41,18 @@ class EditCourseViewController: UIViewController {
         courseCollection.delegate = self
         courseCollection.dataSource = self
         
-        let nib = UINib(nibName: "NewsCell", bundle: nil)
+        let nib = UINib(nibName: "RoundHeadCollectionCell", bundle: nil)
         courseCollection.register(nib, forCellWithReuseIdentifier: "CourseCell")
+    }
+    
+    func setupDataSource() {
+        guard let day = selectedDay, let period = selectedPeriod else { print("day & period is nil"); return }
+        SyllabusModel.readSyllabusWith(day: day, period: period, onSuccess: { [weak self] (retSyllabuses) in
+            self?.syllabuses = retSyllabuses
+            self?.courseCollection.reloadData()
+            }, onError: { [weak self] () in
+                
+        })
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -47,13 +63,16 @@ class EditCourseViewController: UIViewController {
 }
 
 extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return syllabuses.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CourseCell", for: indexPath) as! NewsCollectionCell
-        cell.setup(roundLabelText: "", color: .blue, title: "Automata", date: "2018/2/13")
+        let syllabus = syllabuses[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CourseCell", for: indexPath) as! RoundHeadCollectionCell
+        cell.courseMode()
+        cell.setup(roundLabelText: String(syllabus.title.first!) , color: .cyan, title: syllabus.title, date: "")
         return cell
     }
     

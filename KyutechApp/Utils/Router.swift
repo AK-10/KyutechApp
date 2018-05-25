@@ -11,8 +11,8 @@ import Alamofire
 
 enum Router: URLRequestConvertible {
     
-//    static let baseURLString: String = "https://ec2-18-221-237-112.us-east-2.compute.amazonaws.com/api"
-    static let baseURLString: String = "http://localhost:8000/api"
+    static let baseURLString: String = "https://ec2-18-221-237-112.us-east-2.compute.amazonaws.com/api"
+//    static let baseURLString: String = "http://localhost:8000/api"
     
     case createUser(params: Parameters)
     case readUser(id: Int)
@@ -22,7 +22,7 @@ enum Router: URLRequestConvertible {
     case readNews(id: Int)
     
     case readSyllabusDetails(id: Int)
-    case readSyllabusWith(dayID: Int, periodID: Int)
+    case readSyllabusWith(dayID: String, periodID: Int)
     
     case createSchedule(params: Parameters)
     case readSchedule(id: Int, term: Int)
@@ -67,7 +67,7 @@ enum Router: URLRequestConvertible {
         case .readSyllabusDetails(let id):
             return "/syllabuses/\(id.description)"
         case .readSyllabusWith(let dayID, let periodID):
-            return "/syllabuses/day-\(dayID.description)/period-\(periodID.description)/"
+            return "/syllabuses/day-\(dayID.description)/period-\(periodID.description)"
         case .createSchedule:
             return "/user-schedules/"
         case .readSchedule(let id, let term):

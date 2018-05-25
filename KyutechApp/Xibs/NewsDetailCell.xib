@@ -20,15 +20,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f29-sd-cSo">
-                        <rect key="frame" x="16" y="15" width="343" height="61"/>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                        <rect key="frame" x="24" y="15" width="327" height="61"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="f29-sd-cSo" firstAttribute="leading" secondItem="71P-Zb-s8u" secondAttribute="leadingMargin" id="0Ml-Qb-zQo"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="f29-sd-cSo" secondAttribute="trailing" id="KLA-WW-ccJ"/>
+                    <constraint firstItem="f29-sd-cSo" firstAttribute="leading" secondItem="71P-Zb-s8u" secondAttribute="leadingMargin" constant="8" id="0Ml-Qb-zQo"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="f29-sd-cSo" secondAttribute="trailing" constant="8" id="KLA-WW-ccJ"/>
                     <constraint firstItem="f29-sd-cSo" firstAttribute="top" secondItem="71P-Zb-s8u" secondAttribute="topMargin" constant="4" id="l4q-uW-22h"/>
                     <constraint firstAttribute="bottomMargin" secondItem="f29-sd-cSo" secondAttribute="bottom" constant="4" id="tzb-an-Ykc"/>
                 </constraints>
