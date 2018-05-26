@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MaterialComponents.MDCActivityIndicator
 
 class CategorizedNewsViewController: UIViewController {
     
@@ -27,10 +28,22 @@ class CategorizedNewsViewController: UIViewController {
     
     func setupCollection() {
         guard let categoryCode = categoryCode else { return }
+        let xPoint = newsHeaderCollection.frame.width / 2.0
+        let yPoint = newsHeaderCollection.frame.height / 2.0
+        print(newsHeaderCollection.frame.width)
+        print(newsHeaderCollection.frame.height)
+        let activityIndicator = MDCActivityIndicator()
+        activityIndicator.center = CGPoint(x: xPoint, y: yPoint)
+        activityIndicator.sizeToFit()
+        activityIndicator.cycleColors = [.blue, .green]
+        newsHeaderCollection.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
         NewsModel.readNews(newsID: categoryCode, onSuccess: { [weak self] (readedNewsArray) in
             self?.newsArray = readedNewsArray
             self?.newsHeaderCollection.reloadData()
-        }, onError: { () in})
+            activityIndicator.stopAnimating()
+            activityIndicator.removeFromSuperview()
+        }, onError: { () in })
         let nib = UINib(nibName: "SimpleCardCell", bundle: nil)
         newsHeaderCollection.register(nib, forCellWithReuseIdentifier: "NewsHeadCell")
         newsHeaderCollection.delegate = self

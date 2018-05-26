@@ -96,7 +96,7 @@ class RegisterViewController: UIViewController {
                 let vc = storyBoard.instantiateInitialViewController()
                 self?.modalTransitionStyle = .crossDissolve
                 self?.present(vc!, animated: true, completion: nil)
-                }, onError: {[weak self] () in
+                }, onError: { () in
                     print("cannot register")
             })
         } else {

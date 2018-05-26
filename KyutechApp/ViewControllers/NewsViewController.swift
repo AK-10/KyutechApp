@@ -16,7 +16,6 @@ class NewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupNewsTable()
     }
 
@@ -25,8 +24,14 @@ class NewsViewController: UIViewController {
     }
     
     func setupNewsTable() {
+        let xPoint = newsHeadCollection.frame.width / 2.0
+        let yPoint = newsHeadCollection.frame.height / 2.0
         let activityIndicator = MDCActivityIndicator()
+        activityIndicator.center = CGPoint(x: xPoint, y: yPoint)
         activityIndicator.sizeToFit()
+        activityIndicator.cycleColors = [.blue, .green]
+        newsHeadCollection.addSubview(activityIndicator)
+
         activityIndicator.startAnimating()
         NewsHeadingModel.readNewsHeadings(onSuccess: { [weak self] (newsHeads) in
             self?.newsHeadings = newsHeads
@@ -62,7 +67,7 @@ extension NewsViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = collectionView.bounds.width
-        let cellHeight = CGFloat(60)
+        let cellHeight = CGFloat(64)
         return CGSize(width: cellWidth, height: cellHeight)
     }
     

@@ -38,4 +38,31 @@ class NewsModel {
             }
         })
     }
+    
+    class func fetchNews(onSuccess: @escaping ([News]) -> Void, onError: @escaping () -> Void) {
+        guard let next = nextURL else { return }
+        Alamofire.request(next).responseJSON(completionHandler: { res in
+            if res.error != nil {
+                onError()
+                print("error: response is nil")
+            } else {
+                let status: Int = res.response?.statusCode ?? -1
+                if status >= 200 && status < 300 {
+                    guard let resData = res.value else { print("data is nil"); return }
+                    let dataDict = resData as! Parameters
+                    nextURL = dataDict["next"] as? String
+                    let results = dataDict["results"] as! [Parameters]
+                    let newsArray: [News] = results.map {
+                        (item) in
+                        let itemData = try! JSONSerialization.data(withJSONObject: item, options: [])
+                        return try! JSONDecoder().decode(News.self, from: itemData)
+                    }
+                    onSuccess(newsArray)
+                } else {
+                    print("data is nil")
+                    onError()
+                }
+            }
+        })
+    }
 }

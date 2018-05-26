@@ -47,11 +47,21 @@ class EditCourseViewController: UIViewController {
     
     func setupDataSource() {
         guard let day = selectedDay, let period = selectedPeriod else { print("day & period is nil"); return }
+        let xPoint = courseCollection.frame.width / 2.0
+        let yPoint = courseCollection.frame.height / 2.0
+        let activityIndicator = MDCActivityIndicator()
+        activityIndicator.center = CGPoint(x: xPoint, y: yPoint)
+        activityIndicator.sizeToFit()
+        activityIndicator.cycleColors = [.red, .blue, .green]
+        courseCollection.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
         SyllabusModel.readSyllabusWith(day: day, period: period, onSuccess: { [weak self] (retSyllabuses) in
             self?.syllabuses = retSyllabuses
             self?.courseCollection.reloadData()
-            }, onError: { [weak self] () in
-                
+            activityIndicator.stopAnimating()
+            activityIndicator.removeFromSuperview()
+            }, onError: { () in
+                print("Error: error")
         })
     }
     
@@ -71,8 +81,7 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let syllabus = syllabuses[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CourseCell", for: indexPath) as! RoundHeadCollectionCell
-        cell.courseMode()
-        cell.setup(roundLabelText: String(syllabus.title.first!) , color: .cyan, title: syllabus.title, date: "")
+        cell.setup(roundLabelText: String(syllabus.title.first!) , color: .red, title: syllabus.title, date: syllabus.teacherName)
         return cell
     }
     
