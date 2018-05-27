@@ -14,6 +14,7 @@ class CategorizedNewsViewController: UIViewController {
     var newsArray: [News] = []
     var categoryCode: Int? = nil
     
+    
     @IBOutlet weak var newsHeaderCollection: UICollectionView!
     
     override func viewDidLoad() {
@@ -35,7 +36,7 @@ class CategorizedNewsViewController: UIViewController {
         let activityIndicator = MDCActivityIndicator()
         activityIndicator.center = CGPoint(x: xPoint, y: yPoint)
         activityIndicator.sizeToFit()
-        activityIndicator.cycleColors = [.blue, .green]
+        activityIndicator.cycleColors = [.red, .blue, .green, .yellow]
         newsHeaderCollection.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         NewsModel.readNews(newsID: categoryCode, onSuccess: { [weak self] (readedNewsArray) in
@@ -55,6 +56,19 @@ class CategorizedNewsViewController: UIViewController {
 extension CategorizedNewsViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return newsArray.count
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.bounds.height {
+            NewsModel.fetchNews(onSuccess: { [weak self] (fetchedNews) in
+                self?.newsArray.append(contentsOf: fetchedNews)
+                self?.newsHeaderCollection.reloadData()
+                NewsModel.isLoading = false
+                }, onError: { () in
+                    print("error")
+                    NewsModel.isLoading = false
+            })
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
