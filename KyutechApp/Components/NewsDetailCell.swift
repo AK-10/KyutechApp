@@ -30,7 +30,7 @@ class NewsDetailCell: UITableViewCell {
     
     func setup(content: String, url: String) {
         detailLabel.numberOfLines = 0
-        detailLabel.textAlignment = .justified
+        detailLabel.textAlignment = .natural
         detailLabel.text = content
         if url != "" && !(url.contains("mailto:")) {
             self.isUserInteractionEnabled = true

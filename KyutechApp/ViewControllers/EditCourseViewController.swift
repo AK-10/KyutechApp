@@ -13,7 +13,7 @@ class EditCourseViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var courseCollection: UICollectionView!
     
-    var selectedDay: String? = nil
+    var selectedDay: Week? = nil
     var selectedPeriod: Int? = nil
     
     var syllabuses: [Syllabus] = []
@@ -22,6 +22,7 @@ class EditCourseViewController: UIViewController {
         super.viewDidLoad()
         setupDataSource()
         setupCollection()
+        setupDateLabel()
         
         // Do any additional setup after loading the view.
     }
@@ -45,13 +46,29 @@ class EditCourseViewController: UIViewController {
         courseCollection.register(nib, forCellWithReuseIdentifier: "CourseCell")
     }
     
+    func setupDateLabel() {
+        guard let day = selectedDay, let period = selectedPeriod else { return }
+        dateLabel.text = "\(day.ja()) \(period)限"
+        
+    }
+    
     func setupDataSource() {
         guard let day = selectedDay, let period = selectedPeriod else { print("day & period is nil"); return }
-        SyllabusModel.readSyllabusWith(day: day, period: period, onSuccess: { [weak self] (retSyllabuses) in
+        let xPoint = courseCollection.frame.width / 2.0
+        let yPoint = courseCollection.frame.height / 2.0
+        let activityIndicator = MDCActivityIndicator()
+        activityIndicator.center = CGPoint(x: xPoint, y: yPoint)
+        activityIndicator.sizeToFit()
+        activityIndicator.cycleColors = [.red, .blue, .green]
+        courseCollection.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        SyllabusModel.readSyllabusWith(day: day.rawValue, period: period, onSuccess: { [weak self] (retSyllabuses) in
             self?.syllabuses = retSyllabuses
             self?.courseCollection.reloadData()
-            }, onError: { [weak self] () in
-                
+            activityIndicator.stopAnimating()
+            activityIndicator.removeFromSuperview()
+            }, onError: { () in
+                print("Error: error")
         })
     }
     
@@ -71,8 +88,7 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let syllabus = syllabuses[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CourseCell", for: indexPath) as! RoundHeadCollectionCell
-        cell.courseMode()
-        cell.setup(roundLabelText: String(syllabus.title.first!) , color: .cyan, title: syllabus.title, date: "")
+        cell.setup(roundLabelText: String(syllabus.title.first!) , color: .red, title: syllabus.title, date: syllabus.teacherName)
         return cell
     }
     

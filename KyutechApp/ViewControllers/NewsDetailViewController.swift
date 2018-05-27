@@ -33,15 +33,11 @@ class NewsDetailViewController: UIViewController {
         contents = news.getContents()
         urls = news.getURLs()
         
-        print(sections.count)
-        print(contents.count)
-        print(urls.count)
-        
         let nib = UINib(nibName: "NewsDetailCell", bundle: nil)
         newsItemTable.register(nib, forCellReuseIdentifier: "NewsDetailCell")
         newsItemTable.delegate = self
         newsItemTable.dataSource = self
-        newsItemTable.estimatedRowHeight = 56
+        newsItemTable.estimatedRowHeight = 64
         newsItemTable.rowHeight = UITableViewAutomaticDimension
         newsItemTable.separatorStyle = .none
         newsItemTable.allowsSelection = true
