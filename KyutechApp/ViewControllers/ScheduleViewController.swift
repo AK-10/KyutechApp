@@ -126,10 +126,10 @@ class ScheduleViewController: UIViewController {
 
 extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
-    private func dayAndPeriod(index: Int) -> (String, Int) {
+    private func dayAndPeriod(index: Int) -> (Week, Int) {
         let day = index % 5
         let period = Int(index/5)
-        return (Week.toRawFrom(hash: day), period)
+        return (Week.from(hash: day), period)
     }
     
     
@@ -150,7 +150,7 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if isEditting() {
-            
+            // 状態が編集中ならば授業選択画面へ
             let storyboard = UIStoryboard(name: "ScheduleOption", bundle: nil)
             let editCourseVC = storyboard.instantiateInitialViewController() as! EditCourseViewController
             editCourseVC.modalTransitionStyle = .crossDissolve

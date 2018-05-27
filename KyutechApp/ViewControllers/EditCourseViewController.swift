@@ -13,7 +13,7 @@ class EditCourseViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var courseCollection: UICollectionView!
     
-    var selectedDay: String? = nil
+    var selectedDay: Week? = nil
     var selectedPeriod: Int? = nil
     
     var syllabuses: [Syllabus] = []
@@ -22,6 +22,7 @@ class EditCourseViewController: UIViewController {
         super.viewDidLoad()
         setupDataSource()
         setupCollection()
+        setupDateLabel()
         
         // Do any additional setup after loading the view.
     }
@@ -45,6 +46,12 @@ class EditCourseViewController: UIViewController {
         courseCollection.register(nib, forCellWithReuseIdentifier: "CourseCell")
     }
     
+    func setupDateLabel() {
+        guard let day = selectedDay, let period = selectedPeriod else { return }
+        dateLabel.text = "\(day.ja()) \(period)限"
+        
+    }
+    
     func setupDataSource() {
         guard let day = selectedDay, let period = selectedPeriod else { print("day & period is nil"); return }
         let xPoint = courseCollection.frame.width / 2.0
@@ -55,7 +62,7 @@ class EditCourseViewController: UIViewController {
         activityIndicator.cycleColors = [.red, .blue, .green]
         courseCollection.addSubview(activityIndicator)
         activityIndicator.startAnimating()
-        SyllabusModel.readSyllabusWith(day: day, period: period, onSuccess: { [weak self] (retSyllabuses) in
+        SyllabusModel.readSyllabusWith(day: day.rawValue, period: period, onSuccess: { [weak self] (retSyllabuses) in
             self?.syllabuses = retSyllabuses
             self?.courseCollection.reloadData()
             activityIndicator.stopAnimating()
