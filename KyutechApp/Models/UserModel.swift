@@ -33,6 +33,7 @@ class UserModel {
                     onSuccess()
                 } else {
                     print("Error because status is invalid")
+                    print(res.value)
                     onError()
                 }
             }

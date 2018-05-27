@@ -22,7 +22,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDS-gs-5TW">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="267"/>
-                                <color key="backgroundColor" name="systemPurpleColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" red="0.0" green="0.73725490196078436" blue="0.83137254901960778" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bss-8X-aey" customClass="MaterialView" customModule="KyutechApp" customModuleProvider="target">
                                 <rect key="frame" x="37.5" y="133.5" width="300" height="400.5"/>
@@ -41,13 +41,13 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVJ-fr-9h2" customClass="MDCButton">
                                         <rect key="frame" x="90.5" y="243" width="120" height="32"/>
-                                        <color key="backgroundColor" name="systemPurpleColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" red="0.0" green="0.73725490196078436" blue="0.83137254901960778" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="btc-da-ouY"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="登録">
-                                            <color key="titleColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="BRa-zl-isC">
@@ -83,7 +83,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.97700582170000005" green="0.97448125890000004" blue="0.97953038459999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Bss-8X-aey" firstAttribute="height" secondItem="nQC-0f-oI8" secondAttribute="height" multiplier="0.6" id="ILH-tf-73E"/>
                             <constraint firstItem="KDS-gs-5TW" firstAttribute="trailing" secondItem="EYJ-ci-aWb" secondAttribute="trailing" id="Lq5-Fs-21B"/>
