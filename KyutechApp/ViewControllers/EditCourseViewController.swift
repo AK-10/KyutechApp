@@ -48,7 +48,7 @@ class EditCourseViewController: UIViewController {
     
     func setupDateLabel() {
         guard let day = selectedDay, let period = selectedPeriod else { return }
-        dateLabel.text = "\(day.ja()) \(period)限"
+        dateLabel.text = "\(day.ja()) \(period+1)限"
         
     }
     
