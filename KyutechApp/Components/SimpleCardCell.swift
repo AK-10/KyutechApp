@@ -26,4 +26,9 @@ class SimpleCardCell: MDCCardCollectionCell {
         dateLabel.text = date ?? ""
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.isSelected = false
+    }
+    
 }
