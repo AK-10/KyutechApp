@@ -25,7 +25,7 @@ enum Router: URLRequestConvertible {
     case readSyllabusWith(dayID: String, periodID: Int)
     
     case createSchedule(params: Parameters)
-    case readSchedule(id: Int, term: Int)
+    case readSchedule(id: Int, quarter: Int)
     
     var method: HTTPMethod {
         switch self {
@@ -70,8 +70,8 @@ enum Router: URLRequestConvertible {
             return "/syllabuses/day-\(dayID.description)/period-\(periodID.description)"
         case .createSchedule:
             return "/user-schedules/"
-        case .readSchedule(let id, let term):
-            return "/user-schedules/user-\(id.description)/quarter-\(term.description)"
+        case .readSchedule(let id, let quarter):
+            return "/user-schedules/user-\(id.description)/quarter-\(quarter.description)"
         }
     }
     
