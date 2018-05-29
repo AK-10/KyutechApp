@@ -52,6 +52,8 @@
 		119FF56D20737143006EDC6C /* KyutechAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119FF56C20737143006EDC6C /* KyutechAppTests.swift */; };
 		119FF57820737143006EDC6C /* KyutechAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119FF57720737143006EDC6C /* KyutechAppUITests.swift */; };
 		11C786F220B834EF008B1810 /* NSURLRequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C786F120B834EF008B1810 /* NSURLRequestExtension.swift */; };
+		11C786F420BD0F64008B1810 /* UserSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C786F320BD0F64008B1810 /* UserSchedule.swift */; };
+		11C786F620BD130D008B1810 /* UserScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C786F520BD130D008B1810 /* UserScheduleModel.swift */; };
 		922409F99D159C216B7FFB82 /* Pods_KyutechAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4951B80191CB0FF3683A655 /* Pods_KyutechAppUITests.framework */; };
 		B5E848BAF3B20FB432A43D40 /* Pods_KyutechAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3A93BAC357DFAFF6C6663C /* Pods_KyutechAppTests.framework */; };
 		D77C3DDC06884FC228AC69A1 /* Pods_KyutechApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1242136346136949372A394 /* Pods_KyutechApp.framework */; };
@@ -127,6 +129,8 @@
 		119FF57720737143006EDC6C /* KyutechAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KyutechAppUITests.swift; sourceTree = "<group>"; };
 		119FF57920737143006EDC6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11C786F120B834EF008B1810 /* NSURLRequestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSURLRequestExtension.swift; sourceTree = "<group>"; };
+		11C786F320BD0F64008B1810 /* UserSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSchedule.swift; sourceTree = "<group>"; };
+		11C786F520BD130D008B1810 /* UserScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserScheduleModel.swift; sourceTree = "<group>"; };
 		1D55FC67AAF08B52C00F159B /* Pods-KyutechApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyutechApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-KyutechApp/Pods-KyutechApp.release.xcconfig"; sourceTree = "<group>"; };
 		94E45CC5DDC041DA87DDFB17 /* Pods-KyutechAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyutechAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KyutechAppUITests/Pods-KyutechAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9F3A93BAC357DFAFF6C6663C /* Pods_KyutechAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KyutechAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,6 +201,8 @@
 			children = (
 				110BBB98209CE18800935A23 /* NewsHeading.swift */,
 				112283C020AB28E900C298A5 /* UserModel.swift */,
+				11C786F320BD0F64008B1810 /* UserSchedule.swift */,
+				11C786F520BD130D008B1810 /* UserScheduleModel.swift */,
 				1119ABD920B2A34B003E84FB /* Syllabus.swift */,
 				1119ABDB20B2B26F003E84FB /* SyllabusModel.swift */,
 				110BBBA0209E466600935A23 /* News.swift */,
@@ -578,6 +584,7 @@
 				110BBBA1209E466600935A23 /* News.swift in Sources */,
 				115BB6B7207E280E00A8572F /* PullDownMenuViewController.swift in Sources */,
 				1119ABDC20B2B26F003E84FB /* SyllabusModel.swift in Sources */,
+				11C786F620BD130D008B1810 /* UserScheduleModel.swift in Sources */,
 				110BEC8B207C603000F8B276 /* ScheduleViewController.swift in Sources */,
 				110BBB9D209CF49000935A23 /* Common.swift in Sources */,
 				110BEC98207CDA7900F8B276 /* MaterialNavigationBar.swift in Sources */,
@@ -592,6 +599,7 @@
 				110BEC95207CC1F200F8B276 /* NewsViewController.swift in Sources */,
 				119FF55820737141006EDC6C /* AppDelegate.swift in Sources */,
 				1155CB532090AF89004BBAFA /* RegisterViewController.swift in Sources */,
+				11C786F420BD0F64008B1810 /* UserSchedule.swift in Sources */,
 				1119ABD620AFE947003E84FB /* UserDefaultsManager.swift in Sources */,
 				110BBB9F209E3F1000935A23 /* CategorizedNewsViewController.swift in Sources */,
 				1188420B20847DFA009D7F04 /* UIViewExtension.swift in Sources */,
