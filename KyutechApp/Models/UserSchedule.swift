@@ -14,6 +14,10 @@ struct UserSchedule: Codable {
     let period: Int
     let quarter: Int
     let memo: String
-    let lateNum: Int
-    let absentNum: Int
+    let lateNum: Int?
+    let absentNum: Int?
+    
+    func indexFrom() -> Int {
+        return period*5 + day
+    }
 }

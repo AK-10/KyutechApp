@@ -20,26 +20,32 @@ class CourseCardCell: MDCCardCollectionCell {
 //    }
 
     
-    func setup(course: String, roomNum: Int?) {
+    func setup(course: String, room: String, color: UIColor) {
         self.cornerRadius = 2
         let cellLayer = self.layer as! MDCShadowLayer
         self.setShadowElevation(ShadowElevation(rawValue: 2), for: .normal)
         self.setShadowElevation(ShadowElevation(rawValue: 2), for: .highlighted)
         self.setShadowElevation(ShadowElevation(rawValue: 2), for: .selected)
         cellLayer.masksToBounds = false
-
         
-        DispatchQueue.main.async {
-            self.roomNumberLabel.layer.cornerRadius = self.roomNumberLabel.bounds.height / 3
-            self.roomNumberLabel.clipsToBounds = true
-        }
+        classNameLabel.adjustsFontSizeToFitWidth = true
+        classNameLabel.minimumScaleFactor = 0.8
+        classNameLabel.lineBreakMode = .byTruncatingTail
+        roomNumberLabel.adjustsFontSizeToFitWidth = true
+        roomNumberLabel.minimumScaleFactor = 0.6
+        
+//        DispatchQueue.main.async {
+//            self.roomNumberLabel.layer.cornerRadius = self.roomNumberLabel.bounds.height / 4
+//            self.roomNumberLabel.clipsToBounds = true
+//        }
 
         classNameLabel.text = course
-        if let num = roomNum {
-            roomNumberLabel.text = num.description
-        } else {
-            roomNumberLabel.text = ""
-        }
-        backgroundColor = .white
+        roomNumberLabel.text = room
+//        if let num = roomNum {
+//            roomNumberLabel.text = num.description
+//        } else {
+//            roomNumberLabel.text = ""
+//        }
+        backgroundColor = color
     }
 }
