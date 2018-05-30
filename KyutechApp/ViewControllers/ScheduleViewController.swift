@@ -15,12 +15,20 @@ class ScheduleViewController: UIViewController {
     weak var quarterSelectController: PullDownMenuViewController!
     @IBOutlet weak var pullDownMenuControllConstraint: NSLayoutConstraint!
     @IBOutlet weak var navbar: MaterialNavigationBar!
+    var schedules: [UserSchedule] = []
+    
+    var quarter: Int? {
+        guard let barTitleLabel = navbar.topItem?.titleView as? UILabel else { return nil }
+        guard let numChar = barTitleLabel.text?.first  else { return nil }
+        return (Int(String(numChar)) != nil) ? Int(String(numChar))! - 1 : nil
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCollection()
-        setupNavigationBar()
         setupPullDownMenu()
+        setupNavigationBar()
+        setupCollection()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +62,8 @@ class ScheduleViewController: UIViewController {
         
         let nib = UINib(nibName: "CourseCardCell", bundle: nil)
         scheduleCollection.register(nib, forCellWithReuseIdentifier: "CourseCard")
+        
+        getUserSchedule()
     }
     
     func setupPullDownMenu() {
@@ -98,6 +108,7 @@ class ScheduleViewController: UIViewController {
         if pullDownMenuControllConstraint.constant == 0 {
             if let button = by as? UIButton {
                 titleLabel.text = (button.titleLabel?.text)! + " ▼"
+                getUserSchedule()
             } else {
                 titleLabel.text = titleLabel.text! + "▼"
             }
@@ -122,6 +133,30 @@ class ScheduleViewController: UIViewController {
             return true
         }
     }
+    
+    private func getUserSchedule() {
+        guard let quarter = quarter, let userId = UserDefaults.standard.int(forKey: .primaryKey) else { return }
+        let xPoint = scheduleCollection.frame.width / 2.0
+        let yPoint = scheduleCollection.frame.height / 2.0
+
+        let activityIndicator = MDCActivityIndicator()
+        activityIndicator.center = CGPoint(x: xPoint, y: yPoint)
+        activityIndicator.sizeToFit()
+        activityIndicator.cycleColors = [.blue, .red, .yellow, .green]
+        scheduleCollection.addSubview(activityIndicator)
+        scheduleCollection.bringSubview(toFront: activityIndicator)
+        activityIndicator.startAnimating()
+        UserScheduleModel.getSchedule(userId: userId, quarter: quarter, onSuccess: { [weak self] (resSchedules) in
+            self?.schedules = resSchedules
+            self?.scheduleCollection.reloadData()
+            activityIndicator.stopAnimating()
+            activityIndicator.removeFromSuperview()
+            }, onError: { () in
+
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
+        })
+    }
 }
 
 extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -139,11 +174,12 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CourseCard", for: indexPath) as! CourseCardCell
-        if indexPath.row % 4 == 0 {
-            cell.setup(course: "automata", roomNum: 1213)
-            cell.backgroundColor = UIColor.orange
-        } else {
-            cell.setup(course: "", roomNum: nil)
+        cell.setup(course: "", room: "", color: .white)
+        for schedule in schedules {
+            if schedule.indexFrom() == indexPath.item && quarter == schedule.quarter {
+                cell.setup(course: schedule.syllabus.title, room: schedule.syllabus.teacherName, color: .red)
+                break
+            }
         }
         return cell
     }
@@ -157,6 +193,7 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
             let pair = dayAndPeriod(index: indexPath.row)
             editCourseVC.selectedDay = pair.0
             editCourseVC.selectedPeriod = pair.1
+            editCourseVC.selectedQuarter = quarter
             present(editCourseVC, animated: true, completion: nil)
             
         } else {
@@ -164,7 +201,9 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
             let cell = collectionView.cellForItem(at: indexPath) as! CourseCardCell
             if cell.classNameLabel.text != "" {
                 let storyboard = self.storyboard!
-                let syllabusVC = storyboard.instantiateViewController(withIdentifier: "Syllabus")
+                let syllabusVC = storyboard.instantiateViewController(withIdentifier: "Syllabus") as! SyllabusViewController
+                let schedule = schedules.filter{ $0.indexFrom() == indexPath.item }.first
+                syllabusVC.recievedSchedule = schedule
                 present(syllabusVC, animated: true, completion: nil)
             }
         }

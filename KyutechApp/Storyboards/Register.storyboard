@@ -20,8 +20,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDS-gs-5TW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="267"/>
+                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDS-gs-5TW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.0" green="0.73725490196078436" blue="0.83137254901960778" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bss-8X-aey" customClass="MaterialView" customModule="KyutechApp" customModuleProvider="target">
@@ -83,14 +83,14 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Bss-8X-aey" firstAttribute="height" secondItem="nQC-0f-oI8" secondAttribute="height" multiplier="0.6" id="ILH-tf-73E"/>
                             <constraint firstItem="KDS-gs-5TW" firstAttribute="trailing" secondItem="EYJ-ci-aWb" secondAttribute="trailing" id="Lq5-Fs-21B"/>
                             <constraint firstItem="Bss-8X-aey" firstAttribute="width" secondItem="nQC-0f-oI8" secondAttribute="width" multiplier="0.8" id="dif-71-yk5"/>
                             <constraint firstItem="Bss-8X-aey" firstAttribute="centerY" secondItem="nQC-0f-oI8" secondAttribute="centerY" id="evW-rA-Wrb"/>
                             <constraint firstItem="KDS-gs-5TW" firstAttribute="top" secondItem="nQC-0f-oI8" secondAttribute="top" id="fUW-nW-PJY"/>
-                            <constraint firstItem="KDS-gs-5TW" firstAttribute="height" secondItem="nQC-0f-oI8" secondAttribute="height" multiplier="0.4" id="h36-aT-sqB"/>
+                            <constraint firstItem="KDS-gs-5TW" firstAttribute="height" secondItem="nQC-0f-oI8" secondAttribute="height" id="h36-aT-sqB"/>
                             <constraint firstItem="Bss-8X-aey" firstAttribute="centerX" secondItem="nQC-0f-oI8" secondAttribute="centerX" id="m9c-Kr-jmi"/>
                             <constraint firstItem="KDS-gs-5TW" firstAttribute="leading" secondItem="EYJ-ci-aWb" secondAttribute="leading" id="nKM-Z1-Dpf"/>
                         </constraints>
@@ -106,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LEr-Oh-8BU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-130.40000000000001" y="-608.54572713643188"/>
+            <point key="canvasLocation" x="-121" y="-624"/>
         </scene>
     </scenes>
     <resources>

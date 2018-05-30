@@ -33,7 +33,7 @@ class NewsDetailViewController: UIViewController {
         contents = news.getContents()
         urls = news.getURLs()
         
-        let nib = UINib(nibName: "NewsDetailCell", bundle: nil)
+        let nib = UINib(nibName: "SimpleTableCell", bundle: nil)
         newsItemTable.register(nib, forCellReuseIdentifier: "NewsDetailCell")
         newsItemTable.delegate = self
         newsItemTable.dataSource = self
@@ -47,11 +47,10 @@ class NewsDetailViewController: UIViewController {
 }
 
 extension NewsDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
-
-
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 28
@@ -80,7 +79,7 @@ extension NewsDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsDetailCell", for: indexPath) as! NewsDetailCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsDetailCell", for: indexPath) as! SimpleTableCell
         cell.setup(content: contents[indexPath.section], url: urls[indexPath.section])
         return cell
     }
@@ -94,7 +93,7 @@ extension NewsDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! NewsDetailCell
+        let cell = tableView.cellForRow(at: indexPath) as! SimpleTableCell
         print("tapped!")
         cell.didTapped(urlString: urls[indexPath.section])
         tableView.deselectRow(at: indexPath, animated: true)

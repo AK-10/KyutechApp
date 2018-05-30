@@ -43,6 +43,12 @@ extension StringDefaultSettable where StringKey.RawValue == String {
         return UserDefaults.standard.string(forKey: key)
     }
     
+    @discardableResult
+    func int(forKey key: StringKey) -> Int? {
+        let key = nameSpaced(key)
+        return UserDefaults.standard.integer(forKey: key)
+    }
+    
     func removeObject(forKey key: StringKey) {
         let key = nameSpaced(key)
         UserDefaults.standard.removeObject(forKey: key)

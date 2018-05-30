@@ -28,6 +28,13 @@ class CategorizedNewsViewController: UIViewController {
     }
     
     func setupCollection() {
+        newsHeaderCollection.delegate = self
+        newsHeaderCollection.dataSource = self
+        
+        let nib = UINib(nibName: "SimpleCardCell", bundle: nil)
+        newsHeaderCollection.register(nib, forCellWithReuseIdentifier: "NewsHeadCell")
+        newsHeaderCollection.reloadData()
+        
         guard let categoryCode = categoryCode else { return }
         let xPoint = newsHeaderCollection.frame.width / 2.0
         let yPoint = newsHeaderCollection.frame.height / 2.0
@@ -36,7 +43,7 @@ class CategorizedNewsViewController: UIViewController {
         let activityIndicator = MDCActivityIndicator()
         activityIndicator.center = CGPoint(x: xPoint, y: yPoint)
         activityIndicator.sizeToFit()
-        activityIndicator.cycleColors = [.red, .blue, .green, .yellow]
+        activityIndicator.cycleColors = [.blue, .red, .green, .yellow]
         newsHeaderCollection.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         NewsModel.readNews(newsID: categoryCode, onSuccess: { [weak self] (readedNewsArray) in
@@ -45,11 +52,6 @@ class CategorizedNewsViewController: UIViewController {
             activityIndicator.stopAnimating()
             activityIndicator.removeFromSuperview()
         }, onError: { () in })
-        let nib = UINib(nibName: "SimpleCardCell", bundle: nil)
-        newsHeaderCollection.register(nib, forCellWithReuseIdentifier: "NewsHeadCell")
-        newsHeaderCollection.delegate = self
-        newsHeaderCollection.dataSource = self
-        newsHeaderCollection.reloadData()
     }
 }
 

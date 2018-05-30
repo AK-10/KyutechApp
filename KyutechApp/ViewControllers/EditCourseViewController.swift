@@ -15,6 +15,7 @@ class EditCourseViewController: UIViewController {
     
     var selectedDay: Week? = nil
     var selectedPeriod: Int? = nil
+    var selectedQuarter: Int? = nil
     
     var syllabuses: [Syllabus] = []
     
@@ -53,7 +54,7 @@ class EditCourseViewController: UIViewController {
     }
     
     func setupDataSource() {
-        guard let day = selectedDay, let period = selectedPeriod else { print("day & period is nil"); return }
+        guard let day = selectedDay, let period = selectedPeriod, let quarter = selectedQuarter else { print("day & period is nil"); return }
         let xPoint = courseCollection.frame.width / 2.0
         let yPoint = courseCollection.frame.height / 2.0
         let activityIndicator = MDCActivityIndicator()
@@ -63,7 +64,7 @@ class EditCourseViewController: UIViewController {
         courseCollection.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         SyllabusModel.readSyllabusWith(day: day.rawValue, period: period, onSuccess: { [weak self] (retSyllabuses) in
-            self?.syllabuses = retSyllabuses
+            self?.syllabuses = retSyllabuses.filter{ $0.getQuarterCodes().contains(quarter) }
             self?.courseCollection.reloadData()
             activityIndicator.stopAnimating()
             activityIndicator.removeFromSuperview()
@@ -103,6 +104,8 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let syllabusId = syllabuses[indexPath.item].subjectCode
+        
         dismiss(animated: true, completion: nil)
     }
     

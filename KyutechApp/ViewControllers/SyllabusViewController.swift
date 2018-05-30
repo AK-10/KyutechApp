@@ -15,10 +15,13 @@ class SyllabusViewController: UIViewController {
     @IBOutlet weak var navbar: MaterialNavigationBar!
     @IBOutlet weak var memoView: UITextView!
     
+    var recievedSchedule: UserSchedule? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
         setupMemoView()
+        setupTable()
         // Do any additional setup after loading the view.
     }
 
@@ -53,8 +56,9 @@ class SyllabusViewController: UIViewController {
     func setupTable() {
         syllabusTable.delegate = self
         syllabusTable.dataSource = self
-        let nib = UINib(nibName: "SyllabusCell", bundle: nil)
+        let nib = UINib(nibName: "SimpleTableCell", bundle: nil)
         syllabusTable.register(nib, forCellReuseIdentifier: "Syllabus")
+        
 //        syllabusTable.tableHeaderView = memoView
     }
     
@@ -116,12 +120,43 @@ extension SyllabusViewController: UITextViewDelegate {
 }
 
 extension SyllabusViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return Syllabus.keys.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 28
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let sections = Syllabus.keys
+        let header = UILabel()
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.firstLineHeadIndent = 12
+        paragraphStyle.headIndent = 12
+        let attributedString = NSAttributedString(string: sections[section], attributes: [.paragraphStyle: paragraphStyle])
+        header.attributedText = attributedString
+        
+        
+        header.backgroundColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
+        header.font = UIFont.systemFont(ofSize: 16)
+        header.textColor = .white
+        //        header.textColor = UIColor(displayP3Red: 48/255, green: 131/255, blue: 251/255, alpha: 1)
+        header.textAlignment = .left
+        
+        return header
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        guard let syllabus = recievedSchedule?.syllabus else { return 0 }
+        return syllabus.values(key: Syllabus.keys[section]).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Syllabus") as! SyllabusTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Syllabus") as! SimpleTableCell
+        guard let syllabus = recievedSchedule?.syllabus else { return cell }
+        cell.setup(content: syllabus.values(key: Syllabus.keys[indexPath.section])[indexPath.item], url: "")
         return cell
     }
     

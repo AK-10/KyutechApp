@@ -24,12 +24,19 @@ class NewsViewController: UIViewController {
     }
     
     func setupNewsTable() {
-        let xPoint = newsHeadCollection.frame.width / 2.0
-        let yPoint = newsHeadCollection.frame.height / 2.0
+        newsHeadCollection.delegate = self
+        newsHeadCollection.dataSource = self
+        newsHeadCollection.scrollsToTop = true
+        
+        let nib = UINib(nibName: "RoundHeadCollectionCell", bundle: nil)
+        newsHeadCollection.register(nib, forCellWithReuseIdentifier: "NewsHeadCell")
+        
+        let xPoint = newsHeadCollection.bounds.width / 2.0
+        let yPoint = newsHeadCollection.bounds.height / 2.0
         let activityIndicator = MDCActivityIndicator()
         activityIndicator.center = CGPoint(x: xPoint, y: yPoint)
         activityIndicator.sizeToFit()
-        activityIndicator.cycleColors = [.blue, .green]
+        activityIndicator.cycleColors = [.blue, .red, .yellow, .green]
         newsHeadCollection.addSubview(activityIndicator)
 
         activityIndicator.startAnimating()
@@ -37,16 +44,12 @@ class NewsViewController: UIViewController {
             self?.newsHeadings = newsHeads
             self?.newsHeadCollection.reloadData()
             activityIndicator.stopAnimating()
-            }, onError: { () in })
+            }, onError: { () in
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
+                print("Error")
+        })
         
-        newsHeadCollection.delegate = self
-        newsHeadCollection.dataSource = self
-        newsHeadCollection.scrollsToTop = true
-        
-
-        
-        let nib = UINib(nibName: "RoundHeadCollectionCell", bundle: nil)
-        newsHeadCollection.register(nib, forCellWithReuseIdentifier: "NewsHeadCell")
     }
 
 }
