@@ -104,7 +104,7 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let syllabusId = syllabuses[indexPath.item].subjectCode
+//        let syllabusId = syllabuses[indexPath.item].subjectCode
         
         dismiss(animated: true, completion: nil)
     }

@@ -32,8 +32,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="学生呼び出し" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIA-KC-BXw">
-                        <rect key="frame" x="59" y="21" width="245.5" height="21.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                        <rect key="frame" x="59" y="22" width="245.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>

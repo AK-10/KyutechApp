@@ -16,8 +16,6 @@ protocol KeyNameSpaceable {
 
 extension KeyNameSpaceable {
     func nameSpaced<T: RawRepresentable>(_ key: T) -> String {
-        print("Self.self: \(Self.self)")
-        print("key.rawValue: \(key.rawValue)")
         return "\(Self.self).\(key.rawValue)"
     }
 }

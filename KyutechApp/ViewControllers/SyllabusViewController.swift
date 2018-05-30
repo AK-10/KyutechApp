@@ -10,7 +10,7 @@ import UIKit
 import MaterialComponents
 
 class SyllabusViewController: UIViewController {
-
+    
     @IBOutlet weak var syllabusTable: UITableView!
     @IBOutlet weak var navbar: MaterialNavigationBar!
     @IBOutlet weak var memoView: UITextView!
@@ -64,8 +64,9 @@ class SyllabusViewController: UIViewController {
     
     func setupNavigationBar() {
         guard let navigationItem = navbar.topItem else { return }
+        guard let courseTitle = recievedSchedule?.syllabus.title else { return }
         let titleLabel = UILabel()
-        titleLabel.text = "Automata"
+        titleLabel.text = courseTitle
         titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         titleLabel.textColor = .black
         titleLabel.sizeToFit()
@@ -92,6 +93,9 @@ class SyllabusViewController: UIViewController {
         memoView.layer.borderColor = borderColor.cgColor
         memoView.layer.cornerRadius = 5.0
         memoView.layer.borderWidth = 1.0
+        
+        guard let memoText = recievedSchedule?.memo else { return }
+        memoView.text = memoText
     }
     
     @objc func tappedDone(_ sender: Any) {
@@ -100,7 +104,6 @@ class SyllabusViewController: UIViewController {
         }
     }
 
-    
     @objc func tappedLeftButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
