@@ -32,42 +32,42 @@ enum Department: Int {
     case sys
     case sysIncorp
     
-    func value() -> Int{
+    func value() -> Int {
         return self.rawValue + 200
     }
     
     func ja() -> String {
         switch self {
         case .classI_I:
-            return "情工１類 Ⅰクラス"
+            return "情工１類　Ⅰクラス"
         case .classI_II:
-            return "情工１類 Ⅱクラス"
+            return "情工１類　Ⅱクラス"
         case .classII_III:
-            return "情工２類 Ⅲクラス"
+            return "情工２類　Ⅲクラス"
         case .classIII_IV:
             return "情工３類　Ⅳクラス"
         case .classIII_V:
             return "情工３類　Ⅴクラス"
         case .ai:
-            return "知能"
+            return "知能情報工学科"
         case .aiIncorp:
-            return "知能(編入)"
+            return "知能情報工学科（編入）"
         case .cse:
-            return "電子"
+            return "電磁情報工学科"
         case .cseIncorp:
-            return "電子(編入)"
-        case .mse:
-            return "機械"
-        case .mseIncorp:
-            return "機械(編入)"
-        case .bio:
-            return "生命"
-        case .bioIncorp:
-            return "生命(編入)"
+            return "電子情報工学科（編入）"
         case .sys:
-            return "システム"
+            return "システム創成情報工学科"
         case .sysIncorp:
-            return "システム(編入)"
+            return "システム創成情報工学科（編入）"
+        case .mse:
+            return "機械情報工学科"
+        case .mseIncorp:
+            return "機械情報工学科（編入）"
+        case .bio:
+            return "生命情報工学科"
+        case .bioIncorp:
+            return "生命情報工学科（編入）"
         }
     }
 }

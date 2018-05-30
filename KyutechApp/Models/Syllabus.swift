@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit.UIColor
 
 
 
@@ -27,6 +28,22 @@ struct Syllabus: Codable {
             case targetParticipants = "target_participants"
             case academicCreditKind = "academic_credit_kind"
             case academicCreditNum = "academic_credit_num"
+        }
+        
+        func getColorByCreditKind() -> UIColor {
+            switch academicCreditKind {
+            case "必":
+                return .red
+            case "選必":
+                return .blue
+            case "選":
+                return .black
+            case "査定外":
+                return .green
+            default:
+                return .gray
+            }
+            
         }
         
         private func JSONencode() -> Data? {
@@ -106,14 +123,14 @@ struct Syllabus: Codable {
             return nil
         }
     }
-
-    func dictionary() -> [String:Any]? {
-        guard let data = self.JSONencode() else { return nil }
-        let json = try! JSONSerialization.jsonObject(with: data, options: [])
-        let dict = json as! [String:AnyObject]
-        return dict
-    }
-    
+//
+//    func dictionary() -> [String:Any]? {
+//        guard let data = self.JSONencode() else { return nil }
+//        let json = try! JSONSerialization.jsonObject(with: data, options: [])
+//        let dict = json as! [String:AnyObject]
+//        return dict
+//    }
+//
     func prettyPrint() {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
