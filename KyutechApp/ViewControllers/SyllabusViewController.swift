@@ -79,6 +79,8 @@ class SyllabusViewController: UIViewController {
     }
 
     func setupMemoView() {
+        memoView.delegate = self
+        
         let borderColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
         
         let keyboardToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
@@ -113,10 +115,14 @@ class SyllabusViewController: UIViewController {
 extension SyllabusViewController: UITextViewDelegate {
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        textView.layer.borderColor = UIColor.extendedInit(from: "00BCD4")?.cgColor
+
         return true
     }
     
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        textView.layer.borderColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+
         return true
     }
     

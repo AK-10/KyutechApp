@@ -34,4 +34,42 @@ class UserScheduleModel {
             }
         })
     }
+    
+    class func createSchedule(syllabusId: Int, day: Int, period: Int, quarter: Int, onSuccess: @escaping (UserSchedule) -> Void, onError: @escaping () -> Void) {
+        guard let userId = UserDefaults.standard.int(forKey: .primaryKey) else { return }
+        let params: Parameters = [
+            "user_id":userId,
+            "syllabus_id":syllabusId,
+            "day":day,
+            "period":period,
+            "quarter":quarter,
+            "memo":"",
+            "late_num":0,
+            "absent_num":0
+        ]
+        
+        Alamofire.request(Router.createSchedule(params: params)).responseJSON(completionHandler: { res in
+            if let err = res.error {
+                print("Error: \(err)")
+                onError()
+            } else {
+                guard let status = res.response?.statusCode else { return }
+                if status >= 200 && status < 300 {
+                    guard let dataDict = res.value else { return }
+                    print("type of res.value \(type(of: dataDict))")
+                    let data = try! JSONSerialization.data(withJSONObject: dataDict, options: [])
+                    let userSchedule = try! JSONDecoder().decode(UserSchedule.self, from: data)
+                    onSuccess(userSchedule)
+                } else {
+                    print("statusCode: \(status)")
+                    let data: Data = try! JSONSerialization.data(withJSONObject: res.value!, options: [])
+
+                    print("res.value: \(String(bytes: data, encoding: .utf8) ?? "nil")")
+                    onError()
+                }
+            }
+        })
+        
+        
+    }
 }

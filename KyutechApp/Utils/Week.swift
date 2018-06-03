@@ -20,7 +20,7 @@ enum Week: String {
         case 0:
             return self.monday
         case 1:
-            return self.monday
+            return self.tuesday
         case 2:
             return self.wednesday
         case 3:

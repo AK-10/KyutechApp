@@ -28,12 +28,12 @@ class ScheduleViewController: UIViewController {
         setupPullDownMenu()
         setupNavigationBar()
         setupCollection()
-
+        getUserSchedule()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        scheduleCollection.reloadData()
+
     }
     
     override func viewWillLayoutSubviews() {
@@ -62,8 +62,6 @@ class ScheduleViewController: UIViewController {
         
         let nib = UINib(nibName: "CourseCardCell", bundle: nil)
         scheduleCollection.register(nib, forCellWithReuseIdentifier: "CourseCard")
-        
-        getUserSchedule()
     }
     
     func setupPullDownMenu() {
@@ -134,7 +132,7 @@ class ScheduleViewController: UIViewController {
         }
     }
     
-    private func getUserSchedule() {
+    func getUserSchedule() {
         guard let quarter = quarter, let userId = UserDefaults.standard.int(forKey: .primaryKey) else { return }
         let xPoint = scheduleCollection.frame.width / 2.0
         let yPoint = scheduleCollection.frame.height / 2.0
@@ -177,7 +175,9 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
         cell.setup(course: "", room: "", color: .white)
         for schedule in schedules {
             if schedule.indexFrom() == indexPath.item && quarter == schedule.quarter {
-                cell.setup(course: schedule.syllabus.title, room: schedule.syllabus.teacherName, color: .red)
+                guard let depart = UserDefaults.standard.int(forKey: .department) else { return cell }
+                let color: UIColor = schedule.syllabus.targetParticipantsInfos.filter{ $0.targetParticipants.contains(Department(rawValue: depart-200)!.ja()) }.first?.getColorByCreditKind() ?? .gray
+                cell.setup(course: schedule.syllabus.title, room: schedule.syllabus.getPlace(), color: color)
                 break
             }
         }

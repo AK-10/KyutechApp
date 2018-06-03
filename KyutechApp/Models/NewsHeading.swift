@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit.UIColor
 
 
 struct NewsHeading: Codable {
@@ -22,5 +23,9 @@ struct NewsHeading: Codable {
         case name = "name"
         case colorCode = "color_code"
         case updatedAt = "updated_at"
+    }
+    
+    func color() -> UIColor {
+        return UIColor.extendedInit(from: colorCode) ?? .gray
     }
 }

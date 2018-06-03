@@ -9,12 +9,13 @@
 import Foundation
 import UIKit
 
-class Common {
-    class func convertColor(from hex: String) -> UIColor {
+extension UIColor {
+
+    class func extendedInit(from hex: String) -> UIColor? {
         let pattern = "[#+]"
         let colorCode = hex.replacingOccurrences(of: pattern, with: "", options: .regularExpression)
         if colorCode.count != 6 {
-            return UIColor.purple
+            return nil
         } else {
             
             let red = CGFloat(Int(String(colorCode[colorCode.startIndex...colorCode.index(colorCode.startIndex, offsetBy: 1)]), radix: 16)!) / 255
