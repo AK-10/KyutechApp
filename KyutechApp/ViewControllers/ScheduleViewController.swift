@@ -84,7 +84,9 @@ class ScheduleViewController: UIViewController {
         titleLabel.addGestureRecognizer(tapGesture)
         titleLabel.isUserInteractionEnabled = true
         
-        let editButton = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(tappedRightBarButton(_:)))
+//        let editButton = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(tappedRightBarButton(_:)))
+        let editButton = UIBarButtonItem(image: #imageLiteral(resourceName: "editIcon"), style: .plain, target: self, action: #selector(tappedRightBarButton(_:)))
+        editButton.title = "edit"
         navigationItem.rightBarButtonItem = editButton
         navigationItem.titleView = titleLabel
 
@@ -94,9 +96,11 @@ class ScheduleViewController: UIViewController {
     @objc func tappedRightBarButton(_ sender: Any) {
         guard let rightBarButton = navbar.topItem?.rightBarButtonItem else { return }
         if isEditting() {
-            rightBarButton.title = "Edit"
+            rightBarButton.title = "edit"
+            rightBarButton.image = #imageLiteral(resourceName: "editIcon")
         } else {
-            rightBarButton.title = "Done"
+            rightBarButton.title = "done"
+            rightBarButton.image = #imageLiteral(resourceName: "doneIcon")
         }
     }
 
@@ -124,8 +128,8 @@ class ScheduleViewController: UIViewController {
 
     func isEditting() -> Bool {
         guard let rightBarButton = navbar.topItem?.rightBarButtonItem else { return false }
-        guard let buttonTitle = rightBarButton.title else { return false }
-        if buttonTitle == "Edit" {
+        guard let title = rightBarButton.title else { return false }
+        if title == "edit" {
             return false
         } else {
             return true
