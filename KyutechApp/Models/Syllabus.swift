@@ -13,8 +13,8 @@ import UIKit.UIColor
 
 struct Syllabus: Codable {
     
-    static let keys = ["授業名", "科目コード", "担当教員", "学科別情報", "対象学年", "クラス", "曜日・時限", "開講学期", "更新日", "概要", "カリキュラムにおける授業の立ち位置", "授業項目", "授業の進め方", "授業の達成目標", "成績評価の基準および評価方法", "授業外学習（予習・復習）の指示", "キーワード", "教科書", "参考書", "備考", "メールアドレス"]
-    
+    static let keys = ["授業名", "科目コード", "担当教員", "学科別情報", "対象学年", "クラス", "曜日・時限", "講義室", "開講学期", "更新日", "概要", "カリキュラムにおける授業の立ち位置", "授業項目", "授業の進め方", "授業の達成目標", "成績評価の基準および評価方法", "授業外学習（予習・復習）の指示", "キーワード", "教科書", "参考書", "備考", "メールアドレス"]
+    let id: Int
     let title: String
     let subjectCode: Int
     let teacherName: String
@@ -33,17 +33,16 @@ struct Syllabus: Codable {
         func getColorByCreditKind() -> UIColor {
             switch academicCreditKind {
             case "必":
-                return .red
+                return UIColor.extendedInit(from: "C34A5C")!
             case "選必":
-                return .blue
+                return UIColor.extendedInit(from: "4385f5")!
             case "選":
                 return .black
             case "査定外":
-                return .green
+                return UIColor.extendedInit(from: "70B271")!
             default:
                 return .gray
             }
-            
         }
         
         private func JSONencode() -> Data? {
@@ -69,6 +68,7 @@ struct Syllabus: Codable {
     let targetSchoolYear: String
     let classNumber: Int
     let targetPeriod: String
+    let targetPlace: String
     let targetTerm: String
     let publishedDate: String
     let abstract: String
@@ -85,6 +85,7 @@ struct Syllabus: Codable {
     let professorEmail: String
 
     private enum CodingKeys: String, CodingKey {
+        case id
         case title = "title"
         case subjectCode = "subject_code"
         case teacherName = "teacher_name"
@@ -92,6 +93,7 @@ struct Syllabus: Codable {
         case targetSchoolYear = "target_school_year"
         case classNumber = "class_number"
         case targetPeriod = "target_period"
+        case targetPlace = "target_place"
         case targetTerm = "target_term"
         case publishedDate = "published_date"
         case abstract = "abstract"
@@ -123,14 +125,7 @@ struct Syllabus: Codable {
             return nil
         }
     }
-//
-//    func dictionary() -> [String:Any]? {
-//        guard let data = self.JSONencode() else { return nil }
-//        let json = try! JSONSerialization.jsonObject(with: data, options: [])
-//        let dict = json as! [String:AnyObject]
-//        return dict
-//    }
-//
+    
     func prettyPrint() {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
@@ -139,6 +134,18 @@ struct Syllabus: Codable {
         } catch {
             print("can't print")
         }
+    }
+    
+    func getPlace() -> String {
+        var places = self.targetPlace.components(separatedBy: ", ")
+        let orderedSet = NSOrderedSet(array: places)
+        places = orderedSet.array as! [String]
+        
+        var retString: String = places.reduce("") {$0 + ", " + $1}
+        let first = retString.startIndex
+        let third = retString.index(first, offsetBy: 1)
+        retString.removeSubrange(first...third)
+        return retString
     }
     
     func values(key: String) -> [String] {
@@ -157,6 +164,8 @@ struct Syllabus: Codable {
             return [classNumber.description]
         case "曜日・時限":
             return [targetPeriod]
+        case "講義室":
+            return [targetPlace]
         case "開講学期":
             return [targetTerm]
         case "更新日":

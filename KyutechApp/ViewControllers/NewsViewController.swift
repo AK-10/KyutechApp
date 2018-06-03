@@ -64,7 +64,7 @@ extension NewsViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let cell = newsHeadCollection.dequeueReusableCell(withReuseIdentifier: "NewsHeadCell", for: indexPath) as! RoundHeadCollectionCell
         let newsHead = newsHeadings[indexPath.row]
         
-        cell.setup(roundLabelText: newsHead.shortName, color: Common.convertColor(from: newsHead.colorCode), title: newsHead.name, date: newsHead.updatedAt)
+        cell.setup(roundLabelText: newsHead.shortName, color: newsHead.color(), title: newsHead.name, date: newsHead.updatedAt)
         return cell
     }
     

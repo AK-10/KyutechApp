@@ -12,7 +12,6 @@ class SimpleTableCell: UITableViewCell {
 
     @IBOutlet weak var detailLabel: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,6 +28,7 @@ class SimpleTableCell: UITableViewCell {
     }
     
     func setup(content: String, url: String) {
+        
         detailLabel.numberOfLines = 0
         detailLabel.textAlignment = .natural
         detailLabel.text = content
@@ -59,8 +59,6 @@ class SimpleTableCell: UITableViewCell {
         } else {
             print("failed")
         }
-        
     }
-
 
 }

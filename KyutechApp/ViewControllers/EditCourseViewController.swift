@@ -19,6 +19,10 @@ class EditCourseViewController: UIViewController {
     
     var syllabuses: [Syllabus] = []
     
+    deinit {
+        print("\(self) deinited")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDataSource()
@@ -89,7 +93,9 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let syllabus = syllabuses[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CourseCell", for: indexPath) as! RoundHeadCollectionCell
-        cell.setup(roundLabelText: String(syllabus.title.first!) , color: .red, title: syllabus.title, date: syllabus.teacherName)
+        guard let depart = UserDefaults.standard.int(forKey: .department) else { return cell }
+        let color: UIColor = syllabus.targetParticipantsInfos.filter{ $0.targetParticipants.contains(Department(rawValue: depart-200)!.ja()) }.first?.getColorByCreditKind() ?? .gray
+        cell.setup(roundLabelText: String(syllabus.title.first!) , color: color, title: syllabus.title, date: syllabus.teacherName)
         return cell
     }
     
@@ -104,10 +110,17 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let syllabusId = syllabuses[indexPath.item].subjectCode
-        
-        dismiss(animated: true, completion: nil)
+        let syllabusId = syllabuses[indexPath.item].id
+        guard let day = selectedDay, let period = selectedPeriod, let quarter = selectedQuarter else { return }
+        UserScheduleModel.createSchedule(syllabusId: syllabusId, day: day.hashValue, period: period, quarter: quarter, onSuccess: { [weak self] (newSchedule) in
+            let tabBarVC = self?.presentingViewController as! UITabBarController
+            let viewController = tabBarVC.viewControllers?.filter{ $0 is ScheduleViewController }.first
+            guard let scheduleVC = viewController as? ScheduleViewController else { return }
+            scheduleVC.getUserSchedule()
+
+            self?.dismiss(animated: true, completion: nil)
+        }, onError: { [weak self] () in
+            self?.dismiss(animated: true, completion: nil)
+        })
     }
-    
-    
 }

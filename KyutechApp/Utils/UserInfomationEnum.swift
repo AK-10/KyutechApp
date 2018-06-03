@@ -13,6 +13,10 @@ enum SchoolYearKey: Int {
     case two
     case three
     case four
+    
+//    func value() -> Int {
+//        return self.rawValue + 1
+//    }
 }
 
 enum Department: Int {
@@ -53,7 +57,7 @@ enum Department: Int {
         case .aiIncorp:
             return "知能情報工学科（編入）"
         case .cse:
-            return "電磁情報工学科"
+            return "電子情報工学科"
         case .cseIncorp:
             return "電子情報工学科（編入）"
         case .sys:
