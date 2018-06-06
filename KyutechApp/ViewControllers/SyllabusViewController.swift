@@ -12,7 +12,7 @@ import MaterialComponents
 class SyllabusViewController: UIViewController {
     
     @IBOutlet weak var syllabusTable: UITableView!
-    @IBOutlet weak var navbar: MaterialNavigationBar!
+    @IBOutlet weak var navbar: UINavigationBar!
     @IBOutlet weak var memoView: UITextView!
     
     var recievedSchedule: UserSchedule? = nil
@@ -63,6 +63,7 @@ class SyllabusViewController: UIViewController {
     }
     
     func setupNavigationBar() {
+        
         guard let navigationItem = navbar.topItem else { return }
         guard let courseTitle = recievedSchedule?.syllabus.title else { return }
         let titleLabel = UILabel()
@@ -71,11 +72,23 @@ class SyllabusViewController: UIViewController {
         titleLabel.textColor = .black
         titleLabel.sizeToFit()
         navigationItem.titleView = titleLabel
+        
+        let rightBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "saveIcon"), style: .done, target: self, action: #selector(saveUserSchedule(_:)))
+        
+//    backButton
+        let leftButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "backArrowIos") , style: .done, target: self, action: #selector(tappedLeftButton(_:)))
 
-        let leftButtonItem = UIBarButtonItem(image: UIImage(named: "cancell")! , style: .done, target: self, action: #selector(tappedLeftButton(_:)))
-
+        rightBarButton.tintColor = .gray
+        navigationItem.rightBarButtonItem = rightBarButton
         leftButtonItem.tintColor = .gray
         navigationItem.leftBarButtonItem = leftButtonItem
+        
+        navbar.removeBottomBorder()
+        navbar.addShadow()
+    }
+    
+    @objc func saveUserSchedule(_ sender: Any) {
+    
     }
 
     func setupMemoView() {
@@ -141,6 +154,7 @@ extension SyllabusViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sections = Syllabus.keys
         let header = UILabel()
+
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.firstLineHeadIndent = 12
         paragraphStyle.headIndent = 12
@@ -151,7 +165,6 @@ extension SyllabusViewController: UITableViewDelegate, UITableViewDataSource {
         header.backgroundColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
         header.font = UIFont.systemFont(ofSize: 16)
         header.textColor = .white
-        //        header.textColor = UIColor(displayP3Red: 48/255, green: 131/255, blue: 251/255, alpha: 1)
         header.textAlignment = .left
         
         return header

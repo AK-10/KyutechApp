@@ -59,17 +59,18 @@ class EditCourseViewController: UIViewController {
     
     func setupDataSource() {
         guard let day = selectedDay, let period = selectedPeriod, let quarter = selectedQuarter else { print("day & period is nil"); return }
-        let xPoint = courseCollection.frame.width / 2.0
-        let yPoint = courseCollection.frame.height / 2.0
         let activityIndicator = MDCActivityIndicator()
-        activityIndicator.center = CGPoint(x: xPoint, y: yPoint)
-        activityIndicator.sizeToFit()
-        activityIndicator.cycleColors = [.red, .blue, .green]
         courseCollection.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.centerXAnchor.constraint(equalTo: courseCollection.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: courseCollection.centerYAnchor).isActive = true
+        activityIndicator.cycleColors = [.red, .blue, .green]
         activityIndicator.startAnimating()
         SyllabusModel.readSyllabusWith(day: day.rawValue, period: period, onSuccess: { [weak self] (retSyllabuses) in
             self?.syllabuses = retSyllabuses.filter{ $0.getQuarterCodes().contains(quarter) }
-            self?.courseCollection.reloadData()
+            DispatchQueue.main.async {
+                self?.courseCollection.reloadData()
+            }
             activityIndicator.stopAnimating()
             activityIndicator.removeFromSuperview()
             }, onError: { () in

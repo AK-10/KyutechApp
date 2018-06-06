@@ -17,10 +17,22 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNewsTable()
+        getHeader()
+        setupNavigationBar()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func setupNavigationBar() {
+        navigationController?.navigationItem.title = "Test"
+        navigationController?.navigationBar.removeBottomBorder()
+        navigationController?.navigationBar.addShadowToBar(color: UIColor.extendedInit(from: "#00BCD4")!)
     }
     
     func setupNewsTable() {
@@ -30,26 +42,28 @@ class NewsViewController: UIViewController {
         
         let nib = UINib(nibName: "RoundHeadCollectionCell", bundle: nil)
         newsHeadCollection.register(nib, forCellWithReuseIdentifier: "NewsHeadCell")
-        
-        let xPoint = newsHeadCollection.bounds.width / 2.0
-        let yPoint = newsHeadCollection.bounds.height / 2.0
+    }
+    
+    func getHeader() {
         let activityIndicator = MDCActivityIndicator()
-        activityIndicator.center = CGPoint(x: xPoint, y: yPoint)
-        activityIndicator.sizeToFit()
-        activityIndicator.cycleColors = [.blue, .red, .yellow, .green]
         newsHeadCollection.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.centerXAnchor.constraint(equalTo: newsHeadCollection.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: newsHeadCollection.centerYAnchor).isActive = true
+        activityIndicator.cycleColors = [.blue, .red, .yellow, .green]
 
         activityIndicator.startAnimating()
         NewsHeadingModel.readNewsHeadings(onSuccess: { [weak self] (newsHeads) in
             self?.newsHeadings = newsHeads
-            self?.newsHeadCollection.reloadData()
+            DispatchQueue.main.async {
+                self?.newsHeadCollection.reloadData()
+            }
             activityIndicator.stopAnimating()
             }, onError: { () in
                 activityIndicator.stopAnimating()
                 activityIndicator.removeFromSuperview()
                 print("Error")
         })
-        
     }
 
 }

@@ -20,6 +20,7 @@ class CategorizedNewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollection()
+        getNews()
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,23 +36,26 @@ class CategorizedNewsViewController: UIViewController {
         newsHeaderCollection.register(nib, forCellWithReuseIdentifier: "NewsHeadCell")
         newsHeaderCollection.reloadData()
         
+    }
+    
+    func getNews() {
         guard let categoryCode = categoryCode else { return }
-        let xPoint = newsHeaderCollection.frame.width / 2.0
-        let yPoint = newsHeaderCollection.frame.height / 2.0
-        print(newsHeaderCollection.frame.width)
-        print(newsHeaderCollection.frame.height)
         let activityIndicator = MDCActivityIndicator()
-        activityIndicator.center = CGPoint(x: xPoint, y: yPoint)
-        activityIndicator.sizeToFit()
-        activityIndicator.cycleColors = [.blue, .red, .green, .yellow]
         newsHeaderCollection.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.centerXAnchor.constraint(equalTo: newsHeaderCollection.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: newsHeaderCollection.centerYAnchor).isActive = true
+        activityIndicator.cycleColors = [.blue, .red, .green, .yellow]
         activityIndicator.startAnimating()
         NewsModel.readNews(newsID: categoryCode, onSuccess: { [weak self] (readedNewsArray) in
             self?.newsArray = readedNewsArray
             self?.newsHeaderCollection.reloadData()
             activityIndicator.stopAnimating()
             activityIndicator.removeFromSuperview()
-        }, onError: { () in })
+            }, onError: { () in
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
+        })
     }
 }
 

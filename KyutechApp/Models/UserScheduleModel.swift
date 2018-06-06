@@ -23,6 +23,7 @@ class UserScheduleModel {
                     let dataDict = resData as! Parameters
                     let results = dataDict["results"] as! [Parameters]
                     let userSchedules: [UserSchedule] = results.map{ (item) -> UserSchedule in
+                        print(item)
                         let itemData = try! JSONSerialization.data(withJSONObject: item, options: [])
                         return try! JSONDecoder().decode(UserSchedule.self, from: itemData)
                     }

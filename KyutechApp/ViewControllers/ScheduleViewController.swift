@@ -14,7 +14,7 @@ class ScheduleViewController: UIViewController {
     @IBOutlet weak var scheduleCollection: UICollectionView!
     weak var quarterSelectController: PullDownMenuViewController!
     @IBOutlet weak var pullDownMenuControllConstraint: NSLayoutConstraint!
-    @IBOutlet weak var navbar: MaterialNavigationBar!
+    @IBOutlet weak var navbar: UINavigationBar!
     var schedules: [UserSchedule] = []
     
     var quarter: Int? {
@@ -78,29 +78,42 @@ class ScheduleViewController: UIViewController {
         let titleLabel = UILabel()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(animatePullDownMenu(tapped:)))
         titleLabel.text = "1st Quarter ▼"
-        titleLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         titleLabel.sizeToFit()
         titleLabel.textColor = .white
         titleLabel.addGestureRecognizer(tapGesture)
         titleLabel.isUserInteractionEnabled = true
         
-//        let editButton = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(tappedRightBarButton(_:)))
         let editButton = UIBarButtonItem(image: #imageLiteral(resourceName: "editIcon"), style: .plain, target: self, action: #selector(tappedRightBarButton(_:)))
+        editButton.tintColor = .white
         editButton.title = "edit"
         navigationItem.rightBarButtonItem = editButton
         navigationItem.titleView = titleLabel
 
         navbar.setItems([navigationItem], animated: true)
+        navbar.removeBottomBorder()
+        navbar.tintColor = UIColor.extendedInit(from: "#00BCD4")!
+
+        navbar.tintColor = UIColor.white.withAlphaComponent(0)
     }
     
     @objc func tappedRightBarButton(_ sender: Any) {
+        let cells = scheduleCollection.visibleCells as! [CourseCardCell]
         guard let rightBarButton = navbar.topItem?.rightBarButtonItem else { return }
+        print(navbar.tintColor)
         if isEditting() {
+            // edit to done
             rightBarButton.title = "edit"
             rightBarButton.image = #imageLiteral(resourceName: "editIcon")
+            self.navbar.barTintColor = UIColor.extendedInit(from: "#00BCD4")!
+            self.navbar.tintColor = .clear
+             cells.forEach{ $0.disappearDeleteButton() }
         } else {
+            // done to edit
             rightBarButton.title = "done"
             rightBarButton.image = #imageLiteral(resourceName: "doneIcon")
+            self.navbar.barTintColor = .red
+            cells.forEach{ $0.appearingDeleteButton() }
         }
     }
 
@@ -138,23 +151,23 @@ class ScheduleViewController: UIViewController {
     
     func getUserSchedule() {
         guard let quarter = quarter, let userId = UserDefaults.standard.int(forKey: .primaryKey) else { return }
-        let xPoint = scheduleCollection.frame.width / 2.0
-        let yPoint = scheduleCollection.frame.height / 2.0
 
         let activityIndicator = MDCActivityIndicator()
-        activityIndicator.center = CGPoint(x: xPoint, y: yPoint)
-        activityIndicator.sizeToFit()
-        activityIndicator.cycleColors = [.blue, .red, .yellow, .green]
         scheduleCollection.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.cycleColors = [.blue, .red, .yellow, .green]
+        activityIndicator.centerXAnchor.constraint(equalTo: scheduleCollection.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: scheduleCollection.centerYAnchor).isActive = true
         scheduleCollection.bringSubview(toFront: activityIndicator)
         activityIndicator.startAnimating()
         UserScheduleModel.getSchedule(userId: userId, quarter: quarter, onSuccess: { [weak self] (resSchedules) in
             self?.schedules = resSchedules
-            self?.scheduleCollection.reloadData()
+            DispatchQueue.main.async {
+                self?.scheduleCollection.reloadData()
+            }
             activityIndicator.stopAnimating()
             activityIndicator.removeFromSuperview()
             }, onError: { () in
-
                 activityIndicator.stopAnimating()
                 activityIndicator.removeFromSuperview()
         })
@@ -182,6 +195,7 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
                 guard let depart = UserDefaults.standard.int(forKey: .department) else { return cell }
                 let color: UIColor = schedule.syllabus.targetParticipantsInfos.filter{ $0.targetParticipants.contains(Department(rawValue: depart-200)!.ja()) }.first?.getColorByCreditKind() ?? .gray
                 cell.setup(course: schedule.syllabus.title, room: schedule.syllabus.getPlace(), color: color)
+                isEditting() ? cell.appearingDeleteButton() : cell.disappearDeleteButton()
                 break
             }
         }

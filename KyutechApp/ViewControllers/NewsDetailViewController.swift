@@ -58,6 +58,7 @@ extension NewsDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UILabel()
+
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.firstLineHeadIndent = 12
         paragraphStyle.headIndent = 12
@@ -81,6 +82,12 @@ extension NewsDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsDetailCell", for: indexPath) as! SimpleTableCell
         cell.setup(content: contents[indexPath.section], url: urls[indexPath.section])
+        if indexPath.item == indexPath.last {
+            cell.addBorder(sides: [.bottom], weight: 1, color: .gray)
+        }
+        if indexPath.item == indexPath.last {
+            cell.addBorder(sides: [.top], weight: 1, color: .gray)
+        }
         return cell
     }
     
