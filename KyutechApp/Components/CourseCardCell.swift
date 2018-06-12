@@ -12,7 +12,6 @@ import MaterialComponents
 class CourseCardCell: MDCCardCollectionCell {
     @IBOutlet weak var classNameLabel: UILabel!
     @IBOutlet weak var roomNumberLabel: UILabel!
-    @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var classNameLabelTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var roomNumberLabelBottomConstraint: NSLayoutConstraint!
     
@@ -55,16 +54,6 @@ class CourseCardCell: MDCCardCollectionCell {
         roomNumberLabelBottomConstraint.constant = self.bounds.height / 10
 
         backgroundColor = color
-        
     }
     
-    func appearingDeleteButton() {
-        if classNameLabel.text != "" {
-            deleteButton.alpha = 1
-        }
-    }
-    
-    func disappearDeleteButton() {
-        deleteButton.alpha = 0
-    }
 }

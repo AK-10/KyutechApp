@@ -23,13 +23,12 @@ class UserScheduleModel {
                     let dataDict = resData as! Parameters
                     let results = dataDict["results"] as! [Parameters]
                     let userSchedules: [UserSchedule] = results.map{ (item) -> UserSchedule in
-                        print(item)
                         let itemData = try! JSONSerialization.data(withJSONObject: item, options: [])
                         return try! JSONDecoder().decode(UserSchedule.self, from: itemData)
                     }
                     onSuccess(userSchedules)
                 } else {
-                    print("Error: status is Invalid")
+                    print("Error: \(res.value!)")
                     onError()
                 }
             }
@@ -54,7 +53,8 @@ class UserScheduleModel {
                 print("Error: \(err)")
                 onError()
             } else {
-                guard let status = res.response?.statusCode else { return }
+                let status = res.response?.statusCode ?? -1
+                print("StatusCode: \(status)")
                 if status >= 200 && status < 300 {
                     guard let dataDict = res.value else { return }
                     print("type of res.value \(type(of: dataDict))")
@@ -70,7 +70,53 @@ class UserScheduleModel {
                 }
             }
         })
-        
-        
+    }
+    
+    class func updateUserSchedule(syllabusId: Int, day: Int, period: Int, quarter: Int, late: Int, absent: Int, memo: String, onSuccess: @escaping (UserSchedule) -> Void, onError: @escaping () -> Void) {
+        guard let userId = UserDefaults.standard.int(forKey: .primaryKey) else { return }
+        let params: Parameters = [
+            "user_id":userId,
+            "syllabus_id":syllabusId,
+            "day":day,
+            "period":period,
+            "quarter":quarter,
+            "memo":memo,
+            "late_num":late,
+            "absent_num":absent
+        ]
+        print(params)
+        Alamofire.request(Router.updateSchedule(params: params)).responseJSON(completionHandler: { res in
+            if let err = res.error {
+                print(err)
+                onError()
+            } else {
+                let status = res.response?.statusCode ?? -1
+                print("StatusCode: \(status)")
+                if status >= 200 && status < 300 {
+                    guard let dataDict = res.value else { return }
+                    print("type of res.value \(type(of: dataDict))")
+                    let data = try! JSONSerialization.data(withJSONObject: dataDict, options: [])
+                    let userSchedule = try! JSONDecoder().decode(UserSchedule.self, from: data)
+                    onSuccess(userSchedule)
+                } else {
+                    onError()
+                    print(String(bytes: res.data!, encoding: .utf8)!)
+                }
+            }
+        })
+    }
+    
+    class func deleteSchedule(scheduleId: Int, onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
+        Alamofire.request(Router.deleteSchedule(id: scheduleId)).response(completionHandler: { res in
+            if let err = res.error {
+                print(err)
+            } else {
+                if res.response?.statusCode == 204 {
+                    onSuccess()
+                } else {
+                    onError()
+                }
+            }
+        })
     }
 }

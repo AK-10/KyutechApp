@@ -67,7 +67,7 @@ extension NewsDetailViewController: UITableViewDelegate, UITableViewDataSource {
         
         
         header.backgroundColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
-        header.font = UIFont.systemFont(ofSize: 16)
+        header.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         header.textColor = .white
 //        header.textColor = UIColor(displayP3Red: 48/255, green: 131/255, blue: 251/255, alpha: 1)
         header.textAlignment = .left

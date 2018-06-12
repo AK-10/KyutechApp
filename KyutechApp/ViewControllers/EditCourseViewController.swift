@@ -16,7 +16,7 @@ class EditCourseViewController: UIViewController {
     var selectedDay: Week? = nil
     var selectedPeriod: Int? = nil
     var selectedQuarter: Int? = nil
-    
+    var selectedSchedule: UserSchedule? = nil
     var syllabuses: [Syllabus] = []
     
     deinit {
@@ -49,6 +49,7 @@ class EditCourseViewController: UIViewController {
         
         let nib = UINib(nibName: "RoundHeadCollectionCell", bundle: nil)
         courseCollection.register(nib, forCellWithReuseIdentifier: "CourseCell")
+        courseCollection.register(MDCCardCollectionCell.self, forCellWithReuseIdentifier: "deleteCell")
     }
     
     func setupDateLabel() {
@@ -88,16 +89,35 @@ class EditCourseViewController: UIViewController {
 extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return syllabuses.count
+        return (selectedSchedule != nil) ? syllabuses.count + 1 : syllabuses.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let syllabus = syllabuses[indexPath.row]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CourseCell", for: indexPath) as! RoundHeadCollectionCell
-        guard let depart = UserDefaults.standard.int(forKey: .department) else { return cell }
-        let color: UIColor = syllabus.targetParticipantsInfos.filter{ $0.targetParticipants.contains(Department(rawValue: depart-200)!.ja()) }.first?.getColorByCreditKind() ?? .gray
-        cell.setup(roundLabelText: String(syllabus.title.first!) , color: color, title: syllabus.title, date: syllabus.teacherName)
-        return cell
+        
+        if selectedSchedule != nil && indexPath.item == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "deleteCell", for: indexPath)
+            let label = UILabel()
+            label.backgroundColor = .red
+            label.textColor = .white
+            label.textAlignment = .center
+            label.text = "授業を削除"
+            label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+            cell.addSubview(label)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
+            label.leadingAnchor.constraint(equalTo: cell.leadingAnchor).isActive = true
+            label.trailingAnchor.constraint(equalTo: cell.trailingAnchor).isActive = true
+            label.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
+            return cell
+        } else {
+            let row = (selectedSchedule != nil) ? indexPath.item - 1: indexPath.item
+            let syllabus = syllabuses[row]
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CourseCell", for: indexPath) as! RoundHeadCollectionCell
+            guard let depart = UserDefaults.standard.int(forKey: .department) else { return cell }
+            let color: UIColor = syllabus.targetParticipantsInfos.filter{ $0.targetParticipants.contains(Department(rawValue: depart-200)!.ja()) }.first?.getColorByCreditKind() ?? .gray
+            cell.setup(roundLabelText: String(syllabus.title.first!) , color: color, title: syllabus.title, date: syllabus.teacherName)
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -106,22 +126,44 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.bounds.width
-        let height = CGFloat(64)
+        let height = (selectedSchedule != nil && indexPath.item == 0) ? CGFloat(32) : CGFloat(64)
         return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let syllabusId = syllabuses[indexPath.item].id
-        guard let day = selectedDay, let period = selectedPeriod, let quarter = selectedQuarter else { return }
-        UserScheduleModel.createSchedule(syllabusId: syllabusId, day: day.hashValue, period: period, quarter: quarter, onSuccess: { [weak self] (newSchedule) in
-            let tabBarVC = self?.presentingViewController as! UITabBarController
-            let viewController = tabBarVC.viewControllers?.filter{ $0 is ScheduleViewController }.first
-            guard let scheduleVC = viewController as? ScheduleViewController else { return }
-            scheduleVC.getUserSchedule()
+        if selectedSchedule != nil && indexPath.item == 0 {
+            let alert = MDCAlertController(title: "注意", message: "削除したデータは復元できません")
+            let deleteAction = MDCAlertAction(title: "削除", handler: {_ in
+                UserScheduleModel.deleteSchedule(scheduleId: (self.selectedSchedule?.id)!, onSuccess: { [weak self] () in
+                    self?.dismiss(animated: true, completion: nil)
+                    let tabBarVC = self?.presentingViewController as! UITabBarController
+                    let viewController = tabBarVC.viewControllers?.filter{ $0 is ScheduleViewController }.first
+                    guard let scheduleVC = viewController as? ScheduleViewController else { return }
+                    scheduleVC.getUserSchedule()
+                }, onError: { [weak self] () in
+                    self?.dismiss(animated: true, completion: nil)
+                })
+            })
+            let cancelAction = MDCAlertAction(title: "キャンセル", handler: {_ in})
+            alert.addAction(deleteAction)
+            alert.addAction(cancelAction)
+            present(alert, animated: true, completion: nil)
+            
+        } else {
+            let row = (selectedSchedule != nil) ? indexPath.item - 1 : indexPath.item
+            let syllabusId = syllabuses[row].id
+            guard let day = selectedDay, let period = selectedPeriod, let quarter = selectedQuarter else { return }
+            UserScheduleModel.createSchedule(syllabusId: syllabusId, day: day.hashValue, period: period, quarter: quarter, onSuccess: { [weak self] (newSchedule) in
+                let tabBarVC = self?.presentingViewController as! UITabBarController
+                let viewController = tabBarVC.viewControllers?.filter{ $0 is ScheduleViewController }.first
+                guard let scheduleVC = viewController as? ScheduleViewController else { return }
+                scheduleVC.getUserSchedule()
+                
+                self?.dismiss(animated: true, completion: nil)
+                }, onError: { [weak self] () in
+                    self?.dismiss(animated: true, completion: nil)
+            })
+        }
 
-            self?.dismiss(animated: true, completion: nil)
-        }, onError: { [weak self] () in
-            self?.dismiss(animated: true, completion: nil)
-        })
     }
 }

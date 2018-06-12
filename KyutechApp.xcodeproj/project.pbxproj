@@ -40,6 +40,7 @@
 		115BB6BD2081D99D00A8572F /* EditCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115BB6BC2081D99D00A8572F /* EditCourseViewController.swift */; };
 		1188420420835653009D7F04 /* SyllabusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1188420320835653009D7F04 /* SyllabusViewController.swift */; };
 		1188420B20847DFA009D7F04 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1188420A20847DFA009D7F04 /* UIViewExtension.swift */; };
+		119345F420CCC16E00EFF515 /* PlaceHolderedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119345F320CCC16E00EFF515 /* PlaceHolderedTextView.swift */; };
 		1196A44320A4B56A00D7C971 /* SimpleTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1196A44220A4B56A00D7C971 /* SimpleTableCell.xib */; };
 		1196A44520A4B5E600D7C971 /* SimpleTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1196A44420A4B5E600D7C971 /* SimpleTableCell.swift */; };
 		119FF55820737141006EDC6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119FF55720737141006EDC6C /* AppDelegate.swift */; };
@@ -109,6 +110,7 @@
 		115BB6BC2081D99D00A8572F /* EditCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCourseViewController.swift; sourceTree = "<group>"; };
 		1188420320835653009D7F04 /* SyllabusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusViewController.swift; sourceTree = "<group>"; };
 		1188420A20847DFA009D7F04 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		119345F320CCC16E00EFF515 /* PlaceHolderedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderedTextView.swift; sourceTree = "<group>"; };
 		1196A44220A4B56A00D7C971 /* SimpleTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleTableCell.xib; sourceTree = "<group>"; };
 		1196A44420A4B5E600D7C971 /* SimpleTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableCell.swift; sourceTree = "<group>"; };
 		119FF55420737141006EDC6C /* KyutechApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KyutechApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				1102A51B207B6460007D6406 /* CourseCardCell.swift */,
+				119345F320CCC16E00EFF515 /* PlaceHolderedTextView.swift */,
 				1155CB4A20904ABD004BBAFA /* MaterialTextView.swift */,
 				1155CB542090B574004BBAFA /* MaterialView.swift */,
 				1196A44420A4B5E600D7C971 /* SimpleTableCell.swift */,
@@ -568,6 +571,7 @@
 				1119ABDA20B2A34B003E84FB /* Syllabus.swift in Sources */,
 				110BBB9B209CE43600935A23 /* NewsHeadingModel.swift in Sources */,
 				110BBBA3209E4B7000935A23 /* NewsModel.swift in Sources */,
+				119345F420CCC16E00EFF515 /* PlaceHolderedTextView.swift in Sources */,
 				1196A44520A4B5E600D7C971 /* SimpleTableCell.swift in Sources */,
 				1155CB592099991B004BBAFA /* SimpleCardCell.swift in Sources */,
 				1155CB4B20904ABD004BBAFA /* MaterialTextView.swift in Sources */,

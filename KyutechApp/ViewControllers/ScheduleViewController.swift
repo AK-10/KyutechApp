@@ -15,6 +15,7 @@ class ScheduleViewController: UIViewController {
     weak var quarterSelectController: PullDownMenuViewController!
     @IBOutlet weak var pullDownMenuControllConstraint: NSLayoutConstraint!
     @IBOutlet weak var navbar: UINavigationBar!
+    @IBOutlet weak var dummyStatusBar: UIView!
     var schedules: [UserSchedule] = []
     
     var quarter: Int? {
@@ -33,6 +34,7 @@ class ScheduleViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        getUserSchedule()
 
     }
     
@@ -78,7 +80,7 @@ class ScheduleViewController: UIViewController {
         let titleLabel = UILabel()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(animatePullDownMenu(tapped:)))
         titleLabel.text = "1st Quarter ▼"
-        titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         titleLabel.sizeToFit()
         titleLabel.textColor = .white
         titleLabel.addGestureRecognizer(tapGesture)
@@ -92,28 +94,26 @@ class ScheduleViewController: UIViewController {
 
         navbar.setItems([navigationItem], animated: true)
         navbar.removeBottomBorder()
-        navbar.tintColor = UIColor.extendedInit(from: "#00BCD4")!
-
-        navbar.tintColor = UIColor.white.withAlphaComponent(0)
     }
     
     @objc func tappedRightBarButton(_ sender: Any) {
-        let cells = scheduleCollection.visibleCells as! [CourseCardCell]
         guard let rightBarButton = navbar.topItem?.rightBarButtonItem else { return }
-        print(navbar.tintColor)
         if isEditting() {
             // edit to done
             rightBarButton.title = "edit"
             rightBarButton.image = #imageLiteral(resourceName: "editIcon")
-            self.navbar.barTintColor = UIColor.extendedInit(from: "#00BCD4")!
-            self.navbar.tintColor = .clear
-             cells.forEach{ $0.disappearDeleteButton() }
+            //change navigationColor
+            self.dummyStatusBar.backgroundColor = UIColor.extendedInit(from: "#00BCD9")!
+            self.navbar.barTintColor = UIColor.extendedInit(from: "#00BCD9")!
+            self.quarterSelectController.view.backgroundColor = UIColor.extendedInit(from: "#00BCD9")!
         } else {
             // done to edit
             rightBarButton.title = "done"
             rightBarButton.image = #imageLiteral(resourceName: "doneIcon")
-            self.navbar.barTintColor = .red
-            cells.forEach{ $0.appearingDeleteButton() }
+            // changeNavigationColor
+            self.dummyStatusBar.backgroundColor = .orange
+            self.navbar.barTintColor = .orange
+            self.quarterSelectController.view.backgroundColor = .orange
         }
     }
 
@@ -189,13 +189,13 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CourseCard", for: indexPath) as! CourseCardCell
+        cell.addBorder(sides: [.left], weight: 4, color: .red)
         cell.setup(course: "", room: "", color: .white)
         for schedule in schedules {
             if schedule.indexFrom() == indexPath.item && quarter == schedule.quarter {
                 guard let depart = UserDefaults.standard.int(forKey: .department) else { return cell }
                 let color: UIColor = schedule.syllabus.targetParticipantsInfos.filter{ $0.targetParticipants.contains(Department(rawValue: depart-200)!.ja()) }.first?.getColorByCreditKind() ?? .gray
                 cell.setup(course: schedule.syllabus.title, room: schedule.syllabus.getPlace(), color: color)
-                isEditting() ? cell.appearingDeleteButton() : cell.disappearDeleteButton()
                 break
             }
         }
@@ -212,6 +212,7 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
             editCourseVC.selectedDay = pair.0
             editCourseVC.selectedPeriod = pair.1
             editCourseVC.selectedQuarter = quarter
+            editCourseVC.selectedSchedule = schedules.filter{ $0.day == pair.0.hashValue && $0.period == pair.1 }.first ?? nil
             present(editCourseVC, animated: true, completion: nil)
             
         } else {

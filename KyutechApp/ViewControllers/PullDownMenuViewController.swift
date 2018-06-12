@@ -24,23 +24,20 @@ class PullDownMenuViewController: UIViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        self.view.addShadow()
+        view.addShadow()
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        print(delegate)
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-//        print(delegate)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        print(delegate)
         delegate?.setupButtons(self)
     }
     
