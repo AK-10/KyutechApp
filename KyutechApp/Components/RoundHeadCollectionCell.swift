@@ -29,9 +29,7 @@ class RoundHeadCollectionCell: MDCCardCollectionCell {
         self.cornerRadius = 0
         self.clipsToBounds = true
         
-        DispatchQueue.main.async {
-            self.roundLabel.layer.cornerRadius = self.roundLabel.bounds.height / 2
-        }
+        self.roundLabel.layer.cornerRadius = self.roundLabel.bounds.height / 2
   
         roundLabel.clipsToBounds = true
     }

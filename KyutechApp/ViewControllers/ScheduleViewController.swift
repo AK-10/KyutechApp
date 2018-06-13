@@ -14,7 +14,8 @@ class ScheduleViewController: UIViewController {
     @IBOutlet weak var scheduleCollection: UICollectionView!
     weak var quarterSelectController: PullDownMenuViewController!
     @IBOutlet weak var pullDownMenuControllConstraint: NSLayoutConstraint!
-    @IBOutlet weak var navbar: MaterialNavigationBar!
+    @IBOutlet weak var navbar: UINavigationBar!
+    @IBOutlet weak var dummyStatusBar: UIView!
     var schedules: [UserSchedule] = []
     
     var quarter: Int? {
@@ -33,6 +34,7 @@ class ScheduleViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        getUserSchedule()
 
     }
     
@@ -78,25 +80,40 @@ class ScheduleViewController: UIViewController {
         let titleLabel = UILabel()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(animatePullDownMenu(tapped:)))
         titleLabel.text = "1st Quarter ▼"
-        titleLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         titleLabel.sizeToFit()
         titleLabel.textColor = .white
         titleLabel.addGestureRecognizer(tapGesture)
         titleLabel.isUserInteractionEnabled = true
         
-        let editButton = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(tappedRightBarButton(_:)))
+        let editButton = UIBarButtonItem(image: #imageLiteral(resourceName: "editIcon"), style: .plain, target: self, action: #selector(tappedRightBarButton(_:)))
+        editButton.tintColor = .white
+        editButton.title = "edit"
         navigationItem.rightBarButtonItem = editButton
         navigationItem.titleView = titleLabel
 
         navbar.setItems([navigationItem], animated: true)
+        navbar.removeBottomBorder()
     }
     
     @objc func tappedRightBarButton(_ sender: Any) {
         guard let rightBarButton = navbar.topItem?.rightBarButtonItem else { return }
         if isEditting() {
-            rightBarButton.title = "Edit"
+            // edit to done
+            rightBarButton.title = "edit"
+            rightBarButton.image = #imageLiteral(resourceName: "editIcon")
+            //change navigationColor
+            self.dummyStatusBar.backgroundColor = UIColor.extendedInit(from: "#00BCD9")!
+            self.navbar.barTintColor = UIColor.extendedInit(from: "#00BCD9")!
+            self.quarterSelectController.view.backgroundColor = UIColor.extendedInit(from: "#00BCD9")!
         } else {
-            rightBarButton.title = "Done"
+            // done to edit
+            rightBarButton.title = "done"
+            rightBarButton.image = #imageLiteral(resourceName: "doneIcon")
+            // changeNavigationColor
+            self.dummyStatusBar.backgroundColor = .orange
+            self.navbar.barTintColor = .orange
+            self.quarterSelectController.view.backgroundColor = .orange
         }
     }
 
@@ -124,8 +141,8 @@ class ScheduleViewController: UIViewController {
 
     func isEditting() -> Bool {
         guard let rightBarButton = navbar.topItem?.rightBarButtonItem else { return false }
-        guard let buttonTitle = rightBarButton.title else { return false }
-        if buttonTitle == "Edit" {
+        guard let title = rightBarButton.title else { return false }
+        if title == "edit" {
             return false
         } else {
             return true
@@ -134,23 +151,23 @@ class ScheduleViewController: UIViewController {
     
     func getUserSchedule() {
         guard let quarter = quarter, let userId = UserDefaults.standard.int(forKey: .primaryKey) else { return }
-        let xPoint = scheduleCollection.frame.width / 2.0
-        let yPoint = scheduleCollection.frame.height / 2.0
 
         let activityIndicator = MDCActivityIndicator()
-        activityIndicator.center = CGPoint(x: xPoint, y: yPoint)
-        activityIndicator.sizeToFit()
-        activityIndicator.cycleColors = [.blue, .red, .yellow, .green]
         scheduleCollection.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.cycleColors = [.blue, .red, .yellow, .green]
+        activityIndicator.centerXAnchor.constraint(equalTo: scheduleCollection.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: scheduleCollection.centerYAnchor).isActive = true
         scheduleCollection.bringSubview(toFront: activityIndicator)
         activityIndicator.startAnimating()
         UserScheduleModel.getSchedule(userId: userId, quarter: quarter, onSuccess: { [weak self] (resSchedules) in
             self?.schedules = resSchedules
-            self?.scheduleCollection.reloadData()
+            DispatchQueue.main.async {
+                self?.scheduleCollection.reloadData()
+            }
             activityIndicator.stopAnimating()
             activityIndicator.removeFromSuperview()
             }, onError: { () in
-
                 activityIndicator.stopAnimating()
                 activityIndicator.removeFromSuperview()
         })
@@ -172,6 +189,7 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CourseCard", for: indexPath) as! CourseCardCell
+        cell.addBorder(sides: [.left], weight: 4, color: .red)
         cell.setup(course: "", room: "", color: .white)
         for schedule in schedules {
             if schedule.indexFrom() == indexPath.item && quarter == schedule.quarter {
@@ -194,6 +212,7 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
             editCourseVC.selectedDay = pair.0
             editCourseVC.selectedPeriod = pair.1
             editCourseVC.selectedQuarter = quarter
+            editCourseVC.selectedSchedule = schedules.filter{ $0.day == pair.0.hashValue && $0.period == pair.1 }.first ?? nil
             present(editCourseVC, animated: true, completion: nil)
             
         } else {

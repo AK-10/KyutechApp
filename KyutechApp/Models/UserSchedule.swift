@@ -9,6 +9,7 @@
 import Foundation
 
 struct UserSchedule: Codable {
+    let id: Int
     let syllabus: Syllabus
     let day: Int
     let period: Int
@@ -16,6 +17,17 @@ struct UserSchedule: Codable {
     let memo: String
     let lateNum: Int?
     let absentNum: Int?
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case syllabus
+        case day
+        case period
+        case quarter
+        case memo
+        case lateNum = "late_num"
+        case absentNum = "absent_num"
+    }
     
     func indexFrom() -> Int {
         return period*5 + day

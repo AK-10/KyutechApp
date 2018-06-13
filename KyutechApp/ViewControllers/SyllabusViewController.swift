@@ -12,13 +12,18 @@ import MaterialComponents
 class SyllabusViewController: UIViewController {
     
     @IBOutlet weak var syllabusTable: UITableView!
-    @IBOutlet weak var navbar: MaterialNavigationBar!
-    @IBOutlet weak var memoView: UITextView!
+    @IBOutlet weak var navbar: UINavigationBar!
+    @IBOutlet weak var memoView: PlaceHolderedTextView!
+    @IBOutlet weak var attendIconImageView: UIImageView!
+    @IBOutlet weak var memoIconImageView: UIImageView!
+    @IBOutlet weak var lateLabel: UILabel!
+    @IBOutlet weak var absentLabel: UILabel!
     
     var recievedSchedule: UserSchedule? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupImageViews()
         setupNavigationBar()
         setupMemoView()
         setupTable()
@@ -53,13 +58,16 @@ class SyllabusViewController: UIViewController {
         resignFirstResponder()
     }
     
+    func setupImageViews() {
+        attendIconImageView.tintColor = .gray
+        memoIconImageView.tintColor = .gray
+    }
+    
     func setupTable() {
         syllabusTable.delegate = self
         syllabusTable.dataSource = self
         let nib = UINib(nibName: "SimpleTableCell", bundle: nil)
         syllabusTable.register(nib, forCellReuseIdentifier: "Syllabus")
-        
-//        syllabusTable.tableHeaderView = memoView
     }
     
     func setupNavigationBar() {
@@ -71,17 +79,56 @@ class SyllabusViewController: UIViewController {
         titleLabel.textColor = .black
         titleLabel.sizeToFit()
         navigationItem.titleView = titleLabel
+        
+        let rightBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "saveIcon"), style: .done, target: self, action: #selector(saveUserSchedule(_:)))
+        
+//    backButton
+        let leftButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "backArrowIos") , style: .done, target: self, action: #selector(tappedLeftButton(_:)))
 
-        let leftButtonItem = UIBarButtonItem(image: UIImage(named: "cancell")! , style: .done, target: self, action: #selector(tappedLeftButton(_:)))
-
+        rightBarButton.tintColor = .gray
+        navigationItem.rightBarButtonItem = rightBarButton
         leftButtonItem.tintColor = .gray
         navigationItem.leftBarButtonItem = leftButtonItem
+        
+        navbar.removeBottomBorder()
+        navbar.addShadow()
+    }
+    
+    @objc func saveUserSchedule(_ sender: Any) {
+        updateSchedule()
     }
 
+    func updateSchedule() {
+        guard let userSchedule = recievedSchedule else { return }
+        guard let late = lateLabel.text, let absent = absentLabel.text, let memo = memoView.text else { return }
+        
+        let activityIndicator = MDCActivityIndicator()
+        syllabusTable.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.cycleColors = [.blue, .red, .yellow, .green]
+        activityIndicator.centerXAnchor.constraint(equalTo: syllabusTable.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: syllabusTable.centerYAnchor).isActive = true
+        syllabusTable.bringSubview(toFront: activityIndicator)
+        activityIndicator.startAnimating()
+        
+        UserScheduleModel.updateUserSchedule(syllabusId: userSchedule.id, day: userSchedule.day, period: userSchedule.period, quarter: userSchedule.quarter, late: Int(late)!, absent: Int(absent)!, memo: memo, onSuccess: { [weak self] (schedule) in
+            self?.recievedSchedule = schedule
+            activityIndicator.stopAnimating()
+            activityIndicator.removeFromSuperview()
+            let message = MDCSnackbarMessage()
+            message.text = "更新しました"
+            MDCSnackbarManager.show(message)
+            }, onError: {
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
+                let message = MDCSnackbarMessage()
+                message.text = "更新に失敗しました"
+                MDCSnackbarManager.show(message)
+        })
+    }
+    
     func setupMemoView() {
         memoView.delegate = self
-        
-        let borderColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
         
         let keyboardToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
         keyboardToolBar.sizeToFit()
@@ -91,10 +138,6 @@ class SyllabusViewController: UIViewController {
         let doneButton = UIBarButtonItem(title: "完了", style: .done, target: self, action: #selector(tappedDone(_:)))
         keyboardToolBar.items = [spacer, doneButton]
         memoView.inputAccessoryView = keyboardToolBar
-        
-        memoView.layer.borderColor = borderColor.cgColor
-        memoView.layer.cornerRadius = 5.0
-        memoView.layer.borderWidth = 1.0
         
         guard let memoText = recievedSchedule?.memo else { return }
         memoView.text = memoText
@@ -115,7 +158,7 @@ class SyllabusViewController: UIViewController {
 extension SyllabusViewController: UITextViewDelegate {
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        textView.layer.borderColor = UIColor.extendedInit(from: "00BCD4")?.cgColor
+        textView.layer.borderColor = UIColor.extendedInit(from: "#00BCD9")?.cgColor
 
         return true
     }
@@ -141,17 +184,16 @@ extension SyllabusViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sections = Syllabus.keys
         let header = UILabel()
+
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.firstLineHeadIndent = 12
         paragraphStyle.headIndent = 12
         let attributedString = NSAttributedString(string: sections[section], attributes: [.paragraphStyle: paragraphStyle])
         header.attributedText = attributedString
         
-        
         header.backgroundColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
-        header.font = UIFont.systemFont(ofSize: 16)
+        header.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         header.textColor = .white
-        //        header.textColor = UIColor(displayP3Red: 48/255, green: 131/255, blue: 251/255, alpha: 1)
         header.textAlignment = .left
         
         return header

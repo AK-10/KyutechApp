@@ -58,6 +58,7 @@ extension NewsDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UILabel()
+
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.firstLineHeadIndent = 12
         paragraphStyle.headIndent = 12
@@ -66,7 +67,7 @@ extension NewsDetailViewController: UITableViewDelegate, UITableViewDataSource {
         
         
         header.backgroundColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
-        header.font = UIFont.systemFont(ofSize: 16)
+        header.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         header.textColor = .white
 //        header.textColor = UIColor(displayP3Red: 48/255, green: 131/255, blue: 251/255, alpha: 1)
         header.textAlignment = .left
@@ -81,6 +82,12 @@ extension NewsDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsDetailCell", for: indexPath) as! SimpleTableCell
         cell.setup(content: contents[indexPath.section], url: urls[indexPath.section])
+        if indexPath.item == indexPath.last {
+            cell.addBorder(sides: [.bottom], weight: 1, color: .gray)
+        }
+        if indexPath.item == indexPath.last {
+            cell.addBorder(sides: [.top], weight: 1, color: .gray)
+        }
         return cell
     }
     

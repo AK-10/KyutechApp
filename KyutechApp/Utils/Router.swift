@@ -25,7 +25,9 @@ enum Router: URLRequestConvertible {
     case readSyllabusWith(dayID: String, periodID: Int)
     
     case createSchedule(params: Parameters)
+    case updateSchedule(params: Parameters)
     case readSchedule(id: Int, quarter: Int)
+    case deleteSchedule(id: Int)
     
     var method: HTTPMethod {
         switch self {
@@ -46,8 +48,12 @@ enum Router: URLRequestConvertible {
             return .get
         case .createSchedule:
             return .post
+        case .updateSchedule:
+            return .put
         case .readSchedule:
             return .get
+        case .deleteSchedule:
+            return .delete
         }
     }
     
@@ -72,6 +78,10 @@ enum Router: URLRequestConvertible {
             return "/user-schedules/"
         case .readSchedule(let id, let quarter):
             return "/user-schedules/user-\(id.description)/quarter-\(quarter.description)"
+        case .updateSchedule:
+            return "/user-schedules/"
+        case .deleteSchedule(let id):
+            return "/user-schedules/\(id.description)"
         }
     }
     
@@ -89,6 +99,9 @@ enum Router: URLRequestConvertible {
             urlRequest = try JSONEncoding.default.encode(urlRequest, with: params)
 
         case .createSchedule(let params):
+            urlRequest = try JSONEncoding.default.encode(urlRequest, with: params)
+        
+        case .updateSchedule(let params):
             urlRequest = try JSONEncoding.default.encode(urlRequest, with: params)
 
         default:

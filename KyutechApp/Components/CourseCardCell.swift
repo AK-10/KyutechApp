@@ -12,13 +12,12 @@ import MaterialComponents
 class CourseCardCell: MDCCardCollectionCell {
     @IBOutlet weak var classNameLabel: UILabel!
     @IBOutlet weak var roomNumberLabel: UILabel!
+    @IBOutlet weak var classNameLabelTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var roomNumberLabelBottomConstraint: NSLayoutConstraint!
     
-//    override class var layerClass: AnyClass {
-//        return MDCShadowLayer.self
-        // エラーを吐く 理由は謎
-        // Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[MDCShadowLayer setShapedBackgroundColor:]: unrecognized selector sent to instance 0x60400028a0a0'
-//    }
-
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
     
     func setup(course: String, room: String, color: UIColor) {
         self.cornerRadius = 2
@@ -32,20 +31,29 @@ class CourseCardCell: MDCCardCollectionCell {
         classNameLabel.minimumScaleFactor = 0.8
         classNameLabel.lineBreakMode = .byTruncatingTail
         roomNumberLabel.adjustsFontSizeToFitWidth = true
-        roomNumberLabel.minimumScaleFactor = 0.6
+        roomNumberLabel.minimumScaleFactor = 0.4
         
-//        DispatchQueue.main.async {
-//            self.roomNumberLabel.layer.cornerRadius = self.roomNumberLabel.bounds.height / 4
-//            self.roomNumberLabel.clipsToBounds = true
-//        }
-
         classNameLabel.text = course
-        roomNumberLabel.text = room
-//        if let num = roomNum {
-//            roomNumberLabel.text = num.description
-//        } else {
-//            roomNumberLabel.text = ""
-//        }
+//        roomNumberLabel.text = room
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.firstLineHeadIndent = 4
+        paragraphStyle.headIndent = 4
+        paragraphStyle.tailIndent = -4
+        paragraphStyle.alignment = .center
+        let attributedString = NSAttributedString(string: room, attributes: [.paragraphStyle: paragraphStyle])
+        roomNumberLabel.attributedText = attributedString
+
+        let clearDarkGray = UIColor.darkGray.withAlphaComponent(0.4)
+        roomNumberLabel.backgroundColor = clearDarkGray
+        roomNumberLabel.layer.masksToBounds = true
+        roomNumberLabel.layer.cornerRadius = roomNumberLabel.frame.width / 8
+
+        classNameLabelTopConstraint.constant = self.bounds.height / 7
+        
+        roomNumberLabelBottomConstraint.constant = self.bounds.height / 10
+
         backgroundColor = color
     }
+    
 }

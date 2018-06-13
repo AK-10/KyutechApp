@@ -11,6 +11,41 @@ import UIKit
 
 extension UIView {
     
+    enum Side {
+        case top
+        case left
+        case right
+        case bottom
+    }
+    
+    func addBorder(sides: [Side], weight: CGFloat, color: UIColor) {
+        if sides.contains(.top) {
+            let border = CALayer()
+            border.borderColor = color.cgColor
+            border.frame = CGRect(x: self.frame.minX, y: self.frame.minY, width: self.frame.width, height: weight)
+            layer.addSublayer(border)
+        }
+        if sides.contains(.left) {
+            let border = CALayer()
+            border.borderColor = color.cgColor
+            border.frame = CGRect(x: self.frame.minX, y: self.frame.minY, width: weight, height: self.frame.height)
+            layer.addSublayer(border)
+        }
+        if sides.contains(.right) {
+            let border = CALayer()
+            border.borderColor = color.cgColor
+            border.frame = CGRect(x: self.frame.maxX, y: self.frame.minY, width: weight, height: self.frame.height)
+            layer.addSublayer(border)
+        }
+        if sides.contains(.bottom) {
+            let border = CALayer()
+            border.borderColor = color.cgColor
+            border.frame = CGRect(x: self.frame.minX, y: self.frame.maxY, width: self.frame.width, height: weight)
+            layer.addSublayer(border)
+        }
+        
+    }
+    
     func addShadow() {
         let layer = self.layer
         layer.shadowColor = UIColor.black.cgColor
