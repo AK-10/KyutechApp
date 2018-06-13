@@ -13,6 +13,16 @@ class PlaceHolderedTextView: UITextView {
     
     private lazy var placeholderLabel: UILabel = UILabel()
     
+    override var text: String! {
+        didSet {
+            if text.count != 0 {
+                placeholderLabel.isHidden = true
+            } else {
+                placeholderLabel.isHidden = false
+            }
+        }
+    }
+    
     @IBInspectable
     var placeholder: String = "Place Holder" {
         didSet {
