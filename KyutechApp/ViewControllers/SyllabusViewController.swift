@@ -111,7 +111,7 @@ class SyllabusViewController: UIViewController {
         syllabusTable.bringSubview(toFront: activityIndicator)
         activityIndicator.startAnimating()
         
-        UserScheduleModel.updateUserSchedule(syllabusId: userSchedule.id, day: userSchedule.day, period: userSchedule.period, quarter: userSchedule.quarter, late: Int(late)!, absent: Int(absent)!, memo: memo, onSuccess: { [weak self] (schedule) in
+        UserScheduleModel.updateUserSchedule(scheduleId: userSchedule.id, syllabusId: userSchedule.syllabus.id, day: userSchedule.day, period: userSchedule.period, quarter: userSchedule.quarter, late: Int(late)!, absent: Int(absent)!, memo: memo, onSuccess: { [weak self] (schedule) in
             self?.recievedSchedule = schedule
             activityIndicator.stopAnimating()
             activityIndicator.removeFromSuperview()
