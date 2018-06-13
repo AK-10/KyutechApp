@@ -9,27 +9,50 @@
 import UIKit
 
 class BusScheduleViewController: UIViewController {
+    
+    var scrollview: UIScrollView = UIScrollView()
 
+    @IBOutlet weak var navbar: UINavigationBar!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupNavigationBar()
+        setupScrollView()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func setupScrollView() {
+        self.view.addSubview(scrollview)
+        self.view.sendSubview(toBack: scrollview)
+        let scrollViewWidth = UIScreen.main.bounds.width
+        let scrollViewHeight = (self.view.frame.height - navbar.frame.height - UIApplication.shared.statusBarFrame.height)
+        scrollview.translatesAutoresizingMaskIntoConstraints = false
+        scrollview.topAnchor.constraint(equalTo: navbar.bottomAnchor).isActive = true
+        scrollview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        scrollview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        scrollview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        scrollview.contentSize = CGSize(width: scrollViewWidth, height: scrollViewHeight * 2)
+        let timeScheduleImage = UIImageView()
+        let busCalenderImage = UIImageView()
+        timeScheduleImage.image = #imageLiteral(resourceName: "busTimeSchedule")
+        busCalenderImage.image = #imageLiteral(resourceName: "busCalender")
+        timeScheduleImage.contentMode = .scaleToFill
+        busCalenderImage.contentMode = .scaleToFill
+        timeScheduleImage.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: scrollViewWidth, height: scrollViewHeight))
+        busCalenderImage.frame = CGRect(origin: CGPoint(x: 0, y: scrollViewHeight), size: CGSize(width: scrollViewWidth, height: scrollViewHeight))
+        scrollview.addSubview(timeScheduleImage)
+        scrollview.addSubview(busCalenderImage)
     }
-    */
+    
+    func setupNavigationBar() {
+        navbar.removeBottomBorder()
+        navbar.addShadow()
+//        なぜかうまくいかない
+//        navbar.addShadowToBar(color: UIColor.extendedInit(from: "#00BCD9")!)
+
+    }
 
 }

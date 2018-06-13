@@ -21,6 +21,10 @@ class SyllabusViewController: UIViewController {
     
     var recievedSchedule: UserSchedule? = nil
     
+    deinit {
+        print("deinited \(self)")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupImageViews()
