@@ -72,7 +72,7 @@ class UserScheduleModel {
         })
     }
     
-    class func updateUserSchedule(syllabusId: Int, day: Int, period: Int, quarter: Int, late: Int, absent: Int, memo: String, onSuccess: @escaping (UserSchedule) -> Void, onError: @escaping () -> Void) {
+    class func updateUserSchedule(scheduleId: Int, syllabusId: Int, day: Int, period: Int, quarter: Int, late: Int, absent: Int, memo: String, onSuccess: @escaping (UserSchedule) -> Void, onError: @escaping () -> Void) {
         guard let userId = UserDefaults.standard.int(forKey: .primaryKey) else { return }
         let params: Parameters = [
             "user_id":userId,
@@ -85,7 +85,7 @@ class UserScheduleModel {
             "absent_num":absent
         ]
         print(params)
-        Alamofire.request(Router.updateSchedule(params: params)).responseJSON(completionHandler: { res in
+        Alamofire.request(Router.updateSchedule(id: scheduleId, params: params)).responseJSON(completionHandler: { res in
             if let err = res.error {
                 print(err)
                 onError()
@@ -100,6 +100,9 @@ class UserScheduleModel {
                     onSuccess(userSchedule)
                 } else {
                     onError()
+                    print("URL: \(res.request?.url)")
+                    print("method: \(res.request?.httpMethod)")
+                    print("header: \(res.request?.allHTTPHeaderFields)")
                     print(String(bytes: res.data!, encoding: .utf8)!)
                 }
             }

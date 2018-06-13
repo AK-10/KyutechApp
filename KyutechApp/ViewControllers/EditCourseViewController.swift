@@ -135,7 +135,10 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
             let alert = MDCAlertController(title: "注意", message: "削除したデータは復元できません")
             let deleteAction = MDCAlertAction(title: "削除", handler: {_ in
                 UserScheduleModel.deleteSchedule(scheduleId: (self.selectedSchedule?.id)!, onSuccess: { [weak self] () in
-                    self?.dismiss(animated: true, completion: nil)
+                    self?.dismiss(animated: true, completion: {
+                        let message = MDCSnackbarMessage(text: "削除しました")
+                        MDCSnackbarManager.show(message)
+                    })
                     let tabBarVC = self?.presentingViewController as! UITabBarController
                     let viewController = tabBarVC.viewControllers?.filter{ $0 is ScheduleViewController }.first
                     guard let scheduleVC = viewController as? ScheduleViewController else { return }
