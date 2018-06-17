@@ -83,7 +83,6 @@ class EditCourseViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
-
 }
 
 extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -115,6 +114,7 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CourseCell", for: indexPath) as! RoundHeadCollectionCell
             guard let depart = UserDefaults.standard.int(forKey: .department) else { return cell }
             let color: UIColor = syllabus.targetParticipantsInfos.filter{ $0.targetParticipants.contains(Department(rawValue: depart-200)!.ja()) }.first?.getColorByCreditKind() ?? .gray
+            cell.setSubLabelNumberOfLine(3)
             cell.setup(roundLabelText: String(syllabus.title.first!) , color: color, title: syllabus.title, date: syllabus.teacherName)
             return cell
         }
@@ -137,6 +137,7 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
                 UserScheduleModel.deleteSchedule(scheduleId: (self.selectedSchedule?.id)!, onSuccess: { [weak self] () in
                     self?.dismiss(animated: true, completion: {
                         let message = MDCSnackbarMessage(text: "削除しました")
+                        message.duration = 2
                         MDCSnackbarManager.show(message)
                     })
                     let tabBarVC = self?.presentingViewController as! UITabBarController
@@ -147,6 +148,7 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
                     self?.dismiss(animated: true, completion: nil)
                 })
             })
+            deleteAction.accessibilityAttributedLabel = NSAttributedString(string: "注意", attributes: [.foregroundColor:UIColor.red])
             let cancelAction = MDCAlertAction(title: "キャンセル", handler: {_ in})
             alert.addAction(deleteAction)
             alert.addAction(cancelAction)
@@ -167,6 +169,5 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
                     self?.dismiss(animated: true, completion: nil)
             })
         }
-
     }
 }

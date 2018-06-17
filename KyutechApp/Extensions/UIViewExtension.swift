@@ -18,32 +18,31 @@ extension UIView {
         case bottom
     }
     
-    func addBorder(sides: [Side], weight: CGFloat, color: UIColor) {
-        if sides.contains(.top) {
-            let border = CALayer()
-            border.borderColor = color.cgColor
-            border.frame = CGRect(x: self.frame.minX, y: self.frame.minY, width: self.frame.width, height: weight)
-            layer.addSublayer(border)
+    func addBorder(side: Side, weight: CGFloat, color: UIColor) {
+        DispatchQueue.main.async {
+            switch side {
+            case .top:
+                let border = CALayer()
+                border.backgroundColor = color.cgColor
+                border.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: weight)
+                self.layer.addSublayer(border)
+            case .left:
+                let border = CALayer()
+                border.backgroundColor = color.cgColor
+                border.frame = CGRect(x: 0, y: 0, width: weight, height: self.frame.height)
+                self.layer.addSublayer(border)
+            case .right:
+                let border = CALayer()
+                border.backgroundColor = color.cgColor
+                border.frame = CGRect(x: self.frame.width - weight, y: 0, width: weight, height: self.frame.height)
+                self.layer.addSublayer(border)
+            case .bottom:
+                let border = CALayer()
+                border.backgroundColor = color.cgColor
+                border.frame = CGRect(x: 0, y: self.frame.height - weight, width: self.frame.width, height: weight)
+                self.layer.addSublayer(border)
+            }
         }
-        if sides.contains(.left) {
-            let border = CALayer()
-            border.borderColor = color.cgColor
-            border.frame = CGRect(x: self.frame.minX, y: self.frame.minY, width: weight, height: self.frame.height)
-            layer.addSublayer(border)
-        }
-        if sides.contains(.right) {
-            let border = CALayer()
-            border.borderColor = color.cgColor
-            border.frame = CGRect(x: self.frame.maxX, y: self.frame.minY, width: weight, height: self.frame.height)
-            layer.addSublayer(border)
-        }
-        if sides.contains(.bottom) {
-            let border = CALayer()
-            border.borderColor = color.cgColor
-            border.frame = CGRect(x: self.frame.minX, y: self.frame.maxY, width: self.frame.width, height: weight)
-            layer.addSublayer(border)
-        }
-        
     }
     
     func addShadow() {

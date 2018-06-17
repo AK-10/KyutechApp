@@ -13,10 +13,6 @@ enum SchoolYearKey: Int {
     case two
     case three
     case four
-    
-//    func value() -> Int {
-//        return self.rawValue + 1
-//    }
 }
 
 enum Department: Int {
@@ -35,6 +31,43 @@ enum Department: Int {
     case bioIncorp
     case sys
     case sysIncorp
+    
+    static func from(hash: Int) -> Department {
+        switch hash {
+        case 0:
+            return .classI_I
+        case 1:
+            return .classI_II
+        case 2:
+            return .classII_III
+        case 3:
+            return .classIII_IV
+        case 4:
+            return .classIII_V
+        case 5:
+            return .ai
+        case 6:
+            return .aiIncorp
+        case 7:
+            return .cse
+        case 8:
+            return .cseIncorp
+        case 9:
+            return .mse
+        case 10:
+            return .mseIncorp
+        case 11:
+            return .bio
+        case 12:
+            return .bioIncorp
+        case 13:
+            return .sys
+        case 14:
+            return .sysIncorp
+        default:
+            return Department.init(rawValue: -1)!
+        }
+    }
     
     func value() -> Int {
         return self.rawValue + 200

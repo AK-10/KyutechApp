@@ -20,7 +20,7 @@ class RoundHeadCollectionCell: MDCCardCollectionCell {
         newsTypeLabel.adjustsFontSizeToFitWidth = true
         newsTypeLabel.minimumScaleFactor = 0.8
         dateLabel.adjustsFontSizeToFitWidth = true
-        dateLabel.minimumScaleFactor = 0.6
+        dateLabel.minimumScaleFactor = 0.8
         
         self.roundLabel.text = roundLabelText
         self.roundLabel.backgroundColor = color
@@ -32,6 +32,10 @@ class RoundHeadCollectionCell: MDCCardCollectionCell {
         self.roundLabel.layer.cornerRadius = self.roundLabel.bounds.height / 2
   
         roundLabel.clipsToBounds = true
+    }
+    
+    func setSubLabelNumberOfLine(_ num: Int) {
+        self.dateLabel.numberOfLines = num
     }
     
 }

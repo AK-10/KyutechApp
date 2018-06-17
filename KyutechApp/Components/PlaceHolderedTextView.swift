@@ -15,11 +15,7 @@ class PlaceHolderedTextView: UITextView {
     
     override var text: String! {
         didSet {
-            if text.count != 0 {
-                placeholderLabel.isHidden = true
-            } else {
-                placeholderLabel.isHidden = false
-            }
+            placeholderLabel.isHidden = (text.count != 0) ? true : false
         }
     }
     
@@ -66,6 +62,9 @@ class PlaceHolderedTextView: UITextView {
         }
     }
     
+    override init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: frame, textContainer: textContainer)
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

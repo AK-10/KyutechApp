@@ -23,9 +23,9 @@ class SyllabusModel {
                     let syllabuses: [Syllabus] = results.map {
                         (item) -> Syllabus in
                         let itemData = try! JSONSerialization.data(withJSONObject: item, options: [])
-
                         return try! JSONDecoder().decode(Syllabus.self, from: itemData)
                     }
+                    print(syllabuses)
                     onSuccess(syllabuses)
                 } else {
                     print("Error: status is Invalid")

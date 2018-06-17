@@ -10,7 +10,7 @@ import UIKit
 
 class SimpleTableCell: UITableViewCell {
 
-    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var detailTextView: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,41 +24,26 @@ class SimpleTableCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        detailLabel.textColor = .black
+        detailTextView.textColor = .black
+        self.selectionStyle = .none
     }
     
     func setup(content: String, url: String) {
+        self.selectionStyle = .none
+        detailTextView.isEditable = false
+        detailTextView.isScrollEnabled = false
+        detailTextView.isSelectable = true
+        detailTextView.textAlignment = .natural
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 6
         
-        detailLabel.numberOfLines = 0
-        detailLabel.textAlignment = .natural
-        detailLabel.text = content
+        let attributedString = NSMutableAttributedString(string: content, attributes: [.paragraphStyle:paragraphStyle, .font:UIFont.systemFont(ofSize: 16)])
         if url != "" && !(url.contains("mailto:")) {
-            self.isUserInteractionEnabled = true
-            detailLabel.textColor = .blue
-        } else {
-            self.isUserInteractionEnabled = false
+            print(url)
+            detailTextView.textColor = .blue
+            attributedString.addAttribute(.link, value: url, range: NSString(string: content).range(of: content))
         }
-    }
-    
-    
-    func didTapped(urlString: String) {
-        var url: URL? = nil
-        if urlString != "" {
-            url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-        }
-        guard let URL = url else { return }
-        print("xxx")
-        if UIApplication.shared.canOpenURL(URL) {
-            UIApplication.shared.open(URL, options: [:], completionHandler: {(isOpenSuccess) in
-                if isOpenSuccess {
-                    print("successed open \(URL)!")
-                } else {
-                    print("failed open \(URL)")
-                }
-            })
-        } else {
-            print("failed")
-        }
+        detailTextView.attributedText = attributedString
     }
 
 }

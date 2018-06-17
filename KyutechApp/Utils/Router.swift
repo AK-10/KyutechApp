@@ -11,12 +11,12 @@ import Alamofire
 
 enum Router: URLRequestConvertible {
     
-    static let baseURLString: String = "https://ec2-18-221-237-112.us-east-2.compute.amazonaws.com/api"
+    static let baseURLString: String = "https://kyutechapp2018.planningdev.com/api"
 //    static let baseURLString: String = "http://localhost:8000/api"
     
     case createUser(params: Parameters)
     case readUser(id: Int)
-    case updateUser(params: Parameters)
+    case updateUser(id: Int, params: Parameters)
     
     case readNewsHeadings()
     case readNews(id: Int)
@@ -37,7 +37,7 @@ enum Router: URLRequestConvertible {
         case .readUser:
             return .get
         case .updateUser:
-            return .post
+            return .put
         case .readNewsHeadings:
             return .get
         case .readNews:
@@ -63,25 +63,25 @@ enum Router: URLRequestConvertible {
         case .createUser:
             return "/users/"
         case .readUser(let id):
-            return "/users/\(id.description)"
-        case .updateUser:
-            return "/users/"
+            return "/users/\(id.description)/"
+        case .updateUser(let id, _):
+            return "/users/\(id.description)/"
         case .readNewsHeadings:
             return "/news-headings/"
         case .readNews(let id):
-            return "/news/code-\(id.description)"
+            return "/news/code-\(id.description)/"
         case .readSyllabusDetails(let id):
-            return "/syllabuses/\(id.description)"
+            return "/syllabuses/\(id.description)/"
         case .readSyllabusWith(let dayID, let periodID):
-            return "/syllabuses/day-\(dayID.description)/period-\(periodID.description)"
+            return "/syllabuses/day-\(dayID.description)/period-\(periodID.description)/"
         case .createSchedule:
             return "/user-schedules/"
         case .readSchedule(let id, let quarter):
-            return "/user-schedules/user-\(id.description)/quarter-\(quarter.description)"
+            return "/user-schedules/user-\(id.description)/quarter-\(quarter.description)/"
         case .updateSchedule(let id, _):
             return "/user-schedules/\(id.description)/"
         case .deleteSchedule(let id):
-            return "/user-schedules/\(id.description)"
+            return "/user-schedules/\(id.description)/"
         }
     }
     
@@ -95,7 +95,7 @@ enum Router: URLRequestConvertible {
         case .createUser(let params):
             urlRequest = try JSONEncoding.default.encode(urlRequest, with: params)
 
-        case .updateUser(let params):
+        case .updateUser(_, let params):
             urlRequest = try JSONEncoding.default.encode(urlRequest, with: params)
 
         case .createSchedule(let params):

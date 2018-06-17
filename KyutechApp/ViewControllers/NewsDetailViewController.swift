@@ -16,6 +16,10 @@ class NewsDetailViewController: UIViewController {
     var contents: [String] = []
     var urls: [String] = []
     
+    deinit {
+        print("\(self) deinited")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTable()
@@ -58,20 +62,17 @@ extension NewsDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UILabel()
-
+        
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.firstLineHeadIndent = 12
-        paragraphStyle.headIndent = 12
+        paragraphStyle.firstLineHeadIndent = 16
+        paragraphStyle.headIndent = 16
         let attributedString = NSAttributedString(string: sections[section], attributes: [.paragraphStyle: paragraphStyle])
         header.attributedText = attributedString
         
-        
-        header.backgroundColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
-        header.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        header.textColor = .white
-//        header.textColor = UIColor(displayP3Red: 48/255, green: 131/255, blue: 251/255, alpha: 1)
+        header.backgroundColor = UIColor.extendedInit(from: "#f1f1f1")!
+        header.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        header.textColor = .darkGray
         header.textAlignment = .left
-        
         return header
     }
     
@@ -82,12 +83,7 @@ extension NewsDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsDetailCell", for: indexPath) as! SimpleTableCell
         cell.setup(content: contents[indexPath.section], url: urls[indexPath.section])
-        if indexPath.item == indexPath.last {
-            cell.addBorder(sides: [.bottom], weight: 1, color: .gray)
-        }
-        if indexPath.item == indexPath.last {
-            cell.addBorder(sides: [.top], weight: 1, color: .gray)
-        }
+
         return cell
     }
     
@@ -97,12 +93,5 @@ extension NewsDetailViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             return indexPath
         }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! SimpleTableCell
-        print("tapped!")
-        cell.didTapped(urlString: urls[indexPath.section])
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
