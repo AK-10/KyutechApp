@@ -11,10 +11,12 @@ import UIKit
 class SettingViewController: UIViewController {
     
     @IBOutlet weak var settingCollection: UICollectionView!
+    let itemNames: [String] = ["ユーザー情報の変更", "P&Dについて", "このアプリについて", "要望フォーム", "九工大飯塚キャンパスホームページ", "九工大シラバス", "九工大moodle", "九工大ライブキャンパス"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollection()
+        setupNavigationBar()
         // Do any additional setup after loading the view.
     }
 
@@ -24,11 +26,15 @@ class SettingViewController: UIViewController {
     }
     
     func setupCollection() {
-        
         let nib = UINib(nibName: "SimpleCardCell", bundle: nil)
         settingCollection.register(nib, forCellWithReuseIdentifier: "SettingCell")
         settingCollection.delegate = self
         settingCollection.dataSource = self
+    }
+    
+    func setupNavigationBar() {
+        self.navigationController?.navigationBar.removeBottomBorder()
+        self.navigationController?.navigationBar.addShadowToBar(color: UIColor.extendedInit(from: "#00BCD9")!)
     }
     
 
@@ -36,13 +42,15 @@ class SettingViewController: UIViewController {
 
 extension SettingViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return itemNames.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SettingCell", for: indexPath) as! SimpleCardCell
-        
-        cell.setup(title: "テスト", date: "")
+        cell.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        cell.titleLabel.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 0.8).isActive = true
+        cell.titleLabel.updateConstraints()
+        cell.setup(title: itemNames[indexPath.item], date: "")
         
         return cell
     }
@@ -53,6 +61,14 @@ extension SettingViewController: UICollectionViewDelegateFlowLayout, UICollectio
         return CGSize(width: width, height: height)
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.item == 0 {
+            let storyBoard = UIStoryboard(name: "Update", bundle: nil)
+            let updateDialog =  storyBoard.instantiateInitialViewController() as! UpdateUserInfoViewController
+            present(updateDialog, animated: true, completion: nil)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }

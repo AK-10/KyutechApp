@@ -8,8 +8,8 @@
 
 import Foundation
 
-extension NSURLRequest {
-    static func allowsAnyHTTPSCertificateForHost(host: String) -> Bool {
-        return true
-    }
-}
+//extension NSURLRequest {
+//    static func allowsAnyHTTPSCertificateForHost(host: String) -> Bool {
+//        return true
+//    }
+//}

@@ -13,8 +13,8 @@ class RegisterViewController: UIViewController {
     
     typealias Parameters = [String:Any]
 
-    @IBOutlet weak var schoolYearTextField: MDCTextField!
-    @IBOutlet weak var departmentTextField: MDCTextField!
+    @IBOutlet weak var schoolYearTextField: PickeredTextField!
+    @IBOutlet weak var departmentTextField: PickeredTextField!
     @IBOutlet weak var registerButton: MDCButton!
     @IBOutlet weak var backgroundView: MaterialView!
     @IBOutlet weak var alartLabel: UILabel!
@@ -50,10 +50,6 @@ class RegisterViewController: UIViewController {
         schoolYearTextField.placeholder = "学年"
         departmentTextField.placeholder = "学科"
         
-        let schoolYearTextFieldController = MDCTextInputControllerUnderline(textInput: schoolYearTextField)
-        let departmentTextFieldController = MDCTextInputControllerUnderline(textInput: departmentTextField)
-        schoolYearTextFieldController.isFloatingEnabled = true
-        departmentTextFieldController.isFloatingEnabled = true
         
         let yearPickerView = UIPickerView()
         let departPickerView = UIPickerView()
@@ -76,7 +72,6 @@ class RegisterViewController: UIViewController {
         departmentTextField.inputView = departPickerView
         departmentTextField.inputAccessoryView = toolBar
         
-        schoolYearTextField.clearButton.addTarget(self, action: #selector(tappedClearButton(_:)), for: .touchUpInside)
     }
     
     func setupAlartLabel() {
@@ -181,7 +176,6 @@ extension RegisterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         } else {
         }
         resignFirstResponder()
-
     }
     
 }

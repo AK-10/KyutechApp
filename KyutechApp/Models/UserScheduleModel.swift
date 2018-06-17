@@ -100,10 +100,6 @@ class UserScheduleModel {
                     onSuccess(userSchedule)
                 } else {
                     onError()
-                    print("URL: \(res.request?.url)")
-                    print("method: \(res.request?.httpMethod)")
-                    print("header: \(res.request?.allHTTPHeaderFields)")
-                    print(String(bytes: res.data!, encoding: .utf8)!)
                 }
             }
         })

@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         let primaryKey = UserDefaults.standard.string(forKey: .primaryKey)
-        print("pk: \(primaryKey)")
+        print("pk: \(primaryKey ?? "x")")
         let storyboard: UIStoryboard = (primaryKey != nil) ? UIStoryboard(name: "Main", bundle: nil) : UIStoryboard(name: "Register", bundle: nil)
         let initialVC: UIViewController = storyboard.instantiateInitialViewController()!
         

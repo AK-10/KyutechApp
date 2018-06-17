@@ -189,7 +189,6 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CourseCard", for: indexPath) as! CourseCardCell
-        cell.addBorder(sides: [.left], weight: 4, color: .red)
         cell.setup(course: "", room: "", color: .white)
         for schedule in schedules {
             if schedule.indexFrom() == indexPath.item && quarter == schedule.quarter {

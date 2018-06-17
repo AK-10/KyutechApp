@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -14,22 +13,22 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Mys-zp-fZ0" customClass="SimpleCardCell" customModule="KyutechApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="276" height="69"/>
+            <rect key="frame" x="0.0" y="0.0" width="276" height="55"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                <rect key="frame" x="0.0" y="0.0" width="276" height="69"/>
+                <rect key="frame" x="0.0" y="0.0" width="276" height="55"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcJ-ot-rl4">
-                        <rect key="frame" x="16" y="25.5" width="162" height="19.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                        <rect key="frame" x="16" y="17.5" width="162" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4L-vD-ZN5">
-                        <rect key="frame" x="194" y="29.5" width="66" height="12"/>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
-                        <nil key="textColor"/>
+                        <rect key="frame" x="194" y="20.5" width="66" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -44,12 +43,12 @@
                 <constraint firstItem="i4L-vD-ZN5" firstAttribute="centerY" secondItem="Mys-zp-fZ0" secondAttribute="centerY" id="vBh-0o-1ZU"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="0gt-Dd-e5S"/>
-            <size key="customSize" width="276" height="69"/>
+            <size key="customSize" width="276" height="55"/>
             <connections>
                 <outlet property="dateLabel" destination="i4L-vD-ZN5" id="S1X-qy-yZt"/>
                 <outlet property="titleLabel" destination="QcJ-ot-rl4" id="DsN-1f-LIY"/>
             </connections>
-            <point key="canvasLocation" x="121" y="46.5"/>
+            <point key="canvasLocation" x="121" y="53.5"/>
         </collectionViewCell>
     </objects>
 </document>

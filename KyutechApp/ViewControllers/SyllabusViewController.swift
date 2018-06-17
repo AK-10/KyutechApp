@@ -19,6 +19,11 @@ class SyllabusViewController: UIViewController {
     @IBOutlet weak var lateLabel: UILabel!
     @IBOutlet weak var absentLabel: UILabel!
     
+    @IBOutlet weak var lateMinusButton: UIButton!
+    @IBOutlet weak var latePlusButton: UIButton!
+    @IBOutlet weak var absentMinusButton: UIButton!
+    @IBOutlet weak var absentPlusButton: UIButton!
+    
     var recievedSchedule: UserSchedule? = nil
     
     deinit {
@@ -27,20 +32,21 @@ class SyllabusViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.shared.statusBarStyle = .default
+        setupButtons()
         setupImageViews()
         setupNavigationBar()
         setupMemoView()
         setupTable()
         // Do any additional setup after loading the view.
     }
-
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -62,9 +68,30 @@ class SyllabusViewController: UIViewController {
         resignFirstResponder()
     }
     
+    func setupButtons() {
+        lateMinusButton.addTarget(self, action: #selector(editNumLabel(_:)), for: .touchUpInside)
+        latePlusButton.addTarget(self, action: #selector(editNumLabel(_:)), for: .touchUpInside)
+        absentMinusButton.addTarget(self, action: #selector(editNumLabel(_:)), for: .touchUpInside)
+        absentPlusButton.addTarget(self, action: #selector(editNumLabel(_:)), for: .touchUpInside)
+    }
+    
+    @objc func editNumLabel(_ sender: UIButton) {
+        let numOfLate = Int(lateLabel.text!)!
+        let numOfAbsent = Int(absentLabel.text!)!
+        if sender == lateMinusButton && numOfLate > 0 {
+            lateLabel.text = (numOfLate - 1).description
+        } else if sender == latePlusButton && numOfLate < 15 {
+            lateLabel.text = (numOfLate + 1).description
+        } else if sender == absentMinusButton && numOfAbsent > 0 {
+            absentLabel.text = (numOfAbsent - 1).description
+        } else if sender == absentPlusButton && numOfAbsent < 15 {
+            absentLabel.text = (numOfAbsent + 1).description
+        }
+    }
+    
     func setupImageViews() {
-        attendIconImageView.tintColor = .gray
-        memoIconImageView.tintColor = .gray
+        attendIconImageView.tintColor = .lightGray
+        memoIconImageView.tintColor = .lightGray
     }
     
     func setupTable() {
@@ -72,6 +99,8 @@ class SyllabusViewController: UIViewController {
         syllabusTable.dataSource = self
         let nib = UINib(nibName: "SimpleTableCell", bundle: nil)
         syllabusTable.register(nib, forCellReuseIdentifier: "Syllabus")
+        syllabusTable.estimatedRowHeight = 64
+        syllabusTable.rowHeight = UITableViewAutomaticDimension
     }
     
     func setupNavigationBar() {
@@ -119,20 +148,29 @@ class SyllabusViewController: UIViewController {
             self?.recievedSchedule = schedule
             activityIndicator.stopAnimating()
             activityIndicator.removeFromSuperview()
-            let message = MDCSnackbarMessage()
-            message.text = "更新しました"
-            MDCSnackbarManager.show(message)
-            }, onError: {
+            self?.memoView.text = self?.recievedSchedule?.memo
+            self?.absentLabel.text = self?.recievedSchedule?.absentNum?.description
+            self?.lateLabel.text = self?.recievedSchedule?.lateNum?.description
+            let snackMessage = MDCSnackbarMessage()
+            snackMessage.duration = 2
+            snackMessage.text = "更新しました"
+            MDCSnackbarManager.show(snackMessage)
+            }, onError: { [weak self] () in
                 activityIndicator.stopAnimating()
                 activityIndicator.removeFromSuperview()
-                let message = MDCSnackbarMessage()
-                message.text = "更新に失敗しました"
-                MDCSnackbarManager.show(message)
+                self?.memoView.text = self?.recievedSchedule?.memo
+                self?.absentLabel.text = self?.recievedSchedule?.absentNum?.description
+                self?.lateLabel.text = self?.recievedSchedule?.lateNum?.description
+                let snackMessage = MDCSnackbarMessage()
+                snackMessage.duration = 2
+                snackMessage.text = "更新に失敗しました"
+                MDCSnackbarManager.show(snackMessage)
         })
     }
     
     func setupMemoView() {
         memoView.delegate = self
+        memoView.tintColor = UIColor.extendedInit(from: "#00BCD9")!
         
         let keyboardToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
         keyboardToolBar.sizeToFit()
@@ -154,6 +192,7 @@ class SyllabusViewController: UIViewController {
     }
 
     @objc func tappedLeftButton(_ sender: Any) {
+        UIApplication.shared.statusBarStyle = .lightContent
         dismiss(animated: true, completion: nil)
     }
 
@@ -190,14 +229,14 @@ extension SyllabusViewController: UITableViewDelegate, UITableViewDataSource {
         let header = UILabel()
 
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.firstLineHeadIndent = 12
-        paragraphStyle.headIndent = 12
+        paragraphStyle.firstLineHeadIndent = 16
+        paragraphStyle.headIndent = 16
         let attributedString = NSAttributedString(string: sections[section], attributes: [.paragraphStyle: paragraphStyle])
         header.attributedText = attributedString
         
-        header.backgroundColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
-        header.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        header.textColor = .white
+        header.backgroundColor = UIColor.extendedInit(from: "#f1f1f1")!
+        header.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        header.textColor = .darkGray
         header.textAlignment = .left
         
         return header
