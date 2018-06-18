@@ -7,11 +7,19 @@
 //
 
 import UIKit
+import SafariServices
 
 class SettingViewController: UIViewController {
     
     @IBOutlet weak var settingCollection: UICollectionView!
-    let itemNames: [String] = ["ユーザー情報の変更", "P&Dについて", "このアプリについて", "要望フォーム", "九工大飯塚キャンパスホームページ", "九工大シラバス", "九工大moodle", "九工大ライブキャンパス"]
+    let items: [(String,String)] = [("ユーザー情報の変更",""),
+                                    ("このアプリについて", ""),
+                                    ("P&Dについて", "https://www.planningdev.com/"),
+                                    ("要望フォーム","https://google.com"),
+                                    ("九工大飯塚キャンパスホームページ", "https://www.iizuka.kyutech.ac.jp/"),
+                                    ("九工大シラバス","https://edragon-syllabus.jimu.kyutech.ac.jp/guest/syllabuses"),
+                                    ("九工大moodle","https://ict-i.el.kyutech.ac.jp/"),
+                                    ("九工大ライブキャンパス", "https://virginia.jimu.kyutech.ac.jp/portal/init.do?userDivision=2&locale=ja") ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +50,7 @@ class SettingViewController: UIViewController {
 
 extension SettingViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return itemNames.count
+        return items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -50,7 +58,7 @@ extension SettingViewController: UICollectionViewDelegateFlowLayout, UICollectio
         cell.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         cell.titleLabel.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 0.8).isActive = true
         cell.titleLabel.updateConstraints()
-        cell.setup(title: itemNames[indexPath.item], date: "")
+        cell.setup(title: items[indexPath.item].0, date: "")
         
         return cell
     }
@@ -66,6 +74,12 @@ extension SettingViewController: UICollectionViewDelegateFlowLayout, UICollectio
             let storyBoard = UIStoryboard(name: "Update", bundle: nil)
             let updateDialog =  storyBoard.instantiateInitialViewController() as! UpdateUserInfoViewController
             present(updateDialog, animated: true, completion: nil)
+        } else if indexPath.item == 1 {
+            
+        } else {
+            guard let url = URL(string: items[indexPath.item].1) else { return }
+            let safariView = SFSafariViewController(url:url)
+            present(safariView, animated: true, completion: nil)
         }
     }
     
