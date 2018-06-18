@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class SimpleTableCell: UITableViewCell {
 
@@ -40,10 +41,9 @@ class SimpleTableCell: UITableViewCell {
         let attributedString = NSMutableAttributedString(string: content, attributes: [.paragraphStyle:paragraphStyle, .font:UIFont.systemFont(ofSize: 16)])
         if url != "" && !(url.contains("mailto:")) {
             print(url)
-            detailTextView.textColor = .blue
+            detailTextView.textColor = UIColor.extendedInit(from: "#00BCD9")
             attributedString.addAttribute(.link, value: url, range: NSString(string: content).range(of: content))
         }
         detailTextView.attributedText = attributedString
     }
-
 }
