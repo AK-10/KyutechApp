@@ -15,7 +15,7 @@ class SettingViewController: UIViewController {
     let items: [(String,String)] = [("ユーザー情報の変更",""),
                                     ("このアプリについて", ""),
                                     ("P&Dについて", "https://www.planningdev.com/"),
-                                    ("要望フォーム","https://google.com"),
+                                    ("要望フォーム(準備中)",""),
                                     ("九工大飯塚キャンパスホームページ", "https://www.iizuka.kyutech.ac.jp/"),
                                     ("九工大シラバス","https://edragon-syllabus.jimu.kyutech.ac.jp/guest/syllabuses"),
                                     ("九工大moodle","https://ict-i.el.kyutech.ac.jp/"),
