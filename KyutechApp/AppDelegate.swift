@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backIndicatorImage = #imageLiteral(resourceName: "backArrowIos")
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white, .font: UIFont.systemFont(ofSize: 18, weight: .semibold)]
 
-        let manager = Alamofire.SessionManager.default
+//        let manager = Alamofire.SessionManager.default
         
 //        manager.delegate.sessionDidReceiveChallenge = { session, challenge in
 //            var disposition: URLSession.AuthChallengeDisposition = .performDefaultHandling
