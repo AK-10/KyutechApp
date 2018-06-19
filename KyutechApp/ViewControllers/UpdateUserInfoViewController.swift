@@ -101,7 +101,8 @@ class UpdateUserInfoViewController: UIViewController {
         print("year: \(year), depart: \(depart)")
         UserModel.updateUser(year: year, depart: depart, onSuccess: { [weak self]() in
             let snackBarMessage = MDCSnackbarMessage()
-            snackBarMessage.text = "更新しました. 学年: \(year + 1)年 学科: \(Department.from(hash: depart - 200).ja())" MDCSnackbarManager.setPresentationHostView(self?.presentingViewController?.view)
+            snackBarMessage.text = "更新しました. 学年: \(year + 1)年 学科: \(Department.from(hash: depart - 200).ja())"
+            MDCSnackbarManager.setPresentationHostView(self?.presentingViewController?.view)
             MDCSnackbarManager.show(snackBarMessage)
             self?.dismiss(animated: true, completion: nil)
             
