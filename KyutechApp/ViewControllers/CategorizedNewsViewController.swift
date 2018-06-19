@@ -90,7 +90,7 @@ extension CategorizedNewsViewController: UICollectionViewDelegateFlowLayout, UIC
                 self?.newsArray.append(contentsOf: fetchedNews)
                 self?.newsHeaderCollection.reloadData()
                 NewsModel.isLoading = false
-                }, onError: { [weak self] () in
+                }, onError: { () in
                     print("error")
                     NewsModel.isLoading = false
                     let snackBarMessage = MDCSnackbarMessage()
