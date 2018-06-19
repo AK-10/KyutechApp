@@ -73,7 +73,8 @@ extension SettingViewController: UICollectionViewDelegateFlowLayout, UICollectio
         if indexPath.item == 0 {
             let storyBoard = UIStoryboard(name: "Update", bundle: nil)
             let updateDialog =  storyBoard.instantiateInitialViewController() as! UpdateUserInfoViewController
-            present(updateDialog, animated: true, completion: nil)
+//            present(updateDialog, animated: true, completion: nil)
+            self.tabBarController?.present(updateDialog, animated: true, completion: nil)
         } else if indexPath.item == 1 {
             
         } else {
