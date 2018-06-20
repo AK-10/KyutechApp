@@ -154,6 +154,7 @@ class SyllabusViewController: UIViewController {
             let snackMessage = MDCSnackbarMessage()
             snackMessage.duration = 2
             snackMessage.text = "更新しました"
+            MDCSnackbarManager.setPresentationHostView(self?.view)
             MDCSnackbarManager.show(snackMessage)
             }, onError: { [weak self] () in
                 activityIndicator.stopAnimating()
@@ -164,6 +165,7 @@ class SyllabusViewController: UIViewController {
                 let snackMessage = MDCSnackbarMessage()
                 snackMessage.duration = 2
                 snackMessage.text = "更新に失敗しました"
+                MDCSnackbarManager.setPresentationHostView(self?.view)
                 MDCSnackbarManager.show(snackMessage)
         })
     }

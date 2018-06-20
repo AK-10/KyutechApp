@@ -138,6 +138,7 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
                     self?.dismiss(animated: true, completion: {
                         let message = MDCSnackbarMessage(text: "削除しました")
                         message.duration = 2
+                        MDCSnackbarManager.setPresentationHostView(self?.view)
                         MDCSnackbarManager.show(message)
                     })
                     let tabBarVC = self?.presentingViewController as! UITabBarController
