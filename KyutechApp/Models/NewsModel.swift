@@ -12,7 +12,6 @@ import Alamofire
 class NewsModel {
     
     static var isLoading = false
-    
     static var nextURL: String? = nil
     
     class func readNews(newsID: Int, onSuccess: @escaping ([News]) -> Void, onError: @escaping () -> Void) {
