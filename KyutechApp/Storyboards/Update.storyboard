@@ -20,37 +20,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wdm-A3-k4y">
-                                <rect key="frame" x="38" y="203" width="300" height="260"/>
+                                <rect key="frame" x="37.5" y="203" width="300" height="260"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="学年" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qce-fv-EhP" customClass="PickeredTextField" customModule="KyutechApp" customModuleProvider="target">
-                                        <rect key="frame" x="30" y="96" width="240" height="30"/>
+                                        <rect key="frame" x="30" y="93.5" width="240" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="学科" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aar-KK-1Po" customClass="PickeredTextField" customModule="KyutechApp" customModuleProvider="target">
-                                        <rect key="frame" x="30" y="149.5" width="240" height="30"/>
+                                        <rect key="frame" x="30" y="147" width="240" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Xz-Zj-SvD" customClass="MDCFlatButton">
-                                        <rect key="frame" x="239" y="203.5" width="31" height="30"/>
+                                        <rect key="frame" x="239" y="201" width="31" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="更新">
                                             <color key="titleColor" name="RobinEggBlue"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I71-fS-eeL" customClass="MDCFlatButton">
-                                        <rect key="frame" x="150" y="203.5" width="81" height="30"/>
+                                        <rect key="frame" x="150" y="201" width="81" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title=" キャンセル">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ユーザー情報の変更" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZY-Ey-7a2">
-                                        <rect key="frame" x="30" y="40" width="184" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <rect key="frame" x="30" y="40" width="165.5" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -58,10 +58,9 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="260" id="02a-Am-cKB"/>
-                                    <constraint firstItem="Qce-fv-EhP" firstAttribute="width" secondItem="Wdm-A3-k4y" secondAttribute="width" multiplier="0.8" id="0WO-ol-xU8"/>
+                                    <constraint firstItem="aar-KK-1Po" firstAttribute="width" secondItem="Wdm-A3-k4y" secondAttribute="width" multiplier="0.8" id="7dB-Zy-eaU"/>
                                     <constraint firstItem="aar-KK-1Po" firstAttribute="centerX" secondItem="Wdm-A3-k4y" secondAttribute="centerX" id="AQH-bh-QfJ"/>
                                     <constraint firstItem="VZY-Ey-7a2" firstAttribute="leading" secondItem="Qce-fv-EhP" secondAttribute="leading" id="AXa-Lf-aTs"/>
-                                    <constraint firstItem="aar-KK-1Po" firstAttribute="width" secondItem="Wdm-A3-k4y" secondAttribute="width" multiplier="0.8" id="NUe-QK-bwL"/>
                                     <constraint firstItem="Qce-fv-EhP" firstAttribute="centerX" secondItem="Wdm-A3-k4y" secondAttribute="centerX" id="RaE-fq-QMg"/>
                                     <constraint firstItem="I71-fS-eeL" firstAttribute="centerY" secondItem="2Xz-Zj-SvD" secondAttribute="centerY" id="WJx-BB-4Qq"/>
                                     <constraint firstItem="2Xz-Zj-SvD" firstAttribute="top" secondItem="aar-KK-1Po" secondAttribute="bottom" constant="24" id="YIk-dJ-ezu"/>
@@ -70,12 +69,13 @@
                                     <constraint firstItem="aar-KK-1Po" firstAttribute="top" secondItem="Qce-fv-EhP" secondAttribute="bottom" constant="24" id="jFd-Tu-9WM"/>
                                     <constraint firstItem="VZY-Ey-7a2" firstAttribute="top" secondItem="Wdm-A3-k4y" secondAttribute="top" constant="40" id="o3K-Mi-Q55"/>
                                     <constraint firstItem="Qce-fv-EhP" firstAttribute="top" secondItem="VZY-Ey-7a2" secondAttribute="bottom" constant="32" id="uaO-jM-icL"/>
+                                    <constraint firstItem="Qce-fv-EhP" firstAttribute="width" secondItem="Wdm-A3-k4y" secondAttribute="width" multiplier="0.8" id="xe9-dU-OBA"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="Wdm-A3-k4y" firstAttribute="width" secondItem="Kq2-xY-fS4" secondAttribute="width" multiplier="0.8" id="7EE-bC-aex"/>
                             <constraint firstItem="Wdm-A3-k4y" firstAttribute="centerX" secondItem="Kq2-xY-fS4" secondAttribute="centerX" id="7ey-WY-5bR"/>
-                            <constraint firstItem="Wdm-A3-k4y" firstAttribute="width" secondItem="Kq2-xY-fS4" secondAttribute="width" multiplier="0.8" id="Q5p-aA-74g"/>
                             <constraint firstItem="Wdm-A3-k4y" firstAttribute="centerY" secondItem="Kq2-xY-fS4" secondAttribute="centerY" id="XUG-VN-dPc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5HG-Zf-MoU"/>

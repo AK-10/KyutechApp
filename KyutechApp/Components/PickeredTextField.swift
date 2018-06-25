@@ -25,17 +25,17 @@ class PickeredTextField: UITextField {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        //        下線の追加
+        addBorder(side: .bottom, weight: 1, color: .lightGray)
+    }
 
     func commonInit() {
-//        NotificationCenter
-//        NotificationCenter.default.addObserver(self, selector: #selector(revertBorderColor), name: Notification.Name.UITextFieldTextDidEndEditing , object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(changeBorderColor(_:)), name: Notification.Name.UITextFieldTextDidBeginEditing, object: nil)
-//        self.tintColor = UIColor.extendedInit(from: "#00BCD9")!
 //        画像の色変更
         reverseTriangleView.tintColor = .lightGray
         self.borderStyle = .none
-//        下線の追加
-        addBorder(side: .bottom, weight: 1, color: .lightGray)
         
 //        逆三角形の追加
         self.addSubview(reverseTriangleView)
@@ -45,20 +45,6 @@ class PickeredTextField: UITextField {
         reverseTriangleView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6).isActive = true
         reverseTriangleView.widthAnchor.constraint(equalTo: reverseTriangleView.heightAnchor, multiplier: 1).isActive = true
     }
-    
-//    @objc func changeBorderColor(_ sender: Any) {
-//        guard let bottomBorder = getBottomBorder() else { return }
-//        DispatchQueue.main.async {
-//            bottomBorder.backgroundColor = UIColor.extendedInit(from: "#00BCD9")!.cgColor
-//        }
-//    }
-    
-//    @objc func revertBorderColor(_ sender: Any) {
-//        guard let bottomBorder = getBottomBorder() else { return }
-//        DispatchQueue.main.async {
-//            bottomBorder.backgroundColor = UIColor.lightGray.cgColor
-//        }
-//    }
     
     private func getBottomBorder() -> CALayer? {
         let bottomBorder = self.layer.sublayers?.filter{ $0.frame == CGRect(x: 0, y: self.frame.height - 1, width: self.frame.width, height: 1) }.first
