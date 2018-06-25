@@ -19,36 +19,40 @@
                 <rect key="frame" x="0.0" y="0.0" width="89" height="140"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="わわわわ" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rlo-e7-oS4">
-                        <rect key="frame" x="0.0" y="24" width="89" height="14.5"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EM5-so-3D3">
-                        <rect key="frame" x="9" y="116" width="71" height="0.0"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0j3-wS-UK1">
+                        <rect key="frame" x="4" y="8" width="81" height="124"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="わわわわ" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rlo-e7-oS4">
+                                <rect key="frame" x="0.0" y="0.0" width="81" height="74"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EM5-so-3D3">
+                                <rect key="frame" x="0.0" y="82" width="81" height="42"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Rlo-e7-oS4" firstAttribute="height" secondItem="0j3-wS-UK1" secondAttribute="height" multiplier="0.6" id="5bx-kg-kXx"/>
+                        </constraints>
+                    </stackView>
                 </subviews>
             </view>
             <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Rlo-e7-oS4" firstAttribute="top" secondItem="bh7-xP-yvf" secondAttribute="top" constant="24" id="EtG-ke-Aie"/>
-                <constraint firstItem="EM5-so-3D3" firstAttribute="centerX" secondItem="bh7-xP-yvf" secondAttribute="centerX" id="I6P-vM-tAw"/>
-                <constraint firstAttribute="bottom" secondItem="EM5-so-3D3" secondAttribute="bottom" constant="24" id="cJe-06-oI0"/>
-                <constraint firstItem="EM5-so-3D3" firstAttribute="width" secondItem="bh7-xP-yvf" secondAttribute="width" multiplier="0.8" id="d1H-gQ-X6Y"/>
-                <constraint firstItem="Rlo-e7-oS4" firstAttribute="leading" secondItem="bh7-xP-yvf" secondAttribute="leading" id="eug-yV-xzC"/>
-                <constraint firstAttribute="trailing" secondItem="Rlo-e7-oS4" secondAttribute="trailing" id="j9A-ZK-y5M"/>
+                <constraint firstItem="0j3-wS-UK1" firstAttribute="leading" secondItem="bh7-xP-yvf" secondAttribute="leading" constant="4" id="JLv-0P-gAp"/>
+                <constraint firstAttribute="trailing" secondItem="0j3-wS-UK1" secondAttribute="trailing" constant="4" id="Qbg-R3-j8Q"/>
+                <constraint firstItem="0j3-wS-UK1" firstAttribute="top" secondItem="bh7-xP-yvf" secondAttribute="top" constant="8" id="irj-k4-qmP"/>
+                <constraint firstAttribute="bottom" secondItem="0j3-wS-UK1" secondAttribute="bottom" constant="8" id="rCu-N8-Udw"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="hI3-Gb-0dY"/>
             <size key="customSize" width="89" height="140"/>
             <connections>
                 <outlet property="classNameLabel" destination="Rlo-e7-oS4" id="Flx-vs-Bzc"/>
-                <outlet property="classNameLabelTopConstraint" destination="EtG-ke-Aie" id="mHz-OI-dcW"/>
                 <outlet property="roomNumberLabel" destination="EM5-so-3D3" id="OP1-dI-ulf"/>
-                <outlet property="roomNumberLabelBottomConstraint" destination="cJe-06-oI0" id="yp9-6h-QAs"/>
             </connections>
             <point key="canvasLocation" x="-199" y="15"/>
         </collectionViewCell>

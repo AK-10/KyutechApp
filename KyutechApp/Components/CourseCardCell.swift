@@ -12,11 +12,13 @@ import MaterialComponents
 class CourseCardCell: MDCCardCollectionCell {
     @IBOutlet weak var classNameLabel: UILabel!
     @IBOutlet weak var roomNumberLabel: UILabel!
-    @IBOutlet weak var classNameLabelTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var roomNumberLabelBottomConstraint: NSLayoutConstraint!
+
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        classNameLabel.text = ""
+        roomNumberLabel.text = ""
+        roomNumberLabel.backgroundColor = .clear
     }
     
     func setup(course: String, room: String, color: UIColor) {
@@ -43,15 +45,16 @@ class CourseCardCell: MDCCardCollectionCell {
         paragraphStyle.alignment = .center
         let attributedString = NSAttributedString(string: room, attributes: [.paragraphStyle: paragraphStyle])
         roomNumberLabel.attributedText = attributedString
-
-        let clearDarkGray = UIColor.darkGray.withAlphaComponent(0.4)
-        roomNumberLabel.backgroundColor = clearDarkGray
+        if room != "" {
+            let clearDarkGray = UIColor.darkGray.withAlphaComponent(0.4)
+            roomNumberLabel.backgroundColor = clearDarkGray
+        }
         roomNumberLabel.layer.masksToBounds = true
         roomNumberLabel.layer.cornerRadius = roomNumberLabel.frame.width / 8
 
-        classNameLabelTopConstraint.constant = self.bounds.height / 7
+//        classNameLabelTopConstraint.constant = self.bounds.height / 7
         
-        roomNumberLabelBottomConstraint.constant = self.bounds.height / 10
+//        roomNumberLabelBottomConstraint.constant = self.bounds.height / 10
 
         backgroundColor = color
     }
