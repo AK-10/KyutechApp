@@ -43,6 +43,16 @@ struct Syllabus: Codable {
             }
         }
         
+        func getKind() -> String {
+            if ["必", "選必", "選"].contains(academicCreditKind) {
+                return academicCreditKind
+            } else if academicCreditKind == "査定外" {
+                return "査外"
+            } else {
+                return "他"
+            }
+        }
+        
         private func JSONencode() -> Data? {
             do {
                 let encoder = JSONEncoder()

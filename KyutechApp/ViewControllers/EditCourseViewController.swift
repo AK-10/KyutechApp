@@ -1,7 +1,7 @@
 //
 //  EditCourseViewController.swift
 //  KyutechApp
-//
+//  
 //  Created by Atsushi KONISHI on 2018/04/14.
 //  Copyright © 2018年 小西篤志. All rights reserved.
 //
@@ -25,7 +25,7 @@ class EditCourseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupDataSource()
+        getSyllabuses()
         setupCollection()
         setupDateLabel()
         
@@ -58,7 +58,7 @@ class EditCourseViewController: UIViewController {
         
     }
     
-    func setupDataSource() {
+    func getSyllabuses() {
         guard let day = selectedDay, let period = selectedPeriod, let quarter = selectedQuarter else { print("day & period is nil"); return }
         let activityIndicator = MDCActivityIndicator()
         courseCollection.addSubview(activityIndicator)
@@ -76,6 +76,8 @@ class EditCourseViewController: UIViewController {
             activityIndicator.removeFromSuperview()
             }, onError: { () in
                 print("Error: error")
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
         })
     }
     
@@ -86,6 +88,8 @@ class EditCourseViewController: UIViewController {
 }
 
 extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return (selectedSchedule != nil) ? syllabuses.count + 1 : syllabuses.count
@@ -113,9 +117,11 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
             let syllabus = syllabuses[row]
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CourseCell", for: indexPath) as! RoundHeadCollectionCell
             guard let depart = UserDefaults.standard.int(forKey: .department) else { return cell }
-            let color: UIColor = syllabus.targetParticipantsInfos.filter{ $0.targetParticipants.contains(Department(rawValue: depart-200)!.ja()) }.first?.getColorByCreditKind() ?? .gray
+            let participant: Syllabus.TargetParticipantsInfo? = syllabus.targetParticipantsInfos.filter{ $0.targetParticipants.contains(Department(rawValue: depart-200)!.ja()) }.first
             cell.setSubLabelNumberOfLine(3)
-            cell.setup(roundLabelText: String(syllabus.title.first!) , color: color, title: syllabus.title, date: syllabus.teacherName)
+            let color = participant?.getColorByCreditKind() ?? .gray
+            let roundText = participant?.getKind() ?? "他"
+            cell.setup(roundLabelText: roundText, color: color, title: syllabus.title, date: syllabus.teacherName)
             return cell
         }
     }

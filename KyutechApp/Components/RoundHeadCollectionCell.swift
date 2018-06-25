@@ -24,6 +24,7 @@ class RoundHeadCollectionCell: MDCCardCollectionCell {
         
         self.roundLabel.text = roundLabelText
         self.roundLabel.backgroundColor = color
+        self.roundLabel.adjustsFontSizeToFitWidth = true
         self.newsTypeLabel.text = title
         self.dateLabel.text = date
         self.cornerRadius = 0

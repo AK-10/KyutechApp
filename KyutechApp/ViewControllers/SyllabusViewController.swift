@@ -34,6 +34,7 @@ class SyllabusViewController: UIViewController {
         super.viewDidLoad()
         UIApplication.shared.statusBarStyle = .default
         setupButtons()
+        setupLabels()
         setupImageViews()
         setupNavigationBar()
         setupMemoView()
@@ -73,6 +74,13 @@ class SyllabusViewController: UIViewController {
         latePlusButton.addTarget(self, action: #selector(editNumLabel(_:)), for: .touchUpInside)
         absentMinusButton.addTarget(self, action: #selector(editNumLabel(_:)), for: .touchUpInside)
         absentPlusButton.addTarget(self, action: #selector(editNumLabel(_:)), for: .touchUpInside)
+    }
+    func setupLabels() {
+        guard let schedule = recievedSchedule else { return }
+        
+        self.absentLabel.text = schedule.absentNum?.description
+        self.lateLabel.text = schedule.lateNum?.description
+        
     }
     
     @objc func editNumLabel(_ sender: UIButton) {
@@ -203,13 +211,11 @@ class SyllabusViewController: UIViewController {
 extension SyllabusViewController: UITextViewDelegate {
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        textView.layer.borderColor = UIColor.extendedInit(from: "#00BCD9")?.cgColor
 
         return true
     }
     
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-        textView.layer.borderColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
 
         return true
     }
