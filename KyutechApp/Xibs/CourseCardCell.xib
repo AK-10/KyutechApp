@@ -23,20 +23,20 @@
                         <rect key="frame" x="4" y="8" width="81" height="124"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="わわわわ" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rlo-e7-oS4">
-                                <rect key="frame" x="0.0" y="0.0" width="81" height="74"/>
+                                <rect key="frame" x="0.0" y="0.0" width="81" height="69.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EM5-so-3D3">
-                                <rect key="frame" x="0.0" y="82" width="81" height="42"/>
+                                <rect key="frame" x="0.0" y="77.5" width="81" height="46.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Rlo-e7-oS4" firstAttribute="height" secondItem="0j3-wS-UK1" secondAttribute="height" multiplier="0.6" id="5bx-kg-kXx"/>
+                            <constraint firstItem="Rlo-e7-oS4" firstAttribute="height" secondItem="0j3-wS-UK1" secondAttribute="height" multiplier="0.56" id="5bx-kg-kXx"/>
                         </constraints>
                     </stackView>
                 </subviews>

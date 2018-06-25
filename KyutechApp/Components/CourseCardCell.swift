@@ -33,7 +33,7 @@ class CourseCardCell: MDCCardCollectionCell {
         classNameLabel.minimumScaleFactor = 0.8
         classNameLabel.lineBreakMode = .byTruncatingTail
         roomNumberLabel.adjustsFontSizeToFitWidth = true
-        roomNumberLabel.minimumScaleFactor = 0.4
+        roomNumberLabel.minimumScaleFactor = 0.3
         
         classNameLabel.text = course
 //        roomNumberLabel.text = room
