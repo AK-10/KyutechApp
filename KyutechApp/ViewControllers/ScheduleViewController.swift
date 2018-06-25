@@ -35,7 +35,6 @@ class ScheduleViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getUserSchedule()
-
     }
     
     override func viewWillLayoutSubviews() {

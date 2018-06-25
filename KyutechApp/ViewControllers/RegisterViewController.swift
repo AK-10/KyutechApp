@@ -86,12 +86,30 @@ class RegisterViewController: UIViewController {
     
     @objc func tappedRegisterButton(_ sender: Any) {
         if let schoolYear = selectedYear, let department = selectedDepartment {
+            let activityIndicator = MDCActivityIndicator()
+            self.view.addSubview(activityIndicator)
+            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+            activityIndicator.cycleColors = [.blue, .red, .yellow, .green]
+            activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+            activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+            self.view.bringSubview(toFront: activityIndicator)
+            activityIndicator.startAnimating()
             UserModel.createUser(year: schoolYear, depart: department, onSuccess: {[weak self] () in
+                
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyBoard.instantiateInitialViewController()
                 self?.modalTransitionStyle = .crossDissolve
                 self?.present(vc!, animated: true, completion: nil)
-                }, onError: { () in
+                }, onError: { [weak self] () in
+                    activityIndicator.stopAnimating()
+                    activityIndicator.removeFromSuperview()
+                    let snackMessage = MDCSnackbarMessage()
+                    snackMessage.duration = 2
+                    snackMessage.text = "登録に失敗しました. 通信状況を確認してください."
+                    MDCSnackbarManager.setPresentationHostView(self?.view)
+                    MDCSnackbarManager.show(snackMessage)
                     print("cannot register")
             })
         } else {
