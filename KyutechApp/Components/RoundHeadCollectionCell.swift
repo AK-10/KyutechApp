@@ -23,8 +23,8 @@ class RoundHeadCollectionCell: MDCCardCollectionCell {
         dateLabel.minimumScaleFactor = 0.8
         
         self.roundLabel.text = roundLabelText
+        self.roundLabel.font = (roundLabelText.count == 1) ? UIFont.systemFont(ofSize: 18, weight: .semibold) : UIFont.systemFont(ofSize: 15, weight: .semibold)
         self.roundLabel.backgroundColor = color
-        self.roundLabel.adjustsFontSizeToFitWidth = true
         self.newsTypeLabel.text = title
         self.dateLabel.text = date
         self.cornerRadius = 0

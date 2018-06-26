@@ -81,7 +81,7 @@ extension SettingViewController: UICollectionViewDelegateFlowLayout, UICollectio
             guard let url = URL(string: items[indexPath.item].1) else { return }
             let safariView = SFSafariViewController(url:url)
 //            safariView.delegate = self
-            safariView.preferredBarTintColor = UIColor.extendedInit(from: "#00BCD9")!.withAlphaComponent(0.1)
+            safariView.preferredBarTintColor = UIColor.extendedInit(from: "#00BCD9")!.withAlphaComponent(0.01)
             safariView.preferredControlTintColor = .white
             present(safariView, animated: true, completion: nil)
         }
