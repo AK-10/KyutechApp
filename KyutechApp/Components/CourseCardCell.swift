@@ -33,18 +33,18 @@ class CourseCardCell: MDCCardCollectionCell {
         classNameLabel.minimumScaleFactor = 0.8
         classNameLabel.lineBreakMode = .byTruncatingTail
         roomNumberLabel.adjustsFontSizeToFitWidth = true
-        roomNumberLabel.minimumScaleFactor = 0.3
-        
+        roomNumberLabel.minimumScaleFactor = 0.5
+        roomNumberLabel.lineBreakMode = .byTruncatingTail
         classNameLabel.text = course
-//        roomNumberLabel.text = room
+        roomNumberLabel.text = room
         
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.firstLineHeadIndent = 4
-        paragraphStyle.headIndent = 4
-        paragraphStyle.tailIndent = -4
-        paragraphStyle.alignment = .center
-        let attributedString = NSAttributedString(string: room, attributes: [.paragraphStyle: paragraphStyle])
-        roomNumberLabel.attributedText = attributedString
+//        let paragraphStyle = NSMutableParagraphStyle()
+//        paragraphStyle.firstLineHeadIndent = 4
+//        paragraphStyle.headIndent = 4
+//        paragraphStyle.tailIndent = -4
+//        paragraphStyle.alignment = .center
+//        let attributedString = NSAttributedString(string: room, attributes: [.paragraphStyle: paragraphStyle])
+//        roomNumberLabel.attributedText = attributedString
         if room != "" {
             let clearDarkGray = UIColor.darkGray.withAlphaComponent(0.4)
             roomNumberLabel.backgroundColor = clearDarkGray

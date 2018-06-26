@@ -14,10 +14,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="MwP-n4-UKS" customClass="RoundHeadCollectionCell" customModule="KyutechApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="461" height="64"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                <rect key="frame" x="0.0" y="0.0" width="461" height="64"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ぬ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jC6-oB-mhW">
@@ -30,38 +30,42 @@
                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ぬぬぬぬ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIA-KC-BXw">
-                        <rect key="frame" x="59" y="21.5" width="258" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018/02/13 02:23" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8I-MP-f9i">
-                        <rect key="frame" x="325" y="25.5" width="120" height="13.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p15-VN-QBg">
+                        <rect key="frame" x="59" y="21.5" width="245" height="20.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ぬぬぬぬ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIA-KC-BXw">
+                                <rect key="frame" x="0.0" y="0.0" width="152" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018/02/13 02:23" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8I-MP-f9i">
+                                <rect key="frame" x="152" y="0.0" width="93" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="aIA-KC-BXw" firstAttribute="width" secondItem="p15-VN-QBg" secondAttribute="width" multiplier="0.62" id="9FY-ft-6CR"/>
+                        </constraints>
+                    </stackView>
                 </subviews>
             </view>
             <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="jC6-oB-mhW" firstAttribute="centerY" secondItem="MwP-n4-UKS" secondAttribute="centerY" id="2Mo-MQ-FSY"/>
-                <constraint firstItem="E8I-MP-f9i" firstAttribute="centerY" secondItem="MwP-n4-UKS" secondAttribute="centerY" id="DSI-Qm-zQU"/>
-                <constraint firstItem="aIA-KC-BXw" firstAttribute="centerY" secondItem="MwP-n4-UKS" secondAttribute="centerY" id="JGd-ra-De1"/>
+                <constraint firstAttribute="trailing" secondItem="p15-VN-QBg" secondAttribute="trailing" constant="16" id="M7I-zF-Agl"/>
+                <constraint firstItem="p15-VN-QBg" firstAttribute="centerY" secondItem="MwP-n4-UKS" secondAttribute="centerY" id="Onp-7k-QIq"/>
                 <constraint firstItem="jC6-oB-mhW" firstAttribute="leading" secondItem="MwP-n4-UKS" secondAttribute="leading" constant="16" id="QGk-dC-VP8"/>
                 <constraint firstItem="jC6-oB-mhW" firstAttribute="height" secondItem="MwP-n4-UKS" secondAttribute="height" multiplier="0.55" id="Svx-0V-a92"/>
-                <constraint firstItem="E8I-MP-f9i" firstAttribute="leading" secondItem="aIA-KC-BXw" secondAttribute="trailing" constant="8" id="qjQ-Fk-WUT"/>
-                <constraint firstAttribute="trailing" secondItem="E8I-MP-f9i" secondAttribute="trailing" constant="16" id="sl8-SY-YG4"/>
-                <constraint firstItem="aIA-KC-BXw" firstAttribute="width" secondItem="MwP-n4-UKS" secondAttribute="width" multiplier="0.56" id="snz-BP-Lvn"/>
-                <constraint firstItem="aIA-KC-BXw" firstAttribute="leading" secondItem="jC6-oB-mhW" secondAttribute="trailing" constant="8" id="tb8-pu-oQL"/>
+                <constraint firstItem="p15-VN-QBg" firstAttribute="leading" secondItem="jC6-oB-mhW" secondAttribute="trailing" constant="8" id="c6A-kq-FPM"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="jAL-5y-E1b"/>
             <size key="customSize" width="461" height="62"/>
             <connections>
                 <outlet property="dateLabel" destination="E8I-MP-f9i" id="KGY-7V-eD9"/>
                 <outlet property="newsTypeLabel" destination="aIA-KC-BXw" id="nMs-qr-a2b"/>
-                <outlet property="newsTypeLabelLayoutConstraint" destination="snz-BP-Lvn" id="JKu-37-AGE"/>
                 <outlet property="roundLabel" destination="jC6-oB-mhW" id="2bM-cr-MlO"/>
             </connections>
             <point key="canvasLocation" x="127.5" y="11"/>

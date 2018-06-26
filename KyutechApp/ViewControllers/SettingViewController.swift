@@ -15,7 +15,7 @@ class SettingViewController: UIViewController {
     let items: [(String,String)] = [("ユーザー情報の変更",""),
                                     ("このアプリについて", ""),
                                     ("P&Dについて", "https://www.planningdev.com/"),
-                                    ("要望フォーム(準備中)",""),
+                                    ("要望フォーム","https://docs.google.com/forms/d/e/1FAIpQLSeBqDZ8OTsuOjFnniTIxSrNq6phAZ22dt95bCC1w-lV6VPZ9Q/viewform"),
                                     ("九工大飯塚キャンパスホームページ", "https://www.iizuka.kyutech.ac.jp/"),
                                     ("九工大シラバス","https://edragon-syllabus.jimu.kyutech.ac.jp/guest/syllabuses"),
                                     ("九工大moodle","https://ict-i.el.kyutech.ac.jp/"),
@@ -80,6 +80,9 @@ extension SettingViewController: UICollectionViewDelegateFlowLayout, UICollectio
         } else {
             guard let url = URL(string: items[indexPath.item].1) else { return }
             let safariView = SFSafariViewController(url:url)
+//            safariView.delegate = self
+            safariView.preferredBarTintColor = UIColor.extendedInit(from: "#00BCD9")!.withAlphaComponent(0.1)
+            safariView.preferredControlTintColor = .white
             present(safariView, animated: true, completion: nil)
         }
     }
