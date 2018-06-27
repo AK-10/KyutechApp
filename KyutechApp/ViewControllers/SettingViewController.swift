@@ -80,9 +80,8 @@ extension SettingViewController: UICollectionViewDelegateFlowLayout, UICollectio
         } else {
             guard let url = URL(string: items[indexPath.item].1) else { return }
             let safariView = SFSafariViewController(url:url)
-//            safariView.delegate = self
-            safariView.preferredBarTintColor = UIColor.extendedInit(from: "#00BCD9")!.withAlphaComponent(0.01)
-            safariView.preferredControlTintColor = .white
+            safariView.delegate = self
+            UIApplication.shared.statusBarStyle = .default
             present(safariView, animated: true, completion: nil)
         }
     }
@@ -90,4 +89,11 @@ extension SettingViewController: UICollectionViewDelegateFlowLayout, UICollectio
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
+}
+
+extension SettingViewController: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
 }
