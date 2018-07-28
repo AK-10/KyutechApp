@@ -22,10 +22,10 @@ class RegisterViewController: UIViewController {
     var selectedYear: Int? = nil
     var selectedDepartment: Int? = nil
     
-    let years: [Int] = [SchoolYearKey.one.rawValue, SchoolYearKey.two.rawValue, SchoolYearKey.three.rawValue, SchoolYearKey.four.rawValue]
+    let years: [Int] = Const.years
     
 //    ウンコード
-    let departments = [Department.classI_I, Department.classI_II, Department.classII_III, Department.classIII_IV, Department.classIII_V, Department.ai, Department.aiIncorp, Department.cse, Department.cseIncorp, Department.mse, Department.mseIncorp, Department.bio, Department.bioIncorp, Department.sys, Department.sysIncorp]
+    let departments = Const.departments
     
     deinit {
         print("\(self) was deinited")

@@ -13,11 +13,11 @@ class MaterialView: UIView {
     override class var layerClass: AnyClass {
         return MDCShadowLayer.self
     }
-    
+
     var shadowLayer: MDCShadowLayer {
         return self.layer as! MDCShadowLayer
     }
-    
+
     func setElevation() {
         self.shadowLayer.elevation = .cardPickedUp
     }

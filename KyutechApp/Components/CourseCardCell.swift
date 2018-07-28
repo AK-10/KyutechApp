@@ -38,23 +38,12 @@ class CourseCardCell: MDCCardCollectionCell {
         classNameLabel.text = course
         roomNumberLabel.text = room
         
-//        let paragraphStyle = NSMutableParagraphStyle()
-//        paragraphStyle.firstLineHeadIndent = 4
-//        paragraphStyle.headIndent = 4
-//        paragraphStyle.tailIndent = -4
-//        paragraphStyle.alignment = .center
-//        let attributedString = NSAttributedString(string: room, attributes: [.paragraphStyle: paragraphStyle])
-//        roomNumberLabel.attributedText = attributedString
         if room != "" {
             let clearDarkGray = UIColor.darkGray.withAlphaComponent(0.4)
             roomNumberLabel.backgroundColor = clearDarkGray
         }
         roomNumberLabel.layer.masksToBounds = true
         roomNumberLabel.layer.cornerRadius = roomNumberLabel.frame.width / 8
-
-//        classNameLabelTopConstraint.constant = self.bounds.height / 7
-        
-//        roomNumberLabelBottomConstraint.constant = self.bounds.height / 10
 
         backgroundColor = color
     }
