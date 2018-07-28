@@ -34,6 +34,12 @@
 		1146312720D54E77001E02D8 /* Update.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1146312620D54E77001E02D8 /* Update.storyboard */; };
 		1146312920D6A1B0001E02D8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1146312820D6A1B0001E02D8 /* User.swift */; };
 		11545B14210D21C700815542 /* NewsDetailViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11545B13210D21C700815542 /* NewsDetailViewController+TableView.swift */; };
+		11545B16210D231D00815542 /* RegisterViewController+PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11545B15210D231D00815542 /* RegisterViewController+PickerView.swift */; };
+		11545B18210D256400815542 /* ScheduleViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11545B17210D256400815542 /* ScheduleViewController+CollectionView.swift */; };
+		11545B1A210D25F800815542 /* SyllabusViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11545B19210D25F800815542 /* SyllabusViewController+TableView.swift */; };
+		11545B1C210D26A600815542 /* UpdateUserInfoViewController+PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11545B1B210D26A600815542 /* UpdateUserInfoViewController+PickerView.swift */; };
+		11545B1E210D270800815542 /* EditCourseViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11545B1D210D270800815542 /* EditCourseViewController+CollectionView.swift */; };
+		11545B20210D274700815542 /* CategorizedNewsViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11545B1F210D274700815542 /* CategorizedNewsViewController+CollectionView.swift */; };
 		1155CB4D209059A5004BBAFA /* MaterialTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1155CB4C209059A5004BBAFA /* MaterialTextView.xib */; };
 		1155CB532090AF89004BBAFA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1155CB522090AF89004BBAFA /* RegisterViewController.swift */; };
 		1155CB552090B574004BBAFA /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1155CB542090B574004BBAFA /* MaterialView.swift */; };
@@ -109,6 +115,12 @@
 		1146312620D54E77001E02D8 /* Update.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Update.storyboard; sourceTree = "<group>"; };
 		1146312820D6A1B0001E02D8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		11545B13210D21C700815542 /* NewsDetailViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsDetailViewController+TableView.swift"; sourceTree = "<group>"; };
+		11545B15210D231D00815542 /* RegisterViewController+PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegisterViewController+PickerView.swift"; sourceTree = "<group>"; };
+		11545B17210D256400815542 /* ScheduleViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleViewController+CollectionView.swift"; sourceTree = "<group>"; };
+		11545B19210D25F800815542 /* SyllabusViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyllabusViewController+TableView.swift"; sourceTree = "<group>"; };
+		11545B1B210D26A600815542 /* UpdateUserInfoViewController+PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdateUserInfoViewController+PickerView.swift"; sourceTree = "<group>"; };
+		11545B1D210D270800815542 /* EditCourseViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditCourseViewController+CollectionView.swift"; sourceTree = "<group>"; };
+		11545B1F210D274700815542 /* CategorizedNewsViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategorizedNewsViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		1155CB4C209059A5004BBAFA /* MaterialTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaterialTextView.xib; sourceTree = "<group>"; };
 		1155CB522090AF89004BBAFA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		1155CB542090B574004BBAFA /* MaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
@@ -234,18 +246,16 @@
 		111F4D1D207B5FE7007E7270 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				110BEC8A207C603000F8B276 /* ScheduleViewController.swift */,
-				1188420320835653009D7F04 /* SyllabusViewController.swift */,
-				1146312420D54C78001E02D8 /* UpdateUserInfoViewController.swift */,
-				1155CB5A209999BA004BBAFA /* SettingViewController.swift */,
-				1137A67220D0DAE800444A29 /* BusScheduleViewController.swift */,
-				115BB6BC2081D99D00A8572F /* EditCourseViewController.swift */,
-				110BBB9E209E3F1000935A23 /* CategorizedNewsViewController.swift */,
-				110BBBA4209E698300935A23 /* NewsDetailViewController.swift */,
-				11545B13210D21C700815542 /* NewsDetailViewController+TableView.swift */,
-				1155CB522090AF89004BBAFA /* RegisterViewController.swift */,
-				115BB6B6207E280E00A8572F /* PullDownMenuViewController.swift */,
-				110BEC94207CC1F200F8B276 /* NewsViewController.swift */,
+				11545B21210D277000815542 /* ScheduleViewController */,
+				11545B23210D27A600815542 /* SyllabusViewController */,
+				11545B24210D27B500815542 /* UpdateUserInfoViewController */,
+				11545B25210D27CD00815542 /* SettingViewController */,
+				11545B26210D27D900815542 /* BusScheduleViewController */,
+				11545B27210D27F100815542 /* EditCourseViewController */,
+				11545B28210D280400815542 /* CategorizedNewsViewController */,
+				11545B29210D282100815542 /* NewsDetailViewController */,
+				11545B2A210D283300815542 /* RegisterViewController */,
+				11545B2B210D286200815542 /* NewsViewController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -260,6 +270,94 @@
 				1146312620D54E77001E02D8 /* Update.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		11545B21210D277000815542 /* ScheduleViewController */ = {
+			isa = PBXGroup;
+			children = (
+				115BB6B6207E280E00A8572F /* PullDownMenuViewController.swift */,
+				110BEC8A207C603000F8B276 /* ScheduleViewController.swift */,
+				11545B17210D256400815542 /* ScheduleViewController+CollectionView.swift */,
+			);
+			path = ScheduleViewController;
+			sourceTree = "<group>";
+		};
+		11545B23210D27A600815542 /* SyllabusViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1188420320835653009D7F04 /* SyllabusViewController.swift */,
+				11545B19210D25F800815542 /* SyllabusViewController+TableView.swift */,
+			);
+			path = SyllabusViewController;
+			sourceTree = "<group>";
+		};
+		11545B24210D27B500815542 /* UpdateUserInfoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1146312420D54C78001E02D8 /* UpdateUserInfoViewController.swift */,
+				11545B1B210D26A600815542 /* UpdateUserInfoViewController+PickerView.swift */,
+			);
+			path = UpdateUserInfoViewController;
+			sourceTree = "<group>";
+		};
+		11545B25210D27CD00815542 /* SettingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1155CB5A209999BA004BBAFA /* SettingViewController.swift */,
+			);
+			path = SettingViewController;
+			sourceTree = "<group>";
+		};
+		11545B26210D27D900815542 /* BusScheduleViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1137A67220D0DAE800444A29 /* BusScheduleViewController.swift */,
+			);
+			path = BusScheduleViewController;
+			sourceTree = "<group>";
+		};
+		11545B27210D27F100815542 /* EditCourseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				115BB6BC2081D99D00A8572F /* EditCourseViewController.swift */,
+				11545B1D210D270800815542 /* EditCourseViewController+CollectionView.swift */,
+			);
+			path = EditCourseViewController;
+			sourceTree = "<group>";
+		};
+		11545B28210D280400815542 /* CategorizedNewsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				110BBB9E209E3F1000935A23 /* CategorizedNewsViewController.swift */,
+				11545B1F210D274700815542 /* CategorizedNewsViewController+CollectionView.swift */,
+			);
+			path = CategorizedNewsViewController;
+			sourceTree = "<group>";
+		};
+		11545B29210D282100815542 /* NewsDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				110BBBA4209E698300935A23 /* NewsDetailViewController.swift */,
+				11545B13210D21C700815542 /* NewsDetailViewController+TableView.swift */,
+			);
+			path = NewsDetailViewController;
+			sourceTree = "<group>";
+		};
+		11545B2A210D283300815542 /* RegisterViewController */ = {
+			isa = PBXGroup;
+			children = (
+				11545B15210D231D00815542 /* RegisterViewController+PickerView.swift */,
+				1155CB522090AF89004BBAFA /* RegisterViewController.swift */,
+			);
+			path = RegisterViewController;
+			sourceTree = "<group>";
+		};
+		11545B2B210D286200815542 /* NewsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				110BEC94207CC1F200F8B276 /* NewsViewController.swift */,
+			);
+			path = NewsViewController;
 			sourceTree = "<group>";
 		};
 		1188420920847DE6009D7F04 /* Extensions */ = {
@@ -583,7 +681,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11545B20210D274700815542 /* CategorizedNewsViewController+CollectionView.swift in Sources */,
 				110BBBA5209E698300935A23 /* NewsDetailViewController.swift in Sources */,
+				11545B16210D231D00815542 /* RegisterViewController+PickerView.swift in Sources */,
 				1119ABDA20B2A34B003E84FB /* Syllabus.swift in Sources */,
 				110BBB9B209CE43600935A23 /* NewsHeadingModel.swift in Sources */,
 				110BBBA3209E4B7000935A23 /* NewsModel.swift in Sources */,
@@ -596,6 +696,7 @@
 				110BBB99209CE18800935A23 /* NewsHeading.swift in Sources */,
 				11E3066820C6274C001B4D14 /* UINavigationBarExtension.swift in Sources */,
 				1155CB5B209999BA004BBAFA /* SettingViewController.swift in Sources */,
+				11545B1A210D25F800815542 /* SyllabusViewController+TableView.swift in Sources */,
 				110BBBA1209E466600935A23 /* News.swift in Sources */,
 				115BB6B7207E280E00A8572F /* PullDownMenuViewController.swift in Sources */,
 				1119ABDC20B2B26F003E84FB /* SyllabusModel.swift in Sources */,
@@ -610,15 +711,18 @@
 				1146312920D6A1B0001E02D8 /* User.swift in Sources */,
 				110BBB96209CD9A600935A23 /* Router.swift in Sources */,
 				1137A67320D0DAE800444A29 /* BusScheduleViewController.swift in Sources */,
+				11545B18210D256400815542 /* ScheduleViewController+CollectionView.swift in Sources */,
 				112283C120AB28E900C298A5 /* UserModel.swift in Sources */,
 				1188420420835653009D7F04 /* SyllabusViewController.swift in Sources */,
 				110BEC95207CC1F200F8B276 /* NewsViewController.swift in Sources */,
 				119FF55820737141006EDC6C /* AppDelegate.swift in Sources */,
 				1155CB532090AF89004BBAFA /* RegisterViewController.swift in Sources */,
 				11C786F420BD0F64008B1810 /* UserSchedule.swift in Sources */,
+				11545B1E210D270800815542 /* EditCourseViewController+CollectionView.swift in Sources */,
 				1119ABD620AFE947003E84FB /* UserDefaultsManager.swift in Sources */,
 				110BBB9F209E3F1000935A23 /* CategorizedNewsViewController.swift in Sources */,
 				1188420B20847DFA009D7F04 /* UIViewExtension.swift in Sources */,
+				11545B1C210D26A600815542 /* UpdateUserInfoViewController+PickerView.swift in Sources */,
 				115BB6BD2081D99D00A8572F /* EditCourseViewController.swift in Sources */,
 				1119ABDE20B3FFD6003E84FB /* Week.swift in Sources */,
 			);

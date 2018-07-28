@@ -45,8 +45,8 @@ class RegisterViewController: UIViewController {
     }
     
     func setupTextFields() {
-        schoolYearTextField.delegate = self
-        departmentTextField.delegate = self
+//        schoolYearTextField.delegate = self
+//        departmentTextField.delegate = self
         schoolYearTextField.placeholder = "学年"
         departmentTextField.placeholder = "学科"
         
@@ -138,62 +138,7 @@ class RegisterViewController: UIViewController {
             departmentTextField.resignFirstResponder()
         } else { return }
     }
-
 }
 
-extension RegisterViewController: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        textField.placeholder = ""
-        textField.inputView?.reloadInputViews()
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.text == "" {
-            if textField == schoolYearTextField {
-                textField.placeholder = "学年"
-            } else if textField == departmentTextField {
-                textField.placeholder = "学科"
-            }
-        }
-    }
-}
 
-extension RegisterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView.tag == 1200 {
-            return years.count
-        } else if  pickerView.tag == 1300 {
-            return departments.count
-        } else {
-            return 0
-        }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView.tag == 1200 {
-            return (years[row] + 1).description
-        } else if pickerView.tag == 1300 {
-            return departments[row].ja()
-        } else {
-            return nil
-        }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView.tag == 1200 {
-            selectedYear = years[row]
-            schoolYearTextField.text = (years[row] + 1).description
-        } else if pickerView.tag == 1300 {
-            selectedDepartment = departments[row].value()
-            departmentTextField.text = departments[row].ja()
-        } else {
-        }
-        resignFirstResponder()
-    }
-    
-}
+
