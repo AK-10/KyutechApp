@@ -41,24 +41,7 @@ class SyllabusViewController: UIViewController {
         setupTable()
         // Do any additional setup after loading the view.
     }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
 
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -179,7 +162,6 @@ class SyllabusViewController: UIViewController {
     }
     
     func setupMemoView() {
-        memoView.delegate = self
         memoView.tintColor = UIColor.extendedInit(from: "#00BCD9")!
         
         let keyboardToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
@@ -208,58 +190,3 @@ class SyllabusViewController: UIViewController {
 
 }
 
-extension SyllabusViewController: UITextViewDelegate {
-    
-    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-
-        return true
-    }
-    
-    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-
-        return true
-    }
-    
-}
-
-extension SyllabusViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return Syllabus.keys.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 28
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let sections = Syllabus.keys
-        let header = UILabel()
-
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.firstLineHeadIndent = 16
-        paragraphStyle.headIndent = 16
-        let attributedString = NSAttributedString(string: sections[section], attributes: [.paragraphStyle: paragraphStyle])
-        header.attributedText = attributedString
-        
-        header.backgroundColor = UIColor.extendedInit(from: "#f1f1f1")!
-        header.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        header.textColor = .darkGray
-        header.textAlignment = .left
-        
-        return header
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let syllabus = recievedSchedule?.syllabus else { return 0 }
-        return syllabus.values(key: Syllabus.keys[section]).count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Syllabus") as! SimpleTableCell
-        guard let syllabus = recievedSchedule?.syllabus else { return cell }
-        cell.setup(content: syllabus.values(key: Syllabus.keys[indexPath.section])[indexPath.item], url: "")
-        return cell
-    }
-    
-}

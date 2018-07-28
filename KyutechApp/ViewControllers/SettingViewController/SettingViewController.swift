@@ -12,15 +12,6 @@ import SafariServices
 class SettingViewController: UIViewController {
     
     @IBOutlet weak var settingCollection: UICollectionView!
-//    let items: [(String,String)] = [("ユーザー情報の変更",""),
-//                                    ("このアプリについて", ""),
-//                                    ("P&Dについて", "https://www.planningdev.com/"),
-//                                    ("要望フォーム","https://docs.google.com/forms/d/e/1FAIpQLSeBqDZ8OTsuOjFnniTIxSrNq6phAZ22dt95bCC1w-lV6VPZ9Q/viewform"),
-//                                    ("九工大飯塚キャンパスホームページ", "https://www.iizuka.kyutech.ac.jp/"),
-//                                    ("九工大シラバス","https://edragon-syllabus.jimu.kyutech.ac.jp/guest/syllabuses"),
-//                                    ("九工大moodle","https://ict-i.el.kyutech.ac.jp/"),
-//                                    ("九工大ライブキャンパス", "https://virginia.jimu.kyutech.ac.jp/portal/init.do?userDivision=2&locale=ja") ]
-    
     let items: [(String,String)] = [("ユーザー情報の変更",""),
                                     ("P&Dについて", "https://www.planningdev.com/"),
                                     ("要望フォーム","https://docs.google.com/forms/d/e/1FAIpQLSeBqDZ8OTsuOjFnniTIxSrNq6phAZ22dt95bCC1w-lV6VPZ9Q/viewform"),
