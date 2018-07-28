@@ -166,10 +166,13 @@ class ScheduleViewController: UIViewController {
             }
             activityIndicator.stopAnimating()
             activityIndicator.removeFromSuperview()
+            
+            print(self?.schedules.map{ return $0.quarter })
             }, onError: { () in
                 activityIndicator.stopAnimating()
                 activityIndicator.removeFromSuperview()
         })
+        
     }
 }
 
