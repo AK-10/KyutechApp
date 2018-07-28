@@ -11,8 +11,8 @@ import Alamofire
 
 enum Router: URLRequestConvertible {
     
-    static let baseURLString: String = "https://kyutechapp2018.planningdev.com/api"
-//    static let baseURLString: String = "http://localhost:8000/api"
+    static let baseURLString: String = Const.serverURL
+
     
     case createUser(params: Parameters)
     case readUser(id: Int)

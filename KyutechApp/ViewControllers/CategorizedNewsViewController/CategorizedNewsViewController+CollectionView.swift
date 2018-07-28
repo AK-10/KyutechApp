@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import MaterialComponents.MDCSnackbarMessage
+import MaterialComponents.MDCSnackbarManager
 
 extension CategorizedNewsViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     

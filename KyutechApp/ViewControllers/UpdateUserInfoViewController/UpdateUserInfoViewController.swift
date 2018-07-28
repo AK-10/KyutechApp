@@ -22,9 +22,9 @@ class UpdateUserInfoViewController: UIViewController {
     var selectedYear: Int? = UserDefaults.standard.int(forKey: .schoolYear)
     var selectedDepart: Int? = UserDefaults.standard.int(forKey: .department)
     
-    let years: [Int] = [SchoolYearKey.one.rawValue, SchoolYearKey.two.rawValue, SchoolYearKey.three.rawValue, SchoolYearKey.four.rawValue]
+    let years: [Int] = Const.years
 
-    let departments = [Department.classI_I, Department.classI_II, Department.classII_III, Department.classIII_IV, Department.classIII_V, Department.ai, Department.aiIncorp, Department.cse, Department.cseIncorp, Department.mse, Department.mseIncorp, Department.bio, Department.bioIncorp, Department.sys, Department.sysIncorp]
+    let departments = Const.departments
     
     override func viewDidLoad() {
         super.viewDidLoad()

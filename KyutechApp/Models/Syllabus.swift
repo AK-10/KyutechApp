@@ -11,7 +11,7 @@ import UIKit.UIColor
 
 struct Syllabus: Codable {
     
-    static let keys = ["授業名", "科目コード", "担当教員", "学科別情報", "対象学年", "クラス", "曜日・時限", "講義室", "開講学期", "更新日", "概要", "カリキュラムにおける授業の立ち位置", "授業項目", "授業の進め方", "授業の達成目標", "成績評価の基準および評価方法", "授業外学習（予習・復習）の指示", "キーワード", "教科書", "参考書", "備考", "メールアドレス"]
+//    static let keys = Const.syllabusItemHeaders
     let id: Int
     let title: String
     let subjectCode: Int
@@ -118,11 +118,6 @@ struct Syllabus: Codable {
         case professorEmail = "professor_email"
         
     }
-//
-//    func encode(to encoder: Encoder) {
-//        var container = encoder.container(keyedBy: TargetParticipantsInfo.CodingKeys.self)
-//
-//    }
     
     private func JSONencode() -> Data? {
         do {

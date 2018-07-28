@@ -40,6 +40,7 @@
 		11545B1C210D26A600815542 /* UpdateUserInfoViewController+PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11545B1B210D26A600815542 /* UpdateUserInfoViewController+PickerView.swift */; };
 		11545B1E210D270800815542 /* EditCourseViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11545B1D210D270800815542 /* EditCourseViewController+CollectionView.swift */; };
 		11545B20210D274700815542 /* CategorizedNewsViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11545B1F210D274700815542 /* CategorizedNewsViewController+CollectionView.swift */; };
+		11545B2D210D29C200815542 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11545B2C210D29C200815542 /* Const.swift */; };
 		1155CB4D209059A5004BBAFA /* MaterialTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1155CB4C209059A5004BBAFA /* MaterialTextView.xib */; };
 		1155CB532090AF89004BBAFA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1155CB522090AF89004BBAFA /* RegisterViewController.swift */; };
 		1155CB552090B574004BBAFA /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1155CB542090B574004BBAFA /* MaterialView.swift */; };
@@ -60,7 +61,6 @@
 		119FF56220737143006EDC6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 119FF56020737143006EDC6C /* LaunchScreen.storyboard */; };
 		119FF56D20737143006EDC6C /* KyutechAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119FF56C20737143006EDC6C /* KyutechAppTests.swift */; };
 		119FF57820737143006EDC6C /* KyutechAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119FF57720737143006EDC6C /* KyutechAppUITests.swift */; };
-		11C786F220B834EF008B1810 /* NSURLRequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C786F120B834EF008B1810 /* NSURLRequestExtension.swift */; };
 		11C786F420BD0F64008B1810 /* UserSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C786F320BD0F64008B1810 /* UserSchedule.swift */; };
 		11C786F620BD130D008B1810 /* UserScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C786F520BD130D008B1810 /* UserScheduleModel.swift */; };
 		11E3066820C6274C001B4D14 /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E3066720C6274C001B4D14 /* UINavigationBarExtension.swift */; };
@@ -121,6 +121,7 @@
 		11545B1B210D26A600815542 /* UpdateUserInfoViewController+PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdateUserInfoViewController+PickerView.swift"; sourceTree = "<group>"; };
 		11545B1D210D270800815542 /* EditCourseViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditCourseViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		11545B1F210D274700815542 /* CategorizedNewsViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategorizedNewsViewController+CollectionView.swift"; sourceTree = "<group>"; };
+		11545B2C210D29C200815542 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		1155CB4C209059A5004BBAFA /* MaterialTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaterialTextView.xib; sourceTree = "<group>"; };
 		1155CB522090AF89004BBAFA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		1155CB542090B574004BBAFA /* MaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
@@ -147,7 +148,6 @@
 		119FF57320737143006EDC6C /* KyutechAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KyutechAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		119FF57720737143006EDC6C /* KyutechAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KyutechAppUITests.swift; sourceTree = "<group>"; };
 		119FF57920737143006EDC6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		11C786F120B834EF008B1810 /* NSURLRequestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSURLRequestExtension.swift; sourceTree = "<group>"; };
 		11C786F320BD0F64008B1810 /* UserSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSchedule.swift; sourceTree = "<group>"; };
 		11C786F520BD130D008B1810 /* UserScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserScheduleModel.swift; sourceTree = "<group>"; };
 		11E3066720C6274C001B4D14 /* UINavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtension.swift; sourceTree = "<group>"; };
@@ -209,6 +209,7 @@
 				110BBB95209CD9A600935A23 /* Router.swift */,
 				1119ABD720B06F0C003E84FB /* UserInfomationEnum.swift */,
 				1119ABDD20B3FFD6003E84FB /* Week.swift */,
+				11545B2C210D29C200815542 /* Const.swift */,
 				1119ABD520AFE947003E84FB /* UserDefaultsManager.swift */,
 			);
 			path = Utils;
@@ -366,7 +367,6 @@
 				1188420A20847DFA009D7F04 /* UIViewExtension.swift */,
 				110BBB9C209CF49000935A23 /* UIColorExtension.swift */,
 				11E3066720C6274C001B4D14 /* UINavigationBarExtension.swift */,
-				11C786F120B834EF008B1810 /* NSURLRequestExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -703,7 +703,7 @@
 				11C786F620BD130D008B1810 /* UserScheduleModel.swift in Sources */,
 				110BEC8B207C603000F8B276 /* ScheduleViewController.swift in Sources */,
 				110BBB9D209CF49000935A23 /* UIColorExtension.swift in Sources */,
-				11C786F220B834EF008B1810 /* NSURLRequestExtension.swift in Sources */,
+				11545B2D210D29C200815542 /* Const.swift in Sources */,
 				1155CB552090B574004BBAFA /* MaterialView.swift in Sources */,
 				1119ABD820B06F0C003E84FB /* UserInfomationEnum.swift in Sources */,
 				1102A51C207B6460007D6406 /* CourseCardCell.swift in Sources */,

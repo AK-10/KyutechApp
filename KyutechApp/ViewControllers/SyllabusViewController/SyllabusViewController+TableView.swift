@@ -14,7 +14,7 @@ import UIKit
 extension SyllabusViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Syllabus.keys.count
+        return Const.syllabusItemHeaders.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -22,7 +22,7 @@ extension SyllabusViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let sections = Syllabus.keys
+        let sections = Const.syllabusItemHeaders
         let header = UILabel()
         
         let paragraphStyle = NSMutableParagraphStyle()
@@ -41,13 +41,13 @@ extension SyllabusViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let syllabus = recievedSchedule?.syllabus else { return 0 }
-        return syllabus.values(key: Syllabus.keys[section]).count
+        return syllabus.values(key: Const.syllabusItemHeaders[section]).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Syllabus") as! SimpleTableCell
         guard let syllabus = recievedSchedule?.syllabus else { return cell }
-        cell.setup(content: syllabus.values(key: Syllabus.keys[indexPath.section])[indexPath.item], url: "")
+        cell.setup(content: syllabus.values(key: Const.syllabusItemHeaders[indexPath.section])[indexPath.item], url: "")
         return cell
     }
     

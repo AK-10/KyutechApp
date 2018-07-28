@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MaterialComponents.MDCAlertController
 
 extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     

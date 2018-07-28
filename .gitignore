@@ -17,5 +17,9 @@ xcuserdata
 profile
 *.moved-aside
 
-#CocoaPod
+# CocoaPod
 Pods/*
+
+# SecretDatas
+KyutechApp/Utils/Const.swift
+
