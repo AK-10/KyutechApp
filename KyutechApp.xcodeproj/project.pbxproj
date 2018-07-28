@@ -33,6 +33,7 @@
 		1146312520D54C78001E02D8 /* UpdateUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1146312420D54C78001E02D8 /* UpdateUserInfoViewController.swift */; };
 		1146312720D54E77001E02D8 /* Update.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1146312620D54E77001E02D8 /* Update.storyboard */; };
 		1146312920D6A1B0001E02D8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1146312820D6A1B0001E02D8 /* User.swift */; };
+		11545B14210D21C700815542 /* NewsDetailViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11545B13210D21C700815542 /* NewsDetailViewController+TableView.swift */; };
 		1155CB4D209059A5004BBAFA /* MaterialTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1155CB4C209059A5004BBAFA /* MaterialTextView.xib */; };
 		1155CB532090AF89004BBAFA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1155CB522090AF89004BBAFA /* RegisterViewController.swift */; };
 		1155CB552090B574004BBAFA /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1155CB542090B574004BBAFA /* MaterialView.swift */; };
@@ -107,6 +108,7 @@
 		1146312420D54C78001E02D8 /* UpdateUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoViewController.swift; sourceTree = "<group>"; };
 		1146312620D54E77001E02D8 /* Update.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Update.storyboard; sourceTree = "<group>"; };
 		1146312820D6A1B0001E02D8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		11545B13210D21C700815542 /* NewsDetailViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsDetailViewController+TableView.swift"; sourceTree = "<group>"; };
 		1155CB4C209059A5004BBAFA /* MaterialTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaterialTextView.xib; sourceTree = "<group>"; };
 		1155CB522090AF89004BBAFA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		1155CB542090B574004BBAFA /* MaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				115BB6BC2081D99D00A8572F /* EditCourseViewController.swift */,
 				110BBB9E209E3F1000935A23 /* CategorizedNewsViewController.swift */,
 				110BBBA4209E698300935A23 /* NewsDetailViewController.swift */,
+				11545B13210D21C700815542 /* NewsDetailViewController+TableView.swift */,
 				1155CB522090AF89004BBAFA /* RegisterViewController.swift */,
 				115BB6B6207E280E00A8572F /* PullDownMenuViewController.swift */,
 				110BEC94207CC1F200F8B276 /* NewsViewController.swift */,
@@ -586,6 +589,7 @@
 				110BBBA3209E4B7000935A23 /* NewsModel.swift in Sources */,
 				119345F420CCC16E00EFF515 /* PlaceHolderedTextView.swift in Sources */,
 				1146312320D53486001E02D8 /* PickeredTextField.swift in Sources */,
+				11545B14210D21C700815542 /* NewsDetailViewController+TableView.swift in Sources */,
 				1196A44520A4B5E600D7C971 /* SimpleTableCell.swift in Sources */,
 				1155CB592099991B004BBAFA /* SimpleCardCell.swift in Sources */,
 				110BEC93207C9CA500F8B276 /* RoundHeadCollectionCell.swift in Sources */,
