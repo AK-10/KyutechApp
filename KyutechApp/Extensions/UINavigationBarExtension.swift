@@ -26,7 +26,5 @@ extension UINavigationBar {
         shadowView.addShadow()
         shadowView.backgroundColor = color
         self.sendSubview(toBack: shadowView)
-
-        
     }
 }

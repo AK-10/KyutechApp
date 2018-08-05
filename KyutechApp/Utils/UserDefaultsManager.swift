@@ -6,7 +6,6 @@
 //  Copyright © 2018年 小西篤志. All rights reserved.
 //
 
-
 // UserDefaultsのkeyを .~ の形で使えるようにするためのもの
 import Foundation
 
@@ -58,5 +57,6 @@ extension UserDefaults: StringDefaultSettable {
         case primaryKey
         case schoolYear
         case department
+        case quarter
     }
 }

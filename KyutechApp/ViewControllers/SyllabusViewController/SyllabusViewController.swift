@@ -95,6 +95,7 @@ class SyllabusViewController: UIViewController {
     }
     
     func setupNavigationBar() {
+        navbar.delegate = self
         guard let navigationItem = navbar.topItem else { return }
         guard let courseTitle = recievedSchedule?.syllabus.title else { return }
         let titleLabel = UILabel()
@@ -187,6 +188,11 @@ class SyllabusViewController: UIViewController {
         UIApplication.shared.statusBarStyle = .lightContent
         dismiss(animated: true, completion: nil)
     }
+}
 
+extension SyllabusViewController: UINavigationBarDelegate {
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
+    }
 }
 

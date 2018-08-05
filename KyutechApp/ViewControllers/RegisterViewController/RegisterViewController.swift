@@ -24,7 +24,6 @@ class RegisterViewController: UIViewController {
     
     let years: [Int] = Const.years
     
-//    ウンコード
     let departments = Const.departments
     
     deinit {
