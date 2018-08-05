@@ -66,7 +66,7 @@ class ScheduleViewController: UIViewController {
         navbar.delegate = self
         let navigationItem = UINavigationItem()
         let q = ((quarter ?? 0) + 1).description
-        titleView = TitleLabelWithTriangle(title: "第\(q)クウォーター")
+        titleView = TitleLabelWithTriangle(title: "第\(q)クォーター")
         self.titleView.delegate = self
 //        titleView.titleLabel.
         let editButton = UIBarButtonItem(image: #imageLiteral(resourceName: "editIcon"), style: .plain, target: self, action: #selector(tappedRightBarButton(_:)))

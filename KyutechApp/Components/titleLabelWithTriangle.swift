@@ -62,7 +62,7 @@ class TitleLabelWithTriangle: UIView {
     
     func rotateTriangle() {
         triangleStatus *= -1
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.1, animations: {
             self.triangleView.transform = self.triangleStatus < 0 ? CGAffineTransform(rotationAngle: CGFloat.pi) : CGAffineTransform(rotationAngle: 0)
         })
     }
