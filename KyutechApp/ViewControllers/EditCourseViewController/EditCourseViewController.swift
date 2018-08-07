@@ -59,7 +59,7 @@ class EditCourseViewController: UIViewController {
     }
     
     func getSyllabuses() {
-        guard let day = selectedDay, let period = selectedPeriod, let quarter = selectedQuarter else { print("day & period is nil"); return }
+        guard let day = selectedDay, let period = selectedPeriod, let quarter = selectedQuarter else { print("day & period, quarter is nil"); return }
         let activityIndicator = MDCActivityIndicator()
         courseCollection.addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false

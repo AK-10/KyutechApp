@@ -10,7 +10,7 @@ import UIKit
 
 class PickeredTextField: UITextField {
     
-    private var reverseTriangleView: UIImageView = UIImageView(image: #imageLiteral(resourceName: "reverseTriangle"))
+    private var reverseTriangleView: UIImageView! = UIImageView(image: #imageLiteral(resourceName: "textFieldTriangle"))
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,7 +42,7 @@ class PickeredTextField: UITextField {
         reverseTriangleView.translatesAutoresizingMaskIntoConstraints = false
         reverseTriangleView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5).isActive = true
         reverseTriangleView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        reverseTriangleView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6).isActive = true
+        reverseTriangleView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
         reverseTriangleView.widthAnchor.constraint(equalTo: reverseTriangleView.heightAnchor, multiplier: 1).isActive = true
     }
     

@@ -14,7 +14,7 @@ protocol PullDownMenuViewDelegate: class {
 
 class PullDownMenuViewController: UIViewController {
 
-    @IBOutlet weak var fistButton: UIButton!
+    @IBOutlet weak var firstButton: UIButton!
     @IBOutlet weak var secondButton: UIButton!
     @IBOutlet weak var thirdButton: UIButton!
     @IBOutlet weak var fourthButton: UIButton!
@@ -24,16 +24,9 @@ class PullDownMenuViewController: UIViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        setupButtons()
         view.addShadow()
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,6 +40,12 @@ class PullDownMenuViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func setupButtons() {
+        firstButton.tag = 0
+        secondButton.tag = 1
+        thirdButton.tag = 2
+        fourthButton.tag = 3
+    }
 
 
 }

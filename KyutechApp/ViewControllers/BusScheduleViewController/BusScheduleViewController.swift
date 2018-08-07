@@ -25,6 +25,7 @@ class BusScheduleViewController: UIViewController {
     }
     
     func setupScrollView() {
+        navbar.delegate = self
         self.view.addSubview(scrollview)
         self.view.sendSubview(toBack: scrollview)
         let pictureWidth = UIScreen.main.bounds.width
@@ -50,5 +51,11 @@ class BusScheduleViewController: UIViewController {
     func setupNavigationBar() {
         navbar.removeBottomBorder()
         navbar.addShadow()
+    }
+}
+
+extension BusScheduleViewController: UINavigationBarDelegate {
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
     }
 }

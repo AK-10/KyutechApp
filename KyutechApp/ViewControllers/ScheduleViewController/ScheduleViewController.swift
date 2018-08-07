@@ -15,14 +15,10 @@ class ScheduleViewController: UIViewController {
     weak var quarterSelectController: PullDownMenuViewController!
     @IBOutlet weak var pullDownMenuControllConstraint: NSLayoutConstraint!
     @IBOutlet weak var navbar: UINavigationBar!
-    @IBOutlet weak var dummyStatusBar: UIView!
+    var titleView: TitleLabelWithTriangle!
     var schedules: [UserSchedule] = []
     
-    var quarter: Int? {
-        guard let barTitleLabel = navbar.topItem?.titleView as? UILabel else { return nil }
-        guard let numChar = barTitleLabel.text?.first  else { return nil }
-        return (Int(String(numChar)) != nil) ? Int(String(numChar))! - 1 : nil
-    }
+    var quarter: Int? = UserDefaults.standard.int(forKey: .quarter)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +31,6 @@ class ScheduleViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getUserSchedule()
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -75,21 +63,18 @@ class ScheduleViewController: UIViewController {
     }
     
     func setupNavigationBar() {
+        navbar.delegate = self
         let navigationItem = UINavigationItem()
-        let titleLabel = UILabel()
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(animatePullDownMenu(tapped:)))
-        titleLabel.text = "1st Quarter ▼"
-        titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        titleLabel.sizeToFit()
-        titleLabel.textColor = .white
-        titleLabel.addGestureRecognizer(tapGesture)
-        titleLabel.isUserInteractionEnabled = true
-        
+        let q = ((quarter ?? 0) + 1).description
+        titleView = TitleLabelWithTriangle(title: "第\(q)クォーター")
+        self.titleView.delegate = self
+//        titleView.titleLabel.
         let editButton = UIBarButtonItem(image: #imageLiteral(resourceName: "editIcon"), style: .plain, target: self, action: #selector(tappedRightBarButton(_:)))
         editButton.tintColor = .white
         editButton.title = "edit"
         navigationItem.rightBarButtonItem = editButton
-        navigationItem.titleView = titleLabel
+        navigationItem.titleView = titleView
+        navigationItem.titleView?.sizeToFit()
 
         navbar.setItems([navigationItem], animated: true)
         navbar.removeBottomBorder()
@@ -102,7 +87,6 @@ class ScheduleViewController: UIViewController {
             rightBarButton.title = "edit"
             rightBarButton.image = #imageLiteral(resourceName: "editIcon")
             //change navigationColor
-            self.dummyStatusBar.backgroundColor = UIColor.extendedInit(from: "#00BCD9")!
             self.navbar.barTintColor = UIColor.extendedInit(from: "#00BCD9")!
             self.quarterSelectController.view.backgroundColor = UIColor.extendedInit(from: "#00BCD9")!
         } else {
@@ -110,29 +94,25 @@ class ScheduleViewController: UIViewController {
             rightBarButton.title = "done"
             rightBarButton.image = #imageLiteral(resourceName: "doneIcon")
             // changeNavigationColor
-            self.dummyStatusBar.backgroundColor = .orange
             self.navbar.barTintColor = .orange
             self.quarterSelectController.view.backgroundColor = .orange
         }
     }
 
     @objc func animatePullDownMenu(tapped by: Any) {
-        let titleLabel = navbar.topItem?.titleView as! UILabel
-        titleLabel.text?.removeLast()
+        titleView.rotateTriangle()
         if pullDownMenuControllConstraint.constant == 0 {
             if let button = by as? UIButton {
-                titleLabel.text = (button.titleLabel?.text)! + " ▼"
+                titleView.titleLabel.text = (button.titleLabel?.text)!
+//                前回開いた時と同じquaterにするための処理(保存)
+                UserDefaults.standard.set(button.tag, forKey: .quarter)
+                quarter = button.tag
                 getUserSchedule()
-            } else {
-                titleLabel.text = titleLabel.text! + "▼"
             }
             pullDownMenuControllConstraint.constant = -160
         } else {
             pullDownMenuControllConstraint.constant = 0
-            titleLabel.text = titleLabel.text! + "▲"
         }
-        
-        titleLabel.sizeToFit()
         UIView.animate(withDuration: 0.2, animations: {
             self.view.layoutIfNeeded()
         })
@@ -149,8 +129,7 @@ class ScheduleViewController: UIViewController {
     }
     
     func getUserSchedule() {
-        guard let quarter = quarter, let userId = UserDefaults.standard.int(forKey: .primaryKey) else { return }
-
+        guard let userId = UserDefaults.standard.int(forKey: .primaryKey) else { return }
         let activityIndicator = MDCActivityIndicator()
         scheduleCollection.addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -159,29 +138,38 @@ class ScheduleViewController: UIViewController {
         activityIndicator.centerYAnchor.constraint(equalTo: scheduleCollection.centerYAnchor).isActive = true
         scheduleCollection.bringSubview(toFront: activityIndicator)
         activityIndicator.startAnimating()
-        UserScheduleModel.getSchedule(userId: userId, quarter: quarter, onSuccess: { [weak self] (resSchedules) in
+        UserScheduleModel.getSchedule(userId: userId, quarter: quarter ?? 0, onSuccess: { [weak self] (resSchedules) in
             self?.schedules = resSchedules
             DispatchQueue.main.async {
                 self?.scheduleCollection.reloadData()
             }
             activityIndicator.stopAnimating()
             activityIndicator.removeFromSuperview()
-            
-//            print(self?.schedules.map{ return $0.quarter })
             }, onError: { () in
                 activityIndicator.stopAnimating()
                 activityIndicator.removeFromSuperview()
         })
-        
     }
 }
 
-
-extension ScheduleViewController: PullDownMenuViewDelegate {
+extension ScheduleViewController: PullDownMenuViewDelegate, TitleLabelWithtriangleDelegate {
     func setupButtons(_ pullDownMenuView: PullDownMenuViewController) {
-        pullDownMenuView.fistButton.addTarget(self, action: #selector(animatePullDownMenu(tapped:)), for: .touchUpInside)
+        pullDownMenuView.firstButton.addTarget(self, action: #selector(animatePullDownMenu(tapped:)), for: .touchUpInside)
         pullDownMenuView.secondButton.addTarget(self, action: #selector(animatePullDownMenu(tapped:)), for: .touchUpInside)
         pullDownMenuView.thirdButton.addTarget(self, action: #selector(animatePullDownMenu(tapped:)), for: .touchUpInside)
         pullDownMenuView.fourthButton.addTarget(self, action: #selector(animatePullDownMenu(tapped:)), for: .touchUpInside)
+    }
+    
+    func setTapLabelAction(_ label: TitleLabelWithTriangle) {
+        print("aaa")
+        label.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(animatePullDownMenu(tapped:)))
+        label.addGestureRecognizer(tapGesture)
+    }
+}
+
+extension ScheduleViewController:  UINavigationBarDelegate {
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
     }
 }
