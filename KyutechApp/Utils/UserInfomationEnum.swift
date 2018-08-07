@@ -31,6 +31,9 @@ enum Department: Int {
     case bioIncorp
     case sys
     case sysIncorp
+//    case advancedInfomatics
+//    case interdisciplinaryInformatics
+//    case creativeInformatics
     
     static func from(hash: Int) -> Department {
         switch hash {
@@ -64,6 +67,12 @@ enum Department: Int {
             return .sys
         case 14:
             return .sysIncorp
+//        case 15:
+//            return .advancedInfomatics
+//        case 16:
+//            return .interdisciplinaryInformatics
+//        case 17:
+//            return .creativeInformatics
         default:
             return Department.init(rawValue: -1)!
         }
@@ -105,6 +114,12 @@ enum Department: Int {
             return "生命情報工学科"
         case .bioIncorp:
             return "生命情報工学科（編入）"
+//        case .advancedInfomatics:
+//            return "先端情報工学専攻"
+//        case .interdisciplinaryInformatics:
+//            return "学際情報工学専攻"
+//        case .creativeInformatics:
+//            return "情報創生工学専攻"
         }
     }
 }

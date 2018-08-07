@@ -42,6 +42,7 @@ class UserModel {
     class func updateUser(year: Int, depart: Int, onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
         let params: Parameters = ["school_year": year,
                                   "department": depart ]
+        print(depart)
         guard let id = UserDefaults.standard.int(forKey: .primaryKey) else { return }
         Alamofire.request(Router.updateUser(id: id, params: params)).responseJSON(completionHandler: { res in
             if let err = res.error {
