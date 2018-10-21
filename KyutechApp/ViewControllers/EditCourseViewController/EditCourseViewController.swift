@@ -55,7 +55,6 @@ class EditCourseViewController: UIViewController {
     func setupDateLabel() {
         guard let day = selectedDay, let period = selectedPeriod else { return }
         dateLabel.text = "\(day.ja()) \(period+1)限"
-        
     }
     
     func getSyllabuses() {
@@ -67,7 +66,8 @@ class EditCourseViewController: UIViewController {
         activityIndicator.centerYAnchor.constraint(equalTo: courseCollection.centerYAnchor).isActive = true
         activityIndicator.cycleColors = [.red, .blue, .green]
         activityIndicator.startAnimating()
-        SyllabusModel.readSyllabusWith(day: day.rawValue, period: period, onSuccess: { [weak self] (retSyllabuses) in
+        print(day.rawValue)
+        SyllabusModel.readSyllabusWith(day: day.ja(), period: period, onSuccess: { [weak self] (retSyllabuses) in
             self?.syllabuses = retSyllabuses.filter{ $0.getQuarterCodes().contains(quarter) }
             DispatchQueue.main.async {
                 self?.courseCollection.reloadData()

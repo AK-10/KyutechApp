@@ -15,23 +15,38 @@ enum Week: String {
     case thursday
     case friday
     
-    static func from(hash: Int) -> Week {
-        switch hash {
+    static func from(index: Int) -> Week {
+        switch index {
         case 0:
-            return self.monday
+            return .monday
         case 1:
-            return self.tuesday
+            return .tuesday
         case 2:
-            return self.wednesday
+            return .wednesday
         case 3:
-            return self.thursday
+            return .thursday
         case 4:
-            return self.friday
+            return .friday
         default:
-            return self.init(rawValue: "Error")!
+            return Week.init(rawValue: "Error")!
         }
     }
-    
+
+    func index() -> Int {
+        switch self {
+        case .monday:
+            return 0
+        case .tuesday:
+            return 1
+        case .wednesday:
+            return 2
+        case .thursday:
+            return 3
+        case .friday:
+            return 4
+        }
+    }
+ 
     func ja() -> String {
         switch self {
         case .monday:

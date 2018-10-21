@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lj8-k1-qPI">
-    <device id="retina4_0" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lj8-k1-qPI">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,26 +14,26 @@
             <objects>
                 <viewController storyboardIdentifier="RegisterView" modalTransitionStyle="crossDissolve" id="Lj8-k1-qPI" customClass="RegisterViewController" customModule="KyutechApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nQC-0f-oI8">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bss-8X-aey" customClass="MaterialView" customModule="KyutechApp" customModuleProvider="target">
-                                <rect key="frame" x="32" y="134" width="256" height="300"/>
+                                <rect key="frame" x="41.333333333333343" y="208" width="331.33333333333326" height="320"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="学年" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gTG-zS-UmU" customClass="PickeredTextField" customModule="KyutechApp" customModuleProvider="target">
-                                        <rect key="frame" x="25.5" y="146" width="205" height="30"/>
+                                        <rect key="frame" x="33.333333333333343" y="141.33333333333331" width="264.66666666666663" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="学科" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uoY-8l-7yO" customClass="PickeredTextField" customModule="KyutechApp" customModuleProvider="target">
-                                        <rect key="frame" x="25.5" y="200" width="205" height="30"/>
+                                        <rect key="frame" x="33.333333333333343" y="195.33333333333331" width="264.66666666666663" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVJ-fr-9h2" customClass="MDCButton">
-                                        <rect key="frame" x="78" y="254" width="101.5" height="32"/>
+                                        <rect key="frame" x="99.3333333333333" y="249.33333333333331" width="132.66666666666663" height="32"/>
                                         <color key="backgroundColor" red="0.0" green="0.73725490196078436" blue="0.83137254901960778" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="btc-da-ouY"/>
@@ -46,13 +44,13 @@
                                         </state>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="BRa-zl-isC">
-                                        <rect key="frame" x="104.5" y="40" width="48.5" height="48"/>
+                                        <rect key="frame" x="140" y="32" width="51.333333333333343" height="51.333333333333343"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="BRa-zl-isC" secondAttribute="height" multiplier="1:1" id="tAB-9z-PpQ"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="入力欄を全て埋めてください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hp0-iZ-GYP">
-                                        <rect key="frame" x="25.5" y="120" width="205" height="12"/>
+                                        <rect key="frame" x="33.333333333333343" y="115.33333333333331" width="264.66666666666663" height="12"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="10"/>
                                         <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -65,8 +63,9 @@
                                     <constraint firstItem="uoY-8l-7yO" firstAttribute="width" secondItem="Bss-8X-aey" secondAttribute="width" multiplier="0.8" id="EMx-Wz-gbV"/>
                                     <constraint firstItem="gTG-zS-UmU" firstAttribute="top" secondItem="hp0-iZ-GYP" secondAttribute="bottom" constant="14" id="FnF-re-xWb"/>
                                     <constraint firstItem="uoY-8l-7yO" firstAttribute="centerX" secondItem="Bss-8X-aey" secondAttribute="centerX" id="HTR-Gw-nUj"/>
+                                    <constraint firstAttribute="height" constant="320" id="Hyv-fA-P43"/>
                                     <constraint firstItem="dVJ-fr-9h2" firstAttribute="top" secondItem="uoY-8l-7yO" secondAttribute="bottom" constant="24" id="Q5a-l7-kge"/>
-                                    <constraint firstItem="BRa-zl-isC" firstAttribute="top" secondItem="Bss-8X-aey" secondAttribute="top" constant="40" id="QZL-Ju-twn"/>
+                                    <constraint firstItem="BRa-zl-isC" firstAttribute="top" secondItem="Bss-8X-aey" secondAttribute="top" constant="32" id="QZL-Ju-twn"/>
                                     <constraint firstItem="BRa-zl-isC" firstAttribute="centerX" secondItem="Bss-8X-aey" secondAttribute="centerX" id="SNW-HM-gr7"/>
                                     <constraint firstItem="uoY-8l-7yO" firstAttribute="top" secondItem="gTG-zS-UmU" secondAttribute="bottom" constant="24" id="VSt-qQ-kkr"/>
                                     <constraint firstItem="dVJ-fr-9h2" firstAttribute="centerX" secondItem="Bss-8X-aey" secondAttribute="centerX" id="cWA-G4-KXb"/>
@@ -75,7 +74,6 @@
                                     <constraint firstItem="BRa-zl-isC" firstAttribute="height" secondItem="Bss-8X-aey" secondAttribute="height" multiplier="0.16" id="mki-4d-ft8"/>
                                     <constraint firstItem="dVJ-fr-9h2" firstAttribute="width" secondItem="Bss-8X-aey" secondAttribute="width" multiplier="0.4" id="peR-1Z-fBy"/>
                                     <constraint firstItem="hp0-iZ-GYP" firstAttribute="top" secondItem="BRa-zl-isC" secondAttribute="bottom" constant="32" id="pvm-Sz-onO"/>
-                                    <constraint firstAttribute="height" constant="300" id="shs-A9-IAj"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -101,6 +99,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon" width="512" height="512"/>
+        <image name="icon" width="150" height="150"/>
     </resources>
 </document>

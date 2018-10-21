@@ -81,7 +81,7 @@ class PlaceHolderedTextView: UITextView {
     }
     
     func commonInit() {
-        NotificationCenter.default.addObserver(self, selector: #selector(TextChanged(notification:)), name: .UITextViewTextDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(TextChanged(notification:)), name: UITextView.textDidChangeNotification, object: nil)
         self.textContainerInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         placeholderLabel = UILabel(frame: CGRect(x: 8, y: 5, width: self.bounds.size.width - 16, height: 0))
         placeholderLabel.lineBreakMode = .byCharWrapping

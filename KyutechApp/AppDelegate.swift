@@ -14,17 +14,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         // navigationbar configuration
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().backIndicatorImage = #imageLiteral(resourceName: "backArrowIos")
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white, .font: UIFont.systemFont(ofSize: 18, weight: .semibold)]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white, .font: UIFont.systemFont(ofSize: 18, weight: .semibold)]
         
         let primaryKey = UserDefaults.standard.string(forKey: .primaryKey)
         print("pk: \(primaryKey ?? "x")")
+        
         let storyboard: UIStoryboard = (primaryKey != nil) ? UIStoryboard(name: "Main", bundle: nil) : UIStoryboard(name: "Register", bundle: nil)
         let initialVC: UIViewController = storyboard.instantiateInitialViewController()!
         

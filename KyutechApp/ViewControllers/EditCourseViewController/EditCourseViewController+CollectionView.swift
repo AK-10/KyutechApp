@@ -86,7 +86,7 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
             let row = (selectedSchedule != nil) ? indexPath.item - 1 : indexPath.item
             let syllabusId = syllabuses[row].id
             guard let day = selectedDay, let period = selectedPeriod, let quarter = selectedQuarter else { return }
-            UserScheduleModel.createSchedule(syllabusId: syllabusId, day: day.hashValue, period: period, quarter: quarter, onSuccess: { [weak self] (newSchedule) in
+            UserScheduleModel.createSchedule(syllabusId: syllabusId, day: day.index(), period: period, quarter: quarter, onSuccess: { [weak self] (newSchedule) in
                 let tabBarVC = self?.presentingViewController as! UITabBarController
                 let viewController = tabBarVC.viewControllers?.filter{ $0 is ScheduleViewController }.first
                 guard let scheduleVC = viewController as? ScheduleViewController else { return }

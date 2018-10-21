@@ -22,7 +22,7 @@ class UpdateUserInfoViewController: UIViewController {
     var selectedYear: Int? = UserDefaults.standard.int(forKey: .schoolYear)
     var selectedDepart: Int? = UserDefaults.standard.int(forKey: .department)
     
-    let years: [Int] = Const.years
+    let years: [SchoolYear] = Const.years
 
     let departments = Const.departments
     
@@ -62,8 +62,8 @@ class UpdateUserInfoViewController: UIViewController {
     }
     
     func setupTextFields() {
-        guard let year = UserDefaults.standard.int(forKey: .schoolYear), let depart = UserDefaults.standard.int(forKey: .department) else { return }
-        yearTextField.text = (year + 1).description
+        guard let year = selectedYear, let depart = selectedDepart else { return }
+        yearTextField.text = SchoolYear.from(rawValue: year).ja()
         departmentTextField.text = Department.from(hash: depart - 200).ja()
 
         let yearPickerView = UIPickerView()
@@ -101,7 +101,7 @@ class UpdateUserInfoViewController: UIViewController {
         print("year: \(year), depart: \(depart)")
         UserModel.updateUser(year: year, depart: depart, onSuccess: { [weak self]() in
             let snackBarMessage = MDCSnackbarMessage()
-            snackBarMessage.text = "更新しました. 学年: \(year + 1)年 学科: \(Department.from(hash: depart - 200).ja())"
+            snackBarMessage.text = "更新しました. 学年: \(SchoolYear.from(rawValue: year).ja()) 学科: \(Department.from(hash: depart - 200).ja())"
             MDCSnackbarManager.setPresentationHostView(self?.presentingViewController?.view)
             MDCSnackbarManager.show(snackBarMessage)
             self?.dismiss(animated: true, completion: nil)
@@ -119,6 +119,3 @@ class UpdateUserInfoViewController: UIViewController {
     }
     
 }
-
-
-

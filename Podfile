@@ -6,9 +6,8 @@ target 'KyutechApp' do
   use_frameworks!
 
   # Pods for KyutechApp
+  # inhibit_all_warnings!
   pod 'MaterialComponents'
-  pod 'MaterialComponents/TextFields'
-  pod 'MaterialComponents/TextFields+Extensions'
   pod 'Alamofire'
   target 'KyutechAppTests' do
     inherit! :search_paths

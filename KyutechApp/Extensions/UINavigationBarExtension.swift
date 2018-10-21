@@ -25,6 +25,6 @@ extension UINavigationBar {
         shadowView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         shadowView.addShadow()
         shadowView.backgroundColor = color
-        self.sendSubview(toBack: shadowView)
+        self.sendSubviewToBack(shadowView)
     }
 }

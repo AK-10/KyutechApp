@@ -36,6 +36,7 @@ class UserScheduleModel {
     }
     
     class func createSchedule(syllabusId: Int, day: Int, period: Int, quarter: Int, onSuccess: @escaping (UserSchedule) -> Void, onError: @escaping () -> Void) {
+        print(day)
         guard let userId = UserDefaults.standard.int(forKey: .primaryKey) else { return }
         let params: Parameters = [
             "user_id":userId,
@@ -54,7 +55,6 @@ class UserScheduleModel {
                 onError()
             } else {
                 let status = res.response?.statusCode ?? -1
-                print("StatusCode: \(status)")
                 if status >= 200 && status < 300 {
                     guard let dataDict = res.value else { return }
                     print("type of res.value \(type(of: dataDict))")
@@ -62,7 +62,6 @@ class UserScheduleModel {
                     let userSchedule = try! JSONDecoder().decode(UserSchedule.self, from: data)
                     onSuccess(userSchedule)
                 } else {
-                    print("statusCode: \(status)")
                     let data: Data = try! JSONSerialization.data(withJSONObject: res.value!, options: [])
 
                     print("res.value: \(String(bytes: data, encoding: .utf8) ?? "nil")")

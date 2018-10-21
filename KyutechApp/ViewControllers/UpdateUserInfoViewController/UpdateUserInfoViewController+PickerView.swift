@@ -27,7 +27,7 @@ extension UpdateUserInfoViewController: UIPickerViewDelegate, UIPickerViewDataSo
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 1200 {
-            return (years[row] + 1).description
+            return years[row].ja()
         } else if pickerView.tag == 1300 {
             return departments[row].ja()
         } else {
@@ -35,10 +35,11 @@ extension UpdateUserInfoViewController: UIPickerViewDelegate, UIPickerViewDataSo
         }
     }
     
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 1200 {
-            selectedYear = years[row]
-            yearTextField.text = (years[row] + 1).description
+            selectedYear = years[row].rawValue
+            yearTextField.text = years[row].ja()
         } else if pickerView.tag == 1300 {
             selectedDepart = departments[row].value() // ex: 203
             departmentTextField.text = departments[row].ja()

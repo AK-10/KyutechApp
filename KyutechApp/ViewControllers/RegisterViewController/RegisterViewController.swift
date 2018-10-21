@@ -19,10 +19,10 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var backgroundView: MaterialView!
     @IBOutlet weak var alartLabel: UILabel!
     
-    var selectedYear: Int? = nil
-    var selectedDepartment: Int? = nil
+    var selectedYear: Int? = Const.years.first?.rawValue
+    var selectedDepartment: Int? = Const.departments.first?.rawValue
     
-    let years: [Int] = Const.years
+    let years: [SchoolYear] = Const.years
     
     let departments = Const.departments
     
@@ -47,8 +47,9 @@ class RegisterViewController: UIViewController {
 //        schoolYearTextField.delegate = self
 //        departmentTextField.delegate = self
         schoolYearTextField.placeholder = "学年"
+        schoolYearTextField.text = years.first?.ja()
         departmentTextField.placeholder = "学科"
-        
+        departmentTextField.text = departments.first?.ja()
         
         let yearPickerView = UIPickerView()
         let departPickerView = UIPickerView()
@@ -91,7 +92,7 @@ class RegisterViewController: UIViewController {
             activityIndicator.cycleColors = [.blue, .red, .yellow, .green]
             activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
             activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-            self.view.bringSubview(toFront: activityIndicator)
+            self.view.bringSubviewToFront(activityIndicator)
             activityIndicator.startAnimating()
             UserModel.createUser(year: schoolYear, depart: department, onSuccess: {[weak self] () in
                 
