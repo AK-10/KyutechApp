@@ -27,7 +27,7 @@ extension RegisterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 1200 {
-            return (years[row] + 1).description
+            return years[row].ja()
         } else if pickerView.tag == 1300 {
             return departments[row].ja()
         } else {
@@ -37,14 +37,14 @@ extension RegisterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 1200 {
-            selectedYear = years[row]
-            schoolYearTextField.text = (years[row] + 1).description
-        } else if pickerView.tag == 1300 {
+            selectedYear = years[row].rawValue
+            schoolYearTextField.text = years[row].ja()
+        }
+        if pickerView.tag == 1300 {
             selectedDepartment = departments[row].value()
             departmentTextField.text = departments[row].ja()
-        } else {
         }
-        resignFirstResponder()
+//        resignFirstResponder()
     }
     
 }

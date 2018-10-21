@@ -42,7 +42,7 @@ class NewsDetailViewController: UIViewController {
         newsItemTable.delegate = self
         newsItemTable.dataSource = self
         newsItemTable.estimatedRowHeight = 64
-        newsItemTable.rowHeight = UITableViewAutomaticDimension
+        newsItemTable.rowHeight = UITableView.automaticDimension
         newsItemTable.separatorStyle = .none
         newsItemTable.allowsSelection = true
 

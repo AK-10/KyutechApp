@@ -27,7 +27,7 @@ class BusScheduleViewController: UIViewController {
     func setupScrollView() {
         navbar.delegate = self
         self.view.addSubview(scrollview)
-        self.view.sendSubview(toBack: scrollview)
+        self.view.sendSubviewToBack(scrollview)
         let pictureWidth = UIScreen.main.bounds.width
         let pictureHeight = pictureWidth * 1.5
         scrollview.translatesAutoresizingMaskIntoConstraints = false

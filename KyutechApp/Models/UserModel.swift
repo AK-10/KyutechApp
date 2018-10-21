@@ -13,13 +13,15 @@ class UserModel {
     class func createUser(year: Int, depart: Int, onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
         let params: Parameters =
             ["school_year":year, "department":depart]
-        
+        print(year)
+        print(depart)
         Alamofire.request(Router.createUser(params: params)).responseJSON(completionHandler: { res in
             if let error = res.error {
                 print(error)
                 onError()
             } else {
                 let status: Int = res.response?.statusCode ?? -1
+                print(status)
                 if status >= 200 && status < 300 {
                     guard let resData = res.value else {
                         print("data is nil")
@@ -33,6 +35,7 @@ class UserModel {
                     onSuccess()
                 } else {
                     print("Error because status is invalid")
+                    
                     onError()
                 }
             }

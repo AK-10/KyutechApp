@@ -91,7 +91,7 @@ class SyllabusViewController: UIViewController {
         let nib = UINib(nibName: "SimpleTableCell", bundle: nil)
         syllabusTable.register(nib, forCellReuseIdentifier: "Syllabus")
         syllabusTable.estimatedRowHeight = 64
-        syllabusTable.rowHeight = UITableViewAutomaticDimension
+        syllabusTable.rowHeight = UITableView.automaticDimension
     }
     
     func setupNavigationBar() {
@@ -133,7 +133,7 @@ class SyllabusViewController: UIViewController {
         activityIndicator.cycleColors = [.blue, .red, .yellow, .green]
         activityIndicator.centerXAnchor.constraint(equalTo: syllabusTable.centerXAnchor).isActive = true
         activityIndicator.centerYAnchor.constraint(equalTo: syllabusTable.centerYAnchor).isActive = true
-        syllabusTable.bringSubview(toFront: activityIndicator)
+        syllabusTable.bringSubviewToFront(activityIndicator)
         activityIndicator.startAnimating()
         
         UserScheduleModel.updateUserSchedule(scheduleId: userSchedule.id, syllabusId: userSchedule.syllabus.id, day: userSchedule.day, period: userSchedule.period, quarter: userSchedule.quarter, late: Int(late)!, absent: Int(absent)!, memo: memo, onSuccess: { [weak self] (schedule) in

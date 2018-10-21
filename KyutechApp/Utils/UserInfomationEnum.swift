@@ -8,11 +8,49 @@
 
 import Foundation
 
-enum SchoolYearKey: Int {
-    case one
-    case two
-    case three
-    case four
+enum SchoolYear: Int {
+    case bachelorOne
+    case bachelorTwo
+    case bachelorThree
+    case bachelorFour
+    case masterOne
+    case mansterTwo
+    
+    func ja() -> String {
+        switch self {
+        case .bachelorOne:
+            return "学部1年"
+        case .bachelorTwo:
+            return "学部2年"
+        case .bachelorThree:
+            return "学部3年"
+        case .bachelorFour:
+            return "学部4年"
+        case .masterOne:
+            return "修士1年"
+        case .mansterTwo:
+            return "修士2年"
+        }
+    }
+    
+    static func from(rawValue: Int) -> SchoolYear {
+        switch rawValue {
+        case 0:
+            return .bachelorOne
+        case 1:
+            return .bachelorTwo
+        case 2:
+            return .bachelorThree
+        case 3:
+            return .bachelorFour
+        case 4:
+            return .masterOne
+        case 5:
+            return .mansterTwo
+        default:
+            return SchoolYear.init(rawValue: -1)!
+        }
+    }
 }
 
 enum Department: Int {
@@ -31,9 +69,12 @@ enum Department: Int {
     case bioIncorp
     case sys
     case sysIncorp
-//    case advancedInfomatics
-//    case interdisciplinaryInformatics
-//    case creativeInformatics
+    case infomationCreation
+    case advancedInfoAI
+    case advancedInfoCSE
+    case interdisciplinarySYS
+    case interdisciplinaryBIO
+    case interdisciplinaryMSE
     
     static func from(hash: Int) -> Department {
         switch hash {
@@ -67,12 +108,18 @@ enum Department: Int {
             return .sys
         case 14:
             return .sysIncorp
-//        case 15:
-//            return .advancedInfomatics
-//        case 16:
-//            return .interdisciplinaryInformatics
-//        case 17:
-//            return .creativeInformatics
+        case 15:
+            return .infomationCreation
+        case 16:
+            return .advancedInfoAI
+        case 17:
+            return .advancedInfoCSE
+        case 18:
+            return .interdisciplinarySYS
+        case 19:
+            return .interdisciplinaryBIO
+        case 20:
+            return .interdisciplinaryMSE
         default:
             return Department.init(rawValue: -1)!
         }
@@ -114,12 +161,18 @@ enum Department: Int {
             return "生命情報工学科"
         case .bioIncorp:
             return "生命情報工学科（編入）"
-//        case .advancedInfomatics:
-//            return "先端情報工学専攻"
-//        case .interdisciplinaryInformatics:
-//            return "学際情報工学専攻"
-//        case .creativeInformatics:
-//            return "情報創生工学専攻"
+        case .infomationCreation:
+            return "情報創成工学専門分野"
+        case .advancedInfoAI:
+            return "知能情報工学専門分野"
+        case .advancedInfoCSE:
+            return "電子情報工学専門分野"
+        case .interdisciplinarySYS:
+            return "システム創成情報工学専門分野"
+        case .interdisciplinaryBIO:
+            return "生命情報工学専門分野"
+        case .interdisciplinaryMSE:
+            return "機械情報工学専門分野"
         }
     }
 }

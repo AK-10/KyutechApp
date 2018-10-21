@@ -54,8 +54,8 @@ class ScheduleViewController: UIViewController {
     }
     
     func setupPullDownMenu() {
-        if childViewControllers.count == 1 {
-            if let pulldownMenu = childViewControllers[0] as? PullDownMenuViewController {
+        if children.count == 1 {
+            if let pulldownMenu = children[0] as? PullDownMenuViewController {
                 quarterSelectController = pulldownMenu
                 quarterSelectController.delegate = self
             }
@@ -136,7 +136,7 @@ class ScheduleViewController: UIViewController {
         activityIndicator.cycleColors = [.blue, .red, .yellow, .green]
         activityIndicator.centerXAnchor.constraint(equalTo: scheduleCollection.centerXAnchor).isActive = true
         activityIndicator.centerYAnchor.constraint(equalTo: scheduleCollection.centerYAnchor).isActive = true
-        scheduleCollection.bringSubview(toFront: activityIndicator)
+        scheduleCollection.bringSubviewToFront(activityIndicator)
         activityIndicator.startAnimating()
         UserScheduleModel.getSchedule(userId: userId, quarter: quarter ?? 0, onSuccess: { [weak self] (resSchedules) in
             self?.schedules = resSchedules
@@ -161,7 +161,6 @@ extension ScheduleViewController: PullDownMenuViewDelegate, TitleLabelWithtriang
     }
     
     func setTapLabelAction(_ label: TitleLabelWithTriangle) {
-        print("aaa")
         label.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(animatePullDownMenu(tapped:)))
         label.addGestureRecognizer(tapGesture)

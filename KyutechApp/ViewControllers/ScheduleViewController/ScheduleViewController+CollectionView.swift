@@ -14,7 +14,7 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
     private func dayAndPeriod(index: Int) -> (Week, Int) {
         let day = index % 5
         let period = Int(index/5)
-        return (Week.from(hash: day), period)
+        return (Week.from(index: day), period)
     }
     
     

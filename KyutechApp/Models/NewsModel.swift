@@ -70,7 +70,6 @@ class NewsModel {
                         onSuccess(newsArray)
                         isLoading = false
                     } else {
-                        print("data is nil")
                         onError()
                         isLoading = false
                     }
