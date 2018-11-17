@@ -19,8 +19,10 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var backgroundView: MaterialView!
     @IBOutlet weak var alartLabel: UILabel!
     
+    var indicator = ActivityIndicatorWithBackground()
+    
     var selectedYear: Int? = Const.years.first?.rawValue
-    var selectedDepartment: Int? = Const.departments.first?.rawValue
+    var selectedDepartment: Int? = Const.departments.first?.value()
     
     let years: [SchoolYear] = Const.years
     
@@ -36,6 +38,7 @@ class RegisterViewController: UIViewController {
         setupTextFields()
         setupButton()
         setupAlartLabel()
+        setupIndicator()
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,8 +47,6 @@ class RegisterViewController: UIViewController {
     }
     
     func setupTextFields() {
-//        schoolYearTextField.delegate = self
-//        departmentTextField.delegate = self
         schoolYearTextField.placeholder = "学年"
         schoolYearTextField.text = years.first?.ja()
         departmentTextField.placeholder = "学科"
@@ -74,6 +75,13 @@ class RegisterViewController: UIViewController {
         
     }
     
+    func setupIndicator() {
+        self.view.addSubview(indicator)
+        indicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        indicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        self.view.bringSubviewToFront(indicator)
+    }
+    
     func setupAlartLabel() {
         alartLabel.alpha = 0
         alartLabel.text = "入力欄を全て埋めてください"
@@ -86,25 +94,15 @@ class RegisterViewController: UIViewController {
     
     @objc func tappedRegisterButton(_ sender: Any) {
         if let schoolYear = selectedYear, let department = selectedDepartment {
-            let activityIndicator = MDCActivityIndicator()
-            self.view.addSubview(activityIndicator)
-            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-            activityIndicator.cycleColors = [.blue, .red, .yellow, .green]
-            activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-            activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-            self.view.bringSubviewToFront(activityIndicator)
-            activityIndicator.startAnimating()
+            indicator.startAnimating()
             UserModel.createUser(year: schoolYear, depart: department, onSuccess: {[weak self] () in
-                
-                activityIndicator.stopAnimating()
-                activityIndicator.removeFromSuperview()
+                self?.indicator.stopAnimating()
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyBoard.instantiateInitialViewController()
                 self?.modalTransitionStyle = .crossDissolve
                 self?.present(vc!, animated: true, completion: nil)
                 }, onError: { [weak self] () in
-                    activityIndicator.stopAnimating()
-                    activityIndicator.removeFromSuperview()
+                    self?.indicator.stopAnimating()
                     let snackMessage = MDCSnackbarMessage()
                     snackMessage.duration = 2
                     snackMessage.text = "登録に失敗しました. 通信状況を確認してください."

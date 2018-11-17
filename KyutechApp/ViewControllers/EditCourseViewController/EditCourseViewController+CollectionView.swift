@@ -17,7 +17,8 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+//        print(selectedSchedule)
+        print(indexPath.item)
         if selectedSchedule != nil && indexPath.item == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "deleteCell", for: indexPath)
             let label = UILabel()
@@ -55,6 +56,25 @@ extension EditCourseViewController: UICollectionViewDelegateFlowLayout, UICollec
         let width = collectionView.bounds.width
         let height = (selectedSchedule != nil && indexPath.item == 0) ? CGFloat(32) : CGFloat(64)
         return CGSize(width: width, height: height)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.bounds.height {
+            self.indicator.startAnimating()
+            SyllabusModel.fetchSyllabuses(onSuccess: { [weak self] (fetchedSyllabuses) in
+                self?.syllabuses.append(contentsOf: fetchedSyllabuses)
+                self?.courseCollection.reloadData()
+                }, onError: {() in
+                    print("error")
+                    let snackBarMessage = MDCSnackbarMessage()
+                    snackBarMessage.text = "データを取得できませんでした"
+                    snackBarMessage.duration = 2
+                    MDCSnackbarManager.show(snackBarMessage)
+                }, completion: { () in
+                    print("tset")
+                    self.indicator.stopAnimating()
+            })
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

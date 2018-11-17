@@ -13,6 +13,8 @@ class EditCourseViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var courseCollection: UICollectionView!
     
+    let indicator = ActivityIndicatorWithBackground()
+    
     var selectedDay: Week? = nil
     var selectedPeriod: Int? = nil
     var selectedQuarter: Int? = nil
@@ -28,8 +30,16 @@ class EditCourseViewController: UIViewController {
         getSyllabuses()
         setupCollection()
         setupDateLabel()
+        setupIndicator()
         
         // Do any additional setup after loading the view.
+    }
+    
+    func setupIndicator() {
+        self.view.addSubview(indicator)
+        indicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        indicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        self.view.bringSubviewToFront(indicator)
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,25 +69,17 @@ class EditCourseViewController: UIViewController {
     
     func getSyllabuses() {
         guard let day = selectedDay, let period = selectedPeriod, let quarter = selectedQuarter else { print("day & period, quarter is nil"); return }
-        let activityIndicator = MDCActivityIndicator()
-        courseCollection.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.centerXAnchor.constraint(equalTo: courseCollection.centerXAnchor).isActive = true
-        activityIndicator.centerYAnchor.constraint(equalTo: courseCollection.centerYAnchor).isActive = true
-        activityIndicator.cycleColors = [.red, .blue, .green]
-        activityIndicator.startAnimating()
+        indicator.startAnimating()
         print(day.rawValue)
         SyllabusModel.readSyllabusWith(day: day.ja(), period: period, onSuccess: { [weak self] (retSyllabuses) in
             self?.syllabuses = retSyllabuses.filter{ $0.getQuarterCodes().contains(quarter) }
             DispatchQueue.main.async {
                 self?.courseCollection.reloadData()
             }
-            activityIndicator.stopAnimating()
-            activityIndicator.removeFromSuperview()
-            }, onError: { () in
+            self?.indicator.stopAnimating()
+            }, onError: { [weak self] () in
                 print("Error: error")
-                activityIndicator.stopAnimating()
-                activityIndicator.removeFromSuperview()
+                self?.indicator.stopAnimating()
         })
     }
     

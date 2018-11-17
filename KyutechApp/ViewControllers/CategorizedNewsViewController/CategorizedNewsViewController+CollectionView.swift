@@ -28,17 +28,18 @@ extension CategorizedNewsViewController: UICollectionViewDelegateFlowLayout, UIC
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.bounds.height {
+            self.indicator.startAnimating()
             NewsModel.fetchNews(onSuccess: { [weak self] (fetchedNews) in
                 self?.newsArray.append(contentsOf: fetchedNews)
                 self?.newsHeaderCollection.reloadData()
-                NewsModel.isLoading = false
                 }, onError: { () in
                     print("error")
-                    NewsModel.isLoading = false
                     let snackBarMessage = MDCSnackbarMessage()
                     snackBarMessage.text = "データを取得できませんでした"
                     snackBarMessage.duration = 2
                     MDCSnackbarManager.show(snackBarMessage)
+                }, completion: { () in
+                    self.indicator.stopAnimating()
             })
         }
     }
@@ -68,5 +69,6 @@ extension CategorizedNewsViewController: UICollectionViewDelegateFlowLayout, UIC
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
+    
     
 }

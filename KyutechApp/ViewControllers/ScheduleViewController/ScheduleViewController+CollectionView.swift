@@ -42,11 +42,11 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout, UICollecti
             let storyboard = UIStoryboard(name: "ScheduleOption", bundle: nil)
             let editCourseVC = storyboard.instantiateInitialViewController() as! EditCourseViewController
             editCourseVC.modalTransitionStyle = .crossDissolve
-            let pair = dayAndPeriod(index: indexPath.row)
+            let pair = dayAndPeriod(index: indexPath.item)
             editCourseVC.selectedDay = pair.0
             editCourseVC.selectedPeriod = pair.1
             editCourseVC.selectedQuarter = quarter
-            editCourseVC.selectedSchedule = schedules.filter{ $0.day == pair.0.hashValue && $0.period == pair.1 }.first ?? nil
+            editCourseVC.selectedSchedule = schedules.filter{ $0.day == pair.0.index() && $0.period == pair.1 }.first ?? nil
             present(editCourseVC, animated: true, completion: nil)
             
         } else {

@@ -46,14 +46,23 @@ class NewsModel {
         }
     }
     
-    class func fetchNews(onSuccess: @escaping ([News]) -> Void, onError: @escaping () -> Void) {
-        guard let next = nextURL else { return }
+    class func fetchNews(onSuccess: @escaping ([News]) -> Void, onError: @escaping () -> Void, completion: (() -> Void)? ) {
+        guard let next = nextURL else {
+            isLoading = false
+            if let unwrappedCompletion = completion {
+                unwrappedCompletion()
+            }
+            return
+        }
         if !isLoading {
             isLoading = true
             print(next)
             Alamofire.request(next).responseJSON(completionHandler: { res in
                 if res.error != nil {
                     onError()
+                    if let unwrappedCompletion = completion {
+                        unwrappedCompletion()
+                    }
                     print("error: response is nil")
                 } else {
                     let status: Int = res.response?.statusCode ?? -1
@@ -67,11 +76,18 @@ class NewsModel {
                             let itemData = try! JSONSerialization.data(withJSONObject: item, options: [])
                             return try! JSONDecoder().decode(News.self, from: itemData)
                         }
+
+                        isLoading = false
                         onSuccess(newsArray)
-                        isLoading = false
+                        if let unwrappedCompletion = completion {
+                            unwrappedCompletion()
+                        }
                     } else {
-                        onError()
                         isLoading = false
+                        onError()
+                        if let unwrappedCompletion = completion {
+                            unwrappedCompletion()
+                        }
                     }
                 }
             })
