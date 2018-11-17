@@ -29,6 +29,7 @@
 		1119ABDE20B3FFD6003E84FB /* Week.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119ABDD20B3FFD6003E84FB /* Week.swift */; };
 		112283C120AB28E900C298A5 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112283C020AB28E900C298A5 /* UserModel.swift */; };
 		1134AA1C21164625003397E5 /* titleLabelWithTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1134AA1B21164625003397E5 /* titleLabelWithTriangle.swift */; };
+		113726CD21891C1400A2B69B /* ActivityIndicatorWithBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113726CC21891C1400A2B69B /* ActivityIndicatorWithBackground.swift */; };
 		1137A67320D0DAE800444A29 /* BusScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137A67220D0DAE800444A29 /* BusScheduleViewController.swift */; };
 		1146312320D53486001E02D8 /* PickeredTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1146312220D53486001E02D8 /* PickeredTextField.swift */; };
 		1146312520D54C78001E02D8 /* UpdateUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1146312420D54C78001E02D8 /* UpdateUserInfoViewController.swift */; };
@@ -111,6 +112,7 @@
 		1119ABDD20B3FFD6003E84FB /* Week.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Week.swift; sourceTree = "<group>"; };
 		112283C020AB28E900C298A5 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		1134AA1B21164625003397E5 /* titleLabelWithTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = titleLabelWithTriangle.swift; sourceTree = "<group>"; };
+		113726CC21891C1400A2B69B /* ActivityIndicatorWithBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorWithBackground.swift; sourceTree = "<group>"; };
 		1137A67220D0DAE800444A29 /* BusScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusScheduleViewController.swift; sourceTree = "<group>"; };
 		1146312220D53486001E02D8 /* PickeredTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickeredTextField.swift; sourceTree = "<group>"; };
 		1146312420D54C78001E02D8 /* UpdateUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			children = (
 				1102A51B207B6460007D6406 /* CourseCardCell.swift */,
 				1146312220D53486001E02D8 /* PickeredTextField.swift */,
+				113726CC21891C1400A2B69B /* ActivityIndicatorWithBackground.swift */,
 				119345F320CCC16E00EFF515 /* PlaceHolderedTextView.swift */,
 				1134AA1B21164625003397E5 /* titleLabelWithTriangle.swift */,
 				1155CB542090B574004BBAFA /* MaterialView.swift */,
@@ -723,6 +726,7 @@
 				110BEC95207CC1F200F8B276 /* NewsViewController.swift in Sources */,
 				119FF55820737141006EDC6C /* AppDelegate.swift in Sources */,
 				1155CB532090AF89004BBAFA /* RegisterViewController.swift in Sources */,
+				113726CD21891C1400A2B69B /* ActivityIndicatorWithBackground.swift in Sources */,
 				1134AA1C21164625003397E5 /* titleLabelWithTriangle.swift in Sources */,
 				11C786F420BD0F64008B1810 /* UserSchedule.swift in Sources */,
 				11545B1E210D270800815542 /* EditCourseViewController+CollectionView.swift in Sources */,

@@ -14,11 +14,14 @@ class NewsViewController: UIViewController {
     @IBOutlet weak var newsHeadCollection: UICollectionView!
     var newsHeadings: [NewsHeading] = []
     
+    var indicator = ActivityIndicatorWithBackground()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNewsTable()
         getHeader()
         setupNavigationBar()
+        setupIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,28 +52,26 @@ class NewsViewController: UIViewController {
         newsHeadCollection.register(nib, forCellWithReuseIdentifier: "NewsHeadCell")
     }
     
+    func setupIndicator() {
+        self.view.addSubview(indicator)
+        indicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        indicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        self.view.bringSubviewToFront(indicator)
+    }
+    
     func getHeader() {
-        let activityIndicator = MDCActivityIndicator()
-        newsHeadCollection.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.centerXAnchor.constraint(equalTo: newsHeadCollection.centerXAnchor).isActive = true
-        activityIndicator.centerYAnchor.constraint(equalTo: newsHeadCollection.centerYAnchor).isActive = true
-        activityIndicator.cycleColors = [.blue, .red, .yellow, .green]
-
-        activityIndicator.startAnimating()
+        self.indicator.startAnimating()
         NewsHeadingModel.readNewsHeadings(onSuccess: { [weak self] (newsHeads) in
             self?.newsHeadings = newsHeads
             DispatchQueue.main.async {
                 self?.newsHeadCollection.reloadData()
             }
-            activityIndicator.stopAnimating()
+            self?.indicator.stopAnimating()
             }, onError: { () in
-                activityIndicator.stopAnimating()
-                activityIndicator.removeFromSuperview()
+                self.indicator.stopAnimating()
                 print("Error")
         })
     }
-
 }
 
 

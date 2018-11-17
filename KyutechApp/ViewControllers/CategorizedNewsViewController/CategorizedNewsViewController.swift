@@ -11,6 +11,7 @@ import MaterialComponents.MDCActivityIndicator
 
 class CategorizedNewsViewController: UIViewController {
     
+    var indicator = ActivityIndicatorWithBackground()
     var newsArray: [News] = []
     var categoryCode: Int? = nil
     
@@ -24,6 +25,7 @@ class CategorizedNewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollection()
+        setupIndicator()
         getNews()
     }
 
@@ -33,6 +35,13 @@ class CategorizedNewsViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    
+    func setupIndicator() {
+        self.view.addSubview(indicator)
+        indicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        indicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        self.view.bringSubviewToFront(indicator)
     }
     
     func setupCollection() {
@@ -46,21 +55,14 @@ class CategorizedNewsViewController: UIViewController {
     
     func getNews() {
         guard let categoryCode = categoryCode else { return }
-        let activityIndicator = MDCActivityIndicator()
-        newsHeaderCollection.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.centerXAnchor.constraint(equalTo: newsHeaderCollection.centerXAnchor).isActive = true
-        activityIndicator.centerYAnchor.constraint(equalTo: newsHeaderCollection.centerYAnchor).isActive = true
-        activityIndicator.cycleColors = [.blue, .red, .green, .yellow]
-        activityIndicator.startAnimating()
+        
+        indicator.startAnimating()
         NewsModel.readNews(newsID: categoryCode, onSuccess: { [weak self] (readedNewsArray) in
             self?.newsArray = readedNewsArray
             self?.newsHeaderCollection.reloadData()
-            activityIndicator.stopAnimating()
-            activityIndicator.removeFromSuperview()
+            self?.indicator.stopAnimating()
             }, onError: { () in
-                activityIndicator.stopAnimating()
-                activityIndicator.removeFromSuperview()
+                self.indicator.stopAnimating()
                 let snackBarMessage = MDCSnackbarMessage()
                 snackBarMessage.duration = 2
                 snackBarMessage.text = "データを取得できませんでした"

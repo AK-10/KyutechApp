@@ -10,54 +10,84 @@ import Foundation
 import Alamofire
 
 class SyllabusModel {
+    static var isLoading = false
+    static var nextURL: String? = nil
     
     class func readSyllabusWith(day: String, period: Int, onSuccess: @escaping ([Syllabus]) -> Void, onError: @escaping () -> Void) {
-        Alamofire.request(Router.readSyllabusWith(dayID: day, periodID: period)).responseJSON(completionHandler: { res in
-            if let err = res.error {
-                print("Error: \(err)")
-                onError()
-            } else {
-                let status = res.response?.statusCode ?? -1
-                if status >= 200 && status < 300 {
-                    guard let resData = res.value as? Parameters else { print("data is nil"); return }
-                    let results = resData["results"] as! [Parameters]
-                    var syllabuses: [Syllabus] = results.map { (item) -> Syllabus in
-                        let itemData = try! JSONSerialization.data(withJSONObject: item, options: [])
-                        return try! JSONDecoder().decode(Syllabus.self, from: itemData)
-                    }
-//                    一時的な処理, あとで直す
-                    if let nextURL = resData["next"] as? String {
-                        Alamofire.request(nextURL).responseJSON(completionHandler: { res in
-                            if let err = res.error {
-                                print(err)
-                                onError()
-                            } else {
-                                let status = res.response?.statusCode ?? -1
-                                if status >= 200 && status < 300 {
-                                    guard let nextData = res.value as? Parameters else { return }
-                                    let nextResults = nextData["results"] as! [Parameters]
-                                    let nextSyllabuses: [Syllabus] = nextResults.map { (item) -> Syllabus in
-                                        let itemData = try! JSONSerialization.data(withJSONObject: item, options: [])
-                                        return try! JSONDecoder().decode(Syllabus.self, from: itemData)
-                                    }
-                                    syllabuses.append(contentsOf: nextSyllabuses)
-                                    print(syllabuses.count)
-                                    onSuccess(syllabuses)
-                                } else {
-                                    onError()
-                                }
-                            }
-                        })
-                    } else {
-                        print(syllabuses.count)
-                        onSuccess(syllabuses)
-                    }
-                } else {
-                    print("Error: status is Invalid")
+        if !isLoading {
+            isLoading = true
+            Alamofire.request(Router.readSyllabusWith(dayID: day, periodID: period)).responseJSON(completionHandler: { res in
+                if let err = res.error {
+                    print("Error: \(err)")
                     onError()
+                } else {
+                    let status = res.response?.statusCode ?? -1
+                    if status >= 200 && status < 300 {
+                        guard let resData = res.value as? Parameters else { print("data is nil"); return }
+                        nextURL = resData["next"] as? String
+                        let results = resData["results"] as! [Parameters]
+                        let syllabuses: [Syllabus] = results.map { (item) -> Syllabus in
+                            let itemData = try! JSONSerialization.data(withJSONObject: item, options: [])
+                            return try! JSONDecoder().decode(Syllabus.self, from: itemData)
+                        }
+                        onSuccess(syllabuses)
+                        isLoading = false
+                    } else {
+                        print("Error: status is Invalid")
+                        onError()
+                        isLoading = false
+                    }
                 }
+            })
+        }
+    }
+    
+    
+    class func fetchSyllabuses(onSuccess: @escaping ([Syllabus]) -> Void, onError: @escaping () -> Void, completion: (() -> Void)?) {
+        guard let next = nextURL else {
+            isLoading = false
+            if let unwrappedCompletion = completion {
+                unwrappedCompletion()
             }
-        })
+            return
+        }
+        if !isLoading {
+            isLoading = true
+            print(next)
+            Alamofire.request(next).responseJSON(completionHandler: { res in
+                if res.error != nil {
+                    onError()
+                    isLoading = false
+                    if let unwrappedCompletion = completion {
+                        unwrappedCompletion()
+                    }
+                    print("error: response is nil")
+                } else {
+                    let status = res.response?.statusCode ?? -1
+                    if status >= 200 && status < 300 {
+                        guard let resData = res.value as? Parameters else { print("data is nil"); return }
+                        nextURL = resData["next"] as? String
+                        let results = resData["results"] as! [Parameters]
+                        let syllabuses: [Syllabus] = results.map { (item) -> Syllabus in
+                            let itemData = try! JSONSerialization.data(withJSONObject: item, options: [])
+                            return try! JSONDecoder().decode(Syllabus.self, from: itemData)
+                        }
+                        isLoading = false
+                        onSuccess(syllabuses)
+                        if let unwrappedCompletion = completion {
+                            unwrappedCompletion()
+                        }
+                    } else {
+                        print("Error: status is Invalid")
+                        isLoading = false
+                        onError()
+                        if let unwrappedCompletion = completion {
+                            unwrappedCompletion()
+                        }
+                    }
+                }
+            })
+        }
     }
 
 }
