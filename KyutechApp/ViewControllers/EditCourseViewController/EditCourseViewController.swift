@@ -19,7 +19,13 @@ class EditCourseViewController: UIViewController {
     var selectedPeriod: Int? = nil
     var selectedQuarter: Int? = nil
     var selectedSchedule: UserSchedule? = nil
-    var syllabuses: [Syllabus] = []
+    var syllabuses: [Syllabus] = [] {
+        didSet {
+            syllabuses.forEach({ s in
+                print(s.targetParticipantsInfos)
+                })
+        }
+    }
     
     deinit {
         print("\(self) deinited")
@@ -70,8 +76,7 @@ class EditCourseViewController: UIViewController {
     func getSyllabuses() {
         guard let day = selectedDay, let period = selectedPeriod, let quarter = selectedQuarter else { print("day & period, quarter is nil"); return }
         indicator.startAnimating()
-        print(day.rawValue)
-        SyllabusModel.readSyllabusWith(day: day.ja(), period: period, onSuccess: { [weak self] (retSyllabuses) in
+        SyllabusModel.readSyllabusWith(day: day.rawValue, period: period, onSuccess: { [weak self] (retSyllabuses) in
             self?.syllabuses = retSyllabuses.filter{ $0.getQuarterCodes().contains(quarter) }
             DispatchQueue.main.async {
                 self?.courseCollection.reloadData()

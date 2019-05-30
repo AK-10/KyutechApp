@@ -73,6 +73,7 @@ enum Router: URLRequestConvertible {
         case .readSyllabusDetails(let id):
             return "/syllabuses/\(id.description)/"
         case .readSyllabusWith(let dayID, let periodID):
+            print("/syllabuses/day-\(dayID.description)/period-\(periodID.description)/")
             return "/syllabuses/day-\(dayID.description)/period-\(periodID.description)/"
         case .createSchedule:
             return "/user-schedules/"
