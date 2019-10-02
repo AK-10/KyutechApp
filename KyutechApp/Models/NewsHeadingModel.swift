@@ -12,7 +12,7 @@ import Alamofire
 class NewsHeadingModel {
     
     class func readNewsHeadings(onSuccess: @escaping ([NewsHeading]) -> Void, onError: @escaping () -> Void)  {
-        Alamofire.request(Router.readNewsHeadings()).responseJSON(completionHandler: { res in
+        Alamofire.request(Router.readNewsHeadings).responseJSON(completionHandler: { res in
             print("\(String(describing: res.request?.url))")
             if (res.error != nil) {
                 onError()
