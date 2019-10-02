@@ -18,7 +18,7 @@ enum Router: URLRequestConvertible {
     case readUser(id: Int)
     case updateUser(id: Int, params: Parameters)
     
-    case readNewsHeadings()
+    case readNewsHeadings
     case readNews(id: Int)
     
     case readSyllabusDetails(id: Int)

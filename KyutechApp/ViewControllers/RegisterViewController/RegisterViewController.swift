@@ -99,6 +99,7 @@ class RegisterViewController: UIViewController {
                 self?.indicator.stopAnimating()
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyBoard.instantiateInitialViewController()
+                vc?.modalPresentationStyle = .fullScreen
                 self?.modalTransitionStyle = .crossDissolve
                 self?.present(vc!, animated: true, completion: nil)
                 }, onError: { [weak self] () in
