@@ -38,8 +38,8 @@ class NewsViewController: UIViewController {
     }
     
     func setupNavigationBar() {
-        navigationController?.navigationItem.title = "Test"
         navigationController?.navigationBar.removeBottomBorder()
+
         navigationController?.navigationBar.addShadowToBar(color: UIColor.extendedInit(from: "#00BCD4")!)
     }
     
